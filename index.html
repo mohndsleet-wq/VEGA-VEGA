@@ -1,94 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
 <title>VEGA Fuel Systems | Product Library</title>
 
 <style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
 :root{
-  --red:#ed1c24;
-  --red2:#ff3038;
-  --black:#07090b;
-  --dark:#0d1014;
-  --dark2:#12161b;
-  --line:#2b3239;
-  --white:#fff;
-  --light:#f3f4f5;
-  --text:#15181b;
-  --muted:#7d8791;
-}
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+    --red:#ed1c24;
+    --red-hover:#ff3038;
 
-html{
-  scroll-behavior:smooth;
-}
+    --black:#07090b;
+    --black-2:#0b0e11;
 
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--black);
-  color:#fff;
-  overflow-x:hidden;
-}
+    --dark:#11151a;
+    --dark-2:#171c21;
 
-button,
-input,
-select{
-  font:inherit;
-}
+    --line:#2b3239;
 
-button{
-  cursor:pointer;
-}
+    --white:#ffffff;
 
-.hidden{
-  display:none!important;
+    --page:#f3f4f5;
+
+    --text:#15181b;
+
+    --muted:#7d8791;
+
 }
 
 
 /* =========================================================
-   TOP BAR
+   RESET
 ========================================================= */
 
-.showroom-topbar,
-.product-header{
+*{
 
-  width:100%;
-  min-height:88px;
+    margin:0;
 
-  background:
-    linear-gradient(
-      90deg,
-      #06080a 0%,
-      #11151a 50%,
-      #06080a 100%
-    );
+    padding:0;
 
-  border-bottom:1px solid #30363d;
+    box-sizing:border-box;
 
-  display:grid;
-  grid-template-columns:auto 1fr auto;
-
-  align-items:center;
-
-  gap:28px;
-
-  padding:10px 4%;
-
-  position:sticky;
-  top:0;
-
-  z-index:1000;
-
-  box-shadow:
-    0 12px 35px
-    rgba(0,0,0,.38);
 }
+
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+
+body{
+
+    margin:0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:var(--black);
+
+    color:white;
+
+    overflow-x:hidden;
+
+}
+
+
+button,
+input,
+select{
+
+    font:inherit;
+
+}
+
+
+button{
+
+    cursor:pointer;
+
+}
+
+
+.hidden{
+
+    display:none !important;
+
+}
+
+
+
+/* =========================================================
+   HOME PAGE
+========================================================= */
+
+#homePage{
+
+    width:100%;
+
+    min-height:100vh;
+
+    background:var(--black);
+
+}
+
+
+
+/* =========================================================
+   TOP NAVIGATION BAR
+========================================================= */
+
+.showroom-topbar{
+
+    width:100%;
+
+    min-height:92px;
+
+    display:grid;
+
+    grid-template-columns:
+        auto
+        1fr
+        auto;
+
+    align-items:center;
+
+    gap:38px;
+
+    padding:
+        10px
+        4%;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #050709 0%,
+            #101419 48%,
+            #07090b 100%
+        );
+
+    border-bottom:
+        1px solid #2d343b;
+
+    box-shadow:
+
+        0 10px 35px
+        rgba(0,0,0,.45);
+
+}
+
 
 
 /* =========================================================
@@ -98,64 +181,46 @@ button{
 .topbar-brand,
 .product-header-brand{
 
-  display:flex;
-  align-items:center;
+    display:flex;
 
-  cursor:pointer;
+    align-items:center;
 
-  min-width:0;
+    cursor:pointer;
+
+    min-width:0;
+
 }
 
 
 /*
-   IMPORTANT
-   This keeps the logo small.
-   It cannot expand to the full page.
+   NO WHITE BOX.
+   Logo sits directly on black navigation.
 */
-
-.logo-shell{
-
-  width:215px;
-  height:62px;
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  padding:6px 12px;
-
-  border-radius:10px;
-
-  background:
-    linear-gradient(
-      180deg,
-      #ffffff 0%,
-      #f3f3f3 100%
-    );
-
-  overflow:hidden;
-
-  box-shadow:
-    0 5px 18px
-    rgba(0,0,0,.24);
-
-  flex-shrink:0;
-}
-
 
 .vega-logo{
 
-  display:block;
+    display:block;
 
-  width:100%;
-  height:100%;
+    width:270px;
 
-  max-width:100%;
-  max-height:100%;
+    height:64px;
 
-  object-fit:contain;
+    max-width:270px;
+
+    object-fit:contain;
+
+    object-position:left center;
+
+    background:transparent;
+
+    border:0;
+
+    box-shadow:none;
+
+    flex-shrink:0;
+
 }
+
 
 
 /* =========================================================
@@ -163,117 +228,152 @@ button{
 ========================================================= */
 
 .topbar-center{
-  min-width:0;
+
+    min-width:0;
+
+    padding-left:8px;
+
 }
 
 
 .topbar-title{
 
-  font-size:14px;
+    display:flex;
 
-  font-weight:800;
+    align-items:center;
 
-  letter-spacing:1px;
+    flex-wrap:wrap;
+
+    gap:8px;
+
+    font-size:15px;
+
+    font-weight:900;
+
+    letter-spacing:1.3px;
+
+    color:white;
+
 }
 
 
 .topbar-title span{
 
-  color:var(--red);
+    color:var(--red);
 
-  margin-left:5px;
 }
 
 
 .topbar-subtitle{
 
-  margin-top:6px;
+    margin-top:7px;
 
-  color:#7f8993;
+    color:#86919c;
 
-  font-size:10px;
+    font-size:10px;
 
-  letter-spacing:.45px;
+    letter-spacing:.45px;
+
 }
+
 
 
 /* =========================================================
-   TOP BAR ACTIONS
+   TOPBAR RIGHT
 ========================================================= */
 
-.topbar-actions,
-.product-header-actions{
+.topbar-actions{
 
-  display:flex;
+    display:flex;
 
-  align-items:center;
+    align-items:center;
 
-  gap:12px;
+    justify-content:flex-end;
 
-  justify-self:end;
+    gap:12px;
+
 }
 
 
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
 .topbar-search{
 
-  width:310px;
-  height:44px;
+    width:310px;
 
-  display:flex;
+    height:44px;
 
-  align-items:center;
+    display:flex;
 
-  gap:10px;
+    align-items:center;
 
-  padding:0 14px;
+    gap:10px;
 
-  background:#11161b;
+    padding:
+        0
+        14px;
 
-  border:1px solid #343b43;
+    background:#11161b;
 
-  border-radius:7px;
+    border:
+        1px solid #323a42;
+
+    border-radius:7px;
+
+    transition:.2s;
+
+}
+
+
+.topbar-search:hover{
+
+    border-color:#58636e;
+
 }
 
 
 .topbar-search:focus-within{
-  border-color:#89939d;
+
+    border-color:#949da6;
+
 }
 
 
 .search-icon{
 
-  color:#8b959f;
+    color:#8b959f;
 
-  font-size:18px;
-}
+    font-size:18px;
 
-
-.topbar-search input,
-.product-header-search{
-
-  border:0;
-
-  outline:0;
-
-  background:transparent;
-
-  color:#fff;
 }
 
 
 .topbar-search input{
 
-  width:100%;
+    width:100%;
 
-  font-size:12px;
+    border:0;
+
+    outline:0;
+
+    background:transparent;
+
+    color:white;
+
+    font-size:12px;
+
 }
 
 
-.topbar-search input::placeholder,
-.product-header-search::placeholder{
+.topbar-search input::placeholder{
 
-  color:#727d88;
+    color:#717c87;
+
 }
+
 
 
 /* =========================================================
@@ -282,144 +382,207 @@ button{
 
 .topbar-product-btn{
 
-  height:44px;
+    height:44px;
 
-  min-width:175px;
+    min-width:175px;
 
-  border:0;
+    padding:
+        0
+        19px;
 
-  border-radius:6px;
+    display:flex;
 
-  padding:0 18px;
+    align-items:center;
 
-  background:var(--red);
+    justify-content:center;
 
-  color:#fff;
+    gap:14px;
 
-  display:flex;
+    border:0;
 
-  align-items:center;
-  justify-content:center;
+    border-radius:6px;
 
-  gap:14px;
+    background:var(--red);
 
-  font-size:11px;
+    color:white;
 
-  font-weight:800;
+    font-size:11px;
 
-  letter-spacing:.7px;
+    font-weight:900;
 
-  transition:.2s;
+    letter-spacing:.7px;
 
-  box-shadow:
-    0 8px 25px
-    rgba(237,28,36,.2);
+    transition:.22s;
+
+    box-shadow:
+
+        0 8px 25px
+        rgba(237,28,36,.20);
+
+}
+
+
+.topbar-product-btn span{
+
+    font-size:18px;
+
+    transition:.2s;
+
 }
 
 
 .topbar-product-btn:hover{
 
-  background:var(--red2);
+    background:var(--red-hover);
 
-  transform:translateY(-1px);
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+
+        0 13px 30px
+        rgba(237,28,36,.30);
+
 }
 
 
-.topbar-product-btn span{
-  font-size:18px;
+.topbar-product-btn:hover span{
+
+    transform:
+        translateX(4px);
+
 }
+
 
 
 /* =========================================================
-   HOME PAGE
+   SHOWROOM
 ========================================================= */
-
-#homePage{
-
-  min-height:100vh;
-
-  background:var(--black);
-}
-
 
 .showroom{
 
-  width:100%;
+    width:100%;
 
-  max-width:1920px;
+    max-width:1920px;
 
-  margin:auto;
+    margin:auto;
 
-  background:#08090b;
+    padding:
+
+        18px
+        3%
+        22px;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            #13171b 0%,
+            #090b0d 65%,
+            #060708 100%
+        );
+
+    overflow:hidden;
+
 }
 
+
+/*
+   ZOOM OUT
+   94% = slight zoom out.
+*/
 
 .showroom img{
 
-  display:block;
+    display:block;
 
-  width:100%;
+    width:94%;
 
-  height:auto;
+    max-width:1800px;
 
-  user-select:none;
+    height:auto;
 
-  -webkit-user-drag:none;
+    margin:auto;
+
+    border-radius:3px;
+
+    box-shadow:
+
+        0 22px 60px
+        rgba(0,0,0,.45);
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+
 }
 
 
+
 /* =========================================================
-   INFO BAR
+   HOME INFORMATION STRIP
 ========================================================= */
 
 .home-info{
 
-  display:grid;
+    display:grid;
 
-  grid-template-columns:
-    repeat(4,1fr);
+    grid-template-columns:
+        repeat(4,1fr);
 
-  background:#0b0e11;
+    background:#0b0e11;
 
-  border-top:1px solid #242b31;
+    border-top:
+        1px solid #242b31;
 
-  border-bottom:1px solid #242b31;
+    border-bottom:
+        1px solid #242b31;
+
 }
 
 
 .home-info-box{
 
-  padding:22px 28px;
+    padding:
+        22px
+        28px;
 
-  border-right:1px solid #272e35;
+    border-right:
+        1px solid #272e35;
+
 }
 
 
 .home-info-box:last-child{
-  border-right:0;
+
+    border-right:0;
+
 }
 
 
 .home-info-box strong{
 
-  display:block;
+    display:block;
 
-  font-size:11px;
+    font-size:11px;
 
-  letter-spacing:.7px;
+    letter-spacing:.8px;
+
 }
 
 
 .home-info-box span{
 
-  display:block;
+    display:block;
 
-  margin-top:6px;
+    margin-top:6px;
 
-  color:#727d87;
+    color:#737e88;
 
-  font-size:11px;
+    font-size:11px;
+
 }
+
 
 
 /* =========================================================
@@ -428,72 +591,162 @@ button{
 
 #productPage{
 
-  min-height:100vh;
+    min-height:100vh;
 
-  background:var(--light);
+    background:var(--page);
 
-  color:var(--text);
+    color:var(--text);
+
 }
 
+
+
+/* =========================================================
+   PRODUCT HEADER
+========================================================= */
 
 .product-header{
 
-  grid-template-columns:
-    auto
-    1fr
-    auto;
+    width:100%;
 
-  min-height:82px;
+    min-height:86px;
+
+    display:grid;
+
+    grid-template-columns:
+        auto
+        1fr
+        auto;
+
+    align-items:center;
+
+    gap:25px;
+
+    padding:
+        10px
+        4%;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    background:#080a0d;
+
+    border-bottom:
+        1px solid #292f35;
+
+    box-shadow:
+
+        0 8px 25px
+        rgba(0,0,0,.25);
+
 }
 
 
-.product-header .logo-shell{
+.product-header .vega-logo{
 
-  width:195px;
+    width:230px;
 
-  height:56px;
+    max-width:230px;
+
+    height:57px;
+
+}
+
+
+.product-header-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    justify-self:end;
+
 }
 
 
 .product-header-search{
 
-  width:340px;
+    width:340px;
 
-  height:42px;
+    height:42px;
 
-  border:1px solid #343b42;
+    padding:
+        0
+        14px;
 
-  border-radius:6px;
+    outline:none;
 
-  background:#12161a;
+    border:
+        1px solid #343b42;
 
-  padding:0 14px;
+    border-radius:6px;
+
+    background:#12161a;
+
+    color:white;
+
 }
 
 
+.product-header-search::placeholder{
+
+    color:#737e88;
+
+}
+
+
+.product-header-search:focus{
+
+    border-color:#929ca5;
+
+}
+
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
 .back-button{
 
-  height:42px;
+    height:42px;
 
-  padding:0 17px;
+    padding:
+        0
+        18px;
 
-  border:1px solid #49525b;
+    border:
+        1px solid #49525b;
 
-  border-radius:6px;
+    border-radius:6px;
 
-  background:transparent;
+    background:transparent;
 
-  color:#fff;
+    color:white;
 
-  font-size:11px;
+    font-size:11px;
 
-  font-weight:bold;
+    font-weight:bold;
+
+    transition:.2s;
+
 }
 
 
 .back-button:hover{
-  border-color:#fff;
+
+    border-color:white;
+
+    background:
+        rgba(255,255,255,.05);
+
 }
+
 
 
 /* =========================================================
@@ -502,361 +755,437 @@ button{
 
 .catalog-hero{
 
-  background:
-    linear-gradient(
-      110deg,
-      #0c0f13,
-      #14191e 70%,
-      #251015
-    );
+    padding:
+        38px
+        5%;
 
-  padding:38px 5%;
+    display:flex;
 
-  color:#fff;
+    align-items:flex-end;
 
-  display:flex;
+    justify-content:space-between;
 
-  justify-content:space-between;
+    gap:30px;
 
-  align-items:end;
+    background:
 
-  gap:30px;
+        linear-gradient(
+            110deg,
+            #0c0f13,
+            #14191e 70%,
+            #251015
+        );
+
+    color:white;
+
 }
 
 
 .catalog-hero small{
 
-  display:block;
+    display:block;
 
-  color:#89939d;
+    color:#89939d;
 
-  letter-spacing:4px;
+    font-size:10px;
 
-  font-size:10px;
+    letter-spacing:4px;
+
 }
 
 
 .catalog-hero h1{
 
-  margin-top:8px;
+    margin-top:8px;
 
-  font-size:
-    clamp(
-      32px,
-      4vw,
-      48px
-    );
+    font-size:
 
-  text-transform:uppercase;
+        clamp(
+            32px,
+            4vw,
+            48px
+        );
+
+    line-height:1;
+
+    text-transform:uppercase;
+
 }
 
 
 .catalog-hero h1 span{
-  color:var(--red);
+
+    color:var(--red);
+
 }
 
 
+
+/* =========================================================
+   PRODUCT COUNT
+========================================================= */
+
 .product-count{
 
-  text-align:right;
+    text-align:right;
 
-  color:#9ba4ad;
+    color:#9ba4ad;
 
-  font-size:10px;
+    font-size:10px;
 
-  letter-spacing:1px;
+    letter-spacing:1px;
+
 }
 
 
 .product-count strong{
 
-  display:block;
+    display:block;
 
-  margin-top:4px;
+    margin-top:4px;
 
-  color:#fff;
+    color:white;
 
-  font-size:28px;
+    font-size:30px;
+
 }
 
 
+
 /* =========================================================
-   CATALOG
+   CATALOG CONTAINER
 ========================================================= */
 
 .catalog-container{
 
-  max-width:1550px;
+    width:100%;
 
-  margin:auto;
+    max-width:1550px;
 
-  padding:
-    32px
-    4%
-    80px;
+    margin:auto;
+
+    padding:
+        32px
+        4%
+        80px;
+
 }
 
 
+
 /* =========================================================
-   CATEGORIES
+   CATEGORY BUTTONS
 ========================================================= */
 
 .category-tabs{
 
-  display:grid;
+    display:grid;
 
-  grid-template-columns:
-    repeat(7,1fr);
+    grid-template-columns:
+        repeat(7,1fr);
 
-  gap:8px;
+    gap:8px;
 
-  margin-bottom:16px;
+    margin-bottom:16px;
+
 }
 
 
 .category-tab{
 
-  min-height:62px;
+    min-height:62px;
 
-  border:1px solid #d8dce0;
+    padding:8px;
 
-  background:#fff;
+    border:
+        1px solid #d8dce0;
 
-  color:#25292d;
+    border-radius:7px;
 
-  border-radius:7px;
+    background:white;
 
-  font-size:11px;
+    color:#25292d;
 
-  font-weight:bold;
+    font-size:11px;
 
-  transition:.2s;
+    font-weight:bold;
+
+    transition:.2s;
+
 }
 
 
 .category-tab:hover{
 
-  border-color:var(--red);
+    border-color:var(--red);
 
-  color:var(--red);
+    color:var(--red);
+
 }
 
 
 .category-tab.active{
 
-  background:var(--red);
+    border-color:var(--red);
 
-  color:#fff;
+    background:var(--red);
 
-  border-color:var(--red);
+    color:white;
+
 }
 
 
+
 /* =========================================================
-   FILTERS
+   FILTER BAR
 ========================================================= */
 
 .filters{
 
-  background:#fff;
+    display:grid;
 
-  border:1px solid #dadee2;
+    grid-template-columns:
+        2fr
+        1fr
+        1fr;
 
-  border-radius:8px;
+    gap:10px;
 
-  padding:15px;
+    margin-bottom:25px;
 
-  display:grid;
+    padding:15px;
 
-  grid-template-columns:
-    2fr
-    1fr
-    1fr;
+    background:white;
 
-  gap:10px;
+    border:
+        1px solid #dadee2;
 
-  margin-bottom:25px;
+    border-radius:8px;
 
-  box-shadow:
-    0 5px 18px
-    rgba(0,0,0,.04);
+    box-shadow:
+
+        0 5px 18px
+        rgba(0,0,0,.04);
+
 }
 
 
 .filters input,
 .filters select{
 
-  width:100%;
+    width:100%;
 
-  height:44px;
+    height:44px;
 
-  border:1px solid #d4d8dc;
+    padding:
+        0
+        12px;
 
-  border-radius:5px;
+    outline:none;
 
-  padding:0 12px;
+    border:
+        1px solid #d4d8dc;
 
-  outline:none;
+    border-radius:5px;
 
-  background:#fff;
+    background:white;
 
-  color:#25282b;
+    color:#25282b;
+
 }
 
 
 .filters input:focus,
 .filters select:focus{
 
-  border-color:var(--red);
+    border-color:var(--red);
+
 }
 
 
+
 /* =========================================================
-   PRODUCTS
+   PRODUCT GRID
 ========================================================= */
 
 .products{
 
-  display:grid;
+    display:grid;
 
-  grid-template-columns:
-    repeat(4,1fr);
+    grid-template-columns:
+        repeat(4,1fr);
 
-  gap:18px;
+    gap:18px;
+
 }
 
 
+
+/* =========================================================
+   PRODUCT CARD
+========================================================= */
+
 .card{
 
-  background:#fff;
+    overflow:hidden;
 
-  border:1px solid #dce0e3;
+    background:white;
 
-  border-radius:9px;
+    border:
+        1px solid #dce0e3;
 
-  overflow:hidden;
+    border-radius:10px;
 
-  cursor:pointer;
+    cursor:pointer;
 
-  transition:.25s;
+    transition:.25s;
+
 }
 
 
 .card:hover{
 
-  transform:
-    translateY(-5px);
+    transform:
+        translateY(-5px);
 
-  border-color:#bcc2c7;
+    border-color:#bcc2c7;
 
-  box-shadow:
-    0 17px 38px
-    rgba(0,0,0,.11);
+    box-shadow:
+
+        0 17px 38px
+        rgba(0,0,0,.11);
+
 }
 
 
+
+/* =========================================================
+   CARD IMAGE
+========================================================= */
+
 .card-image{
 
-  height:235px;
+    position:relative;
 
-  position:relative;
+    height:235px;
 
-  display:flex;
+    display:flex;
 
-  align-items:center;
+    align-items:center;
 
-  justify-content:center;
+    justify-content:center;
 
-  background:
-    radial-gradient(
-      circle at 50% 40%,
-      #fff 0%,
-      #eee 53%,
-      #dadcde 100%
-    );
+    background:
+
+        radial-gradient(
+            circle at 50% 40%,
+            #ffffff 0%,
+            #eeeeee 53%,
+            #dadcde 100%
+        );
+
 }
 
 
 .card-category{
 
-  position:absolute;
+    position:absolute;
 
-  top:12px;
+    top:12px;
 
-  left:12px;
+    left:12px;
 
-  background:#111519;
+    padding:
+        6px
+        8px;
 
-  color:#fff;
+    border-radius:3px;
 
-  padding:6px 8px;
+    background:#111519;
 
-  border-radius:3px;
+    color:white;
 
-  font-size:8px;
+    font-size:8px;
 
-  letter-spacing:.5px;
+    letter-spacing:.5px;
 
-  text-transform:uppercase;
+    text-transform:uppercase;
+
 }
 
 
 .card-brand{
 
-  position:absolute;
+    position:absolute;
 
-  top:13px;
+    top:13px;
 
-  right:13px;
+    right:13px;
 
-  color:var(--red);
+    color:var(--red);
 
-  font-weight:bold;
+    font-size:11px;
 
-  font-size:11px;
+    font-weight:bold;
+
 }
 
 
 .product-icon{
-  font-size:72px;
+
+    font-size:72px;
+
 }
 
 
+
+/* =========================================================
+   CARD BODY
+========================================================= */
+
 .card-body{
-  padding:18px;
+
+    padding:18px;
+
 }
 
 
 .card-body h3{
 
-  font-size:18px;
+    color:#171a1d;
 
-  line-height:1.25;
+    font-size:18px;
+
+    line-height:1.25;
+
 }
 
 
 .model{
 
-  margin-top:5px;
+    margin-top:5px;
 
-  color:#7e878f;
+    color:#7e878f;
 
-  font-size:11px;
+    font-size:11px;
+
 }
 
 
 .description{
 
-  margin-top:12px;
+    min-height:58px;
 
-  color:#626a72;
+    margin-top:12px;
 
-  font-size:12px;
+    color:#626a72;
 
-  line-height:1.55;
+    font-size:12px;
 
-  min-height:58px;
+    line-height:1.55;
+
 }
+
 
 
 /* =========================================================
@@ -865,36 +1194,48 @@ button{
 
 .mini-specs{
 
-  margin-top:13px;
+    margin-top:13px;
 
-  padding-top:12px;
+    padding-top:12px;
 
-  border-top:1px solid #eceeef;
+    border-top:
+        1px solid #eceeef;
+
 }
 
 
 .mini-spec{
 
-  display:flex;
+    display:flex;
 
-  justify-content:space-between;
+    justify-content:space-between;
 
-  gap:10px;
+    gap:10px;
 
-  padding:4px 0;
+    padding:
+        4px
+        0;
 
-  font-size:10px;
+    font-size:10px;
+
 }
 
 
 .mini-spec span{
-  color:#879098;
+
+    color:#879098;
+
 }
 
 
 .mini-spec strong{
-  text-align:right;
+
+    color:#262a2e;
+
+    text-align:right;
+
 }
+
 
 
 /* =========================================================
@@ -903,353 +1244,430 @@ button{
 
 .card-footer{
 
-  margin-top:15px;
+    margin-top:15px;
 
-  padding-top:14px;
+    padding-top:14px;
 
-  border-top:1px solid #eceeef;
+    display:flex;
 
-  display:flex;
+    align-items:flex-end;
 
-  justify-content:space-between;
+    justify-content:space-between;
 
-  align-items:end;
+    gap:12px;
 
-  gap:12px;
+    border-top:
+        1px solid #eceeef;
+
 }
 
 
 .price small{
 
-  display:block;
+    display:block;
 
-  color:#979ea4;
+    color:#979ea4;
 
-  font-size:8px;
+    font-size:8px;
+
 }
 
 
 .price strong{
 
-  display:block;
+    display:block;
 
-  margin-top:3px;
+    margin-top:3px;
 
-  color:var(--red);
+    color:var(--red);
 
-  font-size:19px;
+    font-size:19px;
+
 }
 
 
 .details-button{
 
-  border:0;
+    padding:
+        9px
+        12px;
 
-  border-radius:4px;
+    border:0;
 
-  background:#15191d;
+    border-radius:4px;
 
-  color:#fff;
+    background:#15191d;
 
-  padding:9px 12px;
+    color:white;
 
-  font-size:10px;
+    font-size:10px;
 
-  font-weight:bold;
+    font-weight:bold;
+
 }
 
-
-.no-products{
-
-  grid-column:1/-1;
-
-  background:#fff;
-
-  border:1px solid #dddfe2;
-
-  border-radius:8px;
-
-  padding:60px;
-
-  text-align:center;
-
-  color:#777f87;
-}
 
 
 /* =========================================================
-   MODAL
+   EMPTY RESULT
+========================================================= */
+
+.no-products{
+
+    grid-column:
+        1 / -1;
+
+    padding:60px;
+
+    text-align:center;
+
+    background:white;
+
+    border:
+        1px solid #dddfe2;
+
+    border-radius:8px;
+
+    color:#777f87;
+
+}
+
+
+
+/* =========================================================
+   PRODUCT MODAL
 ========================================================= */
 
 #productModal{
 
-  position:fixed;
+    position:fixed;
 
-  inset:0;
+    inset:0;
 
-  z-index:5000;
+    z-index:5000;
 
-  background:
-    rgba(0,0,0,.78);
+    display:flex;
 
-  backdrop-filter:
-    blur(7px);
+    align-items:center;
 
-  display:flex;
+    justify-content:center;
 
-  align-items:center;
+    padding:25px;
 
-  justify-content:center;
+    background:
 
-  padding:25px;
+        rgba(0,0,0,.78);
+
+    backdrop-filter:
+        blur(7px);
+
 }
 
 
 .modal-box{
 
-  position:relative;
+    position:relative;
 
-  width:
-    min(
-      1050px,
-      96vw
-    );
+    width:
 
-  max-height:92vh;
+        min(
+            1050px,
+            96vw
+        );
 
-  overflow:auto;
+    max-height:92vh;
 
-  display:grid;
+    display:grid;
 
-  grid-template-columns:
-    .9fr
-    1.1fr;
+    grid-template-columns:
+        .9fr
+        1.1fr;
 
-  background:#fff;
+    overflow:auto;
 
-  color:#171a1d;
+    background:white;
 
-  border-radius:10px;
+    color:#171a1d;
 
-  box-shadow:
-    0 40px 100px
-    rgba(0,0,0,.5);
+    border-radius:10px;
+
+    box-shadow:
+
+        0 40px 100px
+        rgba(0,0,0,.5);
+
 }
 
+
+
+/* =========================================================
+   MODAL CLOSE
+========================================================= */
 
 .modal-close{
 
-  position:absolute;
+    position:absolute;
 
-  right:15px;
+    top:15px;
 
-  top:15px;
+    right:15px;
 
-  width:38px;
+    z-index:10;
 
-  height:38px;
+    width:38px;
 
-  border:0;
+    height:38px;
 
-  border-radius:50%;
+    border:0;
 
-  background:#111519;
+    border-radius:50%;
 
-  color:#fff;
+    background:#111519;
 
-  font-size:20px;
+    color:white;
 
-  z-index:10;
+    font-size:20px;
+
 }
 
+
+
+/* =========================================================
+   MODAL IMAGE
+========================================================= */
 
 .modal-image{
 
-  min-height:570px;
+    min-height:570px;
 
-  display:flex;
+    display:flex;
 
-  align-items:center;
+    align-items:center;
 
-  justify-content:center;
+    justify-content:center;
 
-  background:
-    radial-gradient(
-      circle,
-      #fff,
-      #e2e4e5
-    );
+    background:
 
-  font-size:145px;
+        radial-gradient(
+            circle,
+            white,
+            #e2e4e5
+        );
+
+    font-size:145px;
+
 }
 
 
+
+/* =========================================================
+   MODAL INFORMATION
+========================================================= */
+
 .modal-info{
 
-  padding:
-    50px
-    42px;
+    padding:
+        50px
+        42px;
+
 }
 
 
 .modal-category{
 
-  color:var(--red);
+    color:var(--red);
 
-  font-size:10px;
+    font-size:10px;
 
-  font-weight:bold;
+    font-weight:bold;
 
-  letter-spacing:2px;
+    letter-spacing:2px;
 
-  text-transform:uppercase;
+    text-transform:uppercase;
+
 }
 
 
 .modal-info h2{
 
-  margin-top:7px;
+    margin-top:7px;
 
-  font-size:34px;
+    font-size:34px;
+
 }
 
 
 .modal-model{
 
-  margin-top:5px;
+    margin-top:5px;
 
-  color:#7b848c;
+    color:#7b848c;
 
-  font-size:13px;
+    font-size:13px;
+
 }
 
 
 .modal-description{
 
-  margin-top:20px;
+    margin-top:20px;
 
-  color:#606970;
+    color:#606970;
 
-  font-size:13px;
+    font-size:13px;
 
-  line-height:1.7;
+    line-height:1.7;
+
 }
 
 
+
+/* =========================================================
+   DETAILS TABLE
+========================================================= */
+
 .details-table{
 
-  margin-top:24px;
+    margin-top:24px;
 
-  border:1px solid #e0e3e5;
+    overflow:hidden;
 
-  border-radius:5px;
+    border:
+        1px solid #e0e3e5;
 
-  overflow:hidden;
+    border-radius:5px;
+
 }
 
 
 .detail-row{
 
-  display:grid;
+    display:grid;
 
-  grid-template-columns:
-    .85fr
-    1.15fr;
+    grid-template-columns:
+        .85fr
+        1.15fr;
 
-  border-bottom:1px solid #e5e7e9;
+    border-bottom:
+        1px solid #e5e7e9;
 
-  font-size:11px;
+    font-size:11px;
+
 }
 
 
 .detail-row:last-child{
-  border-bottom:0;
+
+    border-bottom:0;
+
 }
 
 
 .detail-row span{
 
-  background:#f5f6f7;
+    padding:11px;
 
-  color:#767f87;
+    background:#f5f6f7;
 
-  padding:11px;
+    color:#767f87;
+
 }
 
 
 .detail-row strong{
-  padding:11px;
+
+    padding:11px;
+
 }
 
 
+
+/* =========================================================
+   MODAL PRICE
+========================================================= */
+
 .modal-price{
-  margin-top:24px;
+
+    margin-top:24px;
+
 }
 
 
 .modal-price small{
 
-  display:block;
+    display:block;
 
-  color:#8b939a;
+    color:#8b939a;
 
-  font-size:9px;
+    font-size:9px;
+
 }
 
 
 .modal-price strong{
 
-  display:block;
+    display:block;
 
-  margin-top:3px;
+    margin-top:3px;
 
-  color:var(--red);
+    color:var(--red);
 
-  font-size:29px;
+    font-size:29px;
+
 }
 
 
+
+/* =========================================================
+   MODAL BUTTONS
+========================================================= */
+
 .modal-actions{
 
-  display:grid;
+    display:grid;
 
-  grid-template-columns:
-    1fr
-    1fr;
+    grid-template-columns:
+        1fr
+        1fr;
 
-  gap:10px;
+    gap:10px;
 
-  margin-top:22px;
+    margin-top:22px;
+
 }
 
 
 .datasheet-button,
 .quote-button{
 
-  height:47px;
+    height:47px;
 
-  border:0;
+    border:0;
 
-  border-radius:5px;
+    border-radius:5px;
 
-  font-weight:bold;
+    font-weight:bold;
+
 }
 
 
 .datasheet-button{
 
-  background:var(--red);
+    background:var(--red);
 
-  color:#fff;
+    color:white;
+
 }
 
 
 .quote-button{
 
-  background:#15191d;
+    background:#15191d;
 
-  color:#fff;
+    color:white;
+
 }
+
 
 
 /* =========================================================
@@ -1258,197 +1676,299 @@ button{
 
 footer{
 
-  background:#060708;
+    padding:
+        24px
+        5%;
 
-  border-top:1px solid #252b31;
+    display:flex;
 
-  color:#67717b;
+    justify-content:space-between;
 
-  font-size:10px;
+    gap:20px;
 
-  padding:24px 5%;
+    background:#060708;
 
-  display:flex;
+    border-top:
+        1px solid #252b31;
 
-  justify-content:space-between;
+    color:#67717b;
 
-  gap:20px;
+    font-size:10px;
+
 }
 
 
+
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE 1200
 ========================================================= */
 
 @media(max-width:1200px){
 
-  .topbar-center{
-    display:none;
-  }
 
-  .showroom-topbar{
-    grid-template-columns:auto 1fr;
-  }
+    .topbar-center{
 
-  .topbar-actions{
-    justify-self:end;
-  }
+        display:none;
 
-  .products{
-    grid-template-columns:repeat(3,1fr);
-  }
+    }
 
-  .category-tabs{
-    grid-template-columns:repeat(4,1fr);
-  }
+
+    .showroom-topbar{
+
+        grid-template-columns:
+            auto
+            1fr;
+
+    }
+
+
+    .topbar-actions{
+
+        justify-self:end;
+
+    }
+
+
+    .products{
+
+        grid-template-columns:
+            repeat(3,1fr);
+
+    }
+
+
+    .category-tabs{
+
+        grid-template-columns:
+            repeat(4,1fr);
+
+    }
 
 }
 
+
+
+/* =========================================================
+   RESPONSIVE 900
+========================================================= */
 
 @media(max-width:900px){
 
-  .topbar-search,
-  .product-header-search{
-    display:none;
-  }
 
-  .home-info{
-    grid-template-columns:repeat(2,1fr);
-  }
+    .topbar-search,
+    .product-header-search{
 
-  .products{
-    grid-template-columns:repeat(2,1fr);
-  }
+        display:none;
 
-  .filters{
-    grid-template-columns:1fr 1fr;
-  }
+    }
 
-  .modal-box{
-    grid-template-columns:1fr;
-  }
 
-  .modal-image{
-    min-height:300px;
-  }
+    .vega-logo{
+
+        width:220px;
+
+        max-width:220px;
+
+        height:55px;
+
+    }
+
+
+    .home-info{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+
+    .products{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+
+    .filters{
+
+        grid-template-columns:
+            1fr
+            1fr;
+
+    }
+
+
+    .modal-box{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .modal-image{
+
+        min-height:300px;
+
+    }
 
 }
 
 
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
 @media(max-width:600px){
 
-  .showroom-topbar,
-  .product-header{
 
-    min-height:72px;
+    .showroom-topbar,
+    .product-header{
 
-    padding:8px 12px;
-  }
+        min-height:72px;
 
+        padding:
+            8px
+            12px;
 
-  .logo-shell{
-
-    width:145px;
-
-    height:44px;
-
-    padding:4px 8px;
-  }
+    }
 
 
-  .product-header .logo-shell{
+    .vega-logo{
 
-    width:140px;
+        width:150px;
 
-    height:42px;
-  }
+        max-width:150px;
 
+        height:42px;
 
-  .topbar-product-btn{
-
-    min-width:118px;
-
-    font-size:9px;
-  }
+    }
 
 
-  .showroom{
+    .product-header .vega-logo{
 
-    overflow-x:auto;
-  }
+        width:140px;
 
+        max-width:140px;
 
-  .showroom img{
+        height:40px;
 
-    width:1050px;
-
-    max-width:none;
-  }
+    }
 
 
-  .home-info{
+    .topbar-product-btn{
 
-    grid-template-columns:1fr;
-  }
+        min-width:115px;
 
+        height:40px;
 
-  .catalog-hero{
+        padding:
+            0
+            10px;
 
-    display:block;
+        font-size:8px;
 
-    padding:27px 18px;
-  }
-
-
-  .product-count{
-
-    margin-top:16px;
-
-    text-align:left;
-  }
+    }
 
 
-  .catalog-container{
+    .showroom{
 
-    padding:
-      22px
-      14px
-      60px;
-  }
+        padding:
+            10px
+            2%
+            14px;
 
+        overflow:hidden;
 
-  .category-tabs{
-
-    grid-template-columns:
-      1fr
-      1fr;
-  }
+    }
 
 
-  .filters{
+    .showroom img{
 
-    grid-template-columns:1fr;
-  }
+        width:96%;
 
+        max-width:96%;
 
-  .products{
+        margin:auto;
 
-    grid-template-columns:1fr;
-  }
-
-
-  .modal-info{
-
-    padding:
-      38px
-      22px;
-  }
+    }
 
 
-  .modal-actions{
+    .home-info{
 
-    grid-template-columns:1fr;
-  }
+        grid-template-columns:1fr;
+
+    }
+
+
+    .catalog-hero{
+
+        display:block;
+
+        padding:
+            27px
+            18px;
+
+    }
+
+
+    .product-count{
+
+        margin-top:16px;
+
+        text-align:left;
+
+    }
+
+
+    .catalog-container{
+
+        padding:
+            22px
+            14px
+            60px;
+
+    }
+
+
+    .category-tabs{
+
+        grid-template-columns:
+            1fr
+            1fr;
+
+    }
+
+
+    .filters{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .products{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .modal-info{
+
+        padding:
+            38px
+            22px;
+
+    }
+
+
+    .modal-actions{
+
+        grid-template-columns:1fr;
+
+    }
 
 }
 
@@ -1460,6 +1980,7 @@ footer{
 <body>
 
 
+
 <!-- =========================================================
      HOME PAGE
 ========================================================= -->
@@ -1467,168 +1988,203 @@ footer{
 <section id="homePage">
 
 
-  <div class="showroom-topbar">
+    <!-- TOP BAR -->
+
+    <div class="showroom-topbar">
 
 
-    <!-- LOGO -->
+        <!-- VEGA LOGO -->
 
-    <div
-      class="topbar-brand"
-      onclick="showHome()"
-    >
+        <div
+            class="topbar-brand"
+            onclick="showHome()"
+        >
 
-      <div class="logo-shell">
+            <img
+                src="vega-logo.png?v=10"
+                class="vega-logo"
+                alt="Vega Power"
+            >
+
+        </div>
+
+
+
+        <!-- CENTER TEXT -->
+
+        <div class="topbar-center">
+
+
+            <div class="topbar-title">
+
+                INTERNAL
+
+                <span>
+
+                    PRODUCT LIBRARY
+
+                </span>
+
+            </div>
+
+
+            <div class="topbar-subtitle">
+
+                Products · Brands · Prices ·
+                Technical Data · Datasheets
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- RIGHT -->
+
+        <div class="topbar-actions">
+
+
+            <div class="topbar-search">
+
+
+                <span class="search-icon">
+
+                    ⌕
+
+                </span>
+
+
+                <input
+                    id="homeSearch"
+                    type="search"
+                    placeholder="Search products..."
+                >
+
+
+            </div>
+
+
+
+            <button
+                class="topbar-product-btn"
+                onclick="showProducts()"
+            >
+
+                PRODUCT LIST
+
+                <span>
+
+                    →
+
+                </span>
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         SHOWROOM
+    ====================================================== -->
+
+    <div class="showroom">
+
 
         <img
-          src="vega-logo.png?v=6"
-          class="vega-logo"
-          alt="Vega Power"
+            src="showroom2.png?v=10"
+            alt="VEGA Fuel Systems Showroom"
         >
 
-      </div>
 
     </div>
 
 
 
-    <!-- CENTER -->
+    <!-- =====================================================
+         INFORMATION
+    ====================================================== -->
 
-    <div class="topbar-center">
-
-      <div class="topbar-title">
-
-        INTERNAL
-
-        <span>
-          PRODUCT LIBRARY
-        </span>
-
-      </div>
+    <div class="home-info">
 
 
-      <div class="topbar-subtitle">
+        <div class="home-info-box">
 
-        Products · Brands · Prices ·
-        Technical Data · Datasheets
+            <strong>
 
-      </div>
+                PRODUCT DATABASE
+
+            </strong>
+
+            <span>
+
+                Fuel system products in one place
+
+            </span>
+
+        </div>
+
+
+
+        <div class="home-info-box">
+
+            <strong>
+
+                BRANDS & MODELS
+
+            </strong>
+
+            <span>
+
+                Fast identification and selection
+
+            </span>
+
+        </div>
+
+
+
+        <div class="home-info-box">
+
+            <strong>
+
+                PRICING
+
+            </strong>
+
+            <span>
+
+                Product and supplier pricing
+
+            </span>
+
+        </div>
+
+
+
+        <div class="home-info-box">
+
+            <strong>
+
+                DATASHEETS
+
+            </strong>
+
+            <span>
+
+                Direct access to technical documents
+
+            </span>
+
+        </div>
+
 
     </div>
-
-
-
-    <!-- RIGHT -->
-
-    <div class="topbar-actions">
-
-
-      <div class="topbar-search">
-
-        <span class="search-icon">
-          ⌕
-        </span>
-
-        <input
-          id="homeSearch"
-          type="text"
-          placeholder="Search products..."
-        >
-
-      </div>
-
-
-      <button
-        class="topbar-product-btn"
-        onclick="showProducts()"
-      >
-
-        PRODUCT LIST
-
-        <span>
-          →
-        </span>
-
-      </button>
-
-
-    </div>
-
-
-  </div>
-
-
-
-  <!-- SHOWROOM -->
-
-  <div class="showroom">
-
-    <img
-      src="showroom2.png?v=6"
-      alt="VEGA Fuel Systems Showroom"
-    >
-
-  </div>
-
-
-
-  <!-- INFORMATION BAR -->
-
-  <div class="home-info">
-
-
-    <div class="home-info-box">
-
-      <strong>
-        PRODUCT DATABASE
-      </strong>
-
-      <span>
-        Fuel system products in one place
-      </span>
-
-    </div>
-
-
-    <div class="home-info-box">
-
-      <strong>
-        BRANDS & MODELS
-      </strong>
-
-      <span>
-        Fast identification and selection
-      </span>
-
-    </div>
-
-
-    <div class="home-info-box">
-
-      <strong>
-        PRICING
-      </strong>
-
-      <span>
-        Product and supplier pricing
-      </span>
-
-    </div>
-
-
-    <div class="home-info-box">
-
-      <strong>
-        DATASHEETS
-      </strong>
-
-      <span>
-        Direct access to technical documents
-      </span>
-
-    </div>
-
-
-  </div>
 
 
 </section>
@@ -1640,253 +2196,326 @@ footer{
 ========================================================= -->
 
 <section
-  id="productPage"
-  class="hidden"
+    id="productPage"
+    class="hidden"
 >
 
 
-  <div class="product-header">
+    <!-- HEADER -->
+
+    <div class="product-header">
 
 
-    <!-- LOGO -->
+        <!-- LOGO -->
 
-    <div
-      class="product-header-brand"
-      onclick="showHome()"
-    >
-
-      <div class="logo-shell">
-
-        <img
-          src="vega-logo.png?v=6"
-          class="vega-logo"
-          alt="Vega Power"
+        <div
+            class="product-header-brand"
+            onclick="showHome()"
         >
 
-      </div>
+            <img
+                src="vega-logo.png?v=10"
+                class="vega-logo"
+                alt="Vega Power"
+            >
 
-    </div>
-
-
-    <div></div>
-
-
-    <div class="product-header-actions">
-
-
-      <input
-        id="headerProductSearch"
-        class="product-header-search"
-        type="search"
-        placeholder="Search products, brands or models..."
-      >
-
-
-      <button
-        class="back-button"
-        onclick="showHome()"
-      >
-
-        ← SHOWROOM
-
-      </button>
-
-
-    </div>
-
-
-  </div>
+        </div>
 
 
 
-  <!-- CATALOG HERO -->
-
-  <div class="catalog-hero">
-
-
-    <div>
-
-      <small>
-        VEGA ENGINEERING SOLUTIONS
-      </small>
-
-      <h1>
-
-        PRODUCT
-
-        <span>
-          LIST
-        </span>
-
-      </h1>
-
-    </div>
-
-
-    <div class="product-count">
-
-      PRODUCTS FOUND
-
-      <strong id="productCount">
-        0
-      </strong>
-
-    </div>
-
-
-  </div>
+        <div></div>
 
 
 
-  <!-- CATALOG -->
+        <!-- ACTIONS -->
 
-  <div class="catalog-container">
-
-
-    <!-- CATEGORIES -->
-
-    <div class="category-tabs">
+        <div class="product-header-actions">
 
 
-      <button
-        class="category-tab active"
-        onclick="setCategory('all',this)"
-      >
-        ALL PRODUCTS
-      </button>
+            <input
+                id="headerProductSearch"
+                class="product-header-search"
+                type="search"
+                placeholder="Search products, brands or models..."
+            >
 
 
-      <button
-        class="category-tab"
-        onclick="setCategory('tank',this)"
-      >
-        FUEL TANKS
-      </button>
+            <button
+                class="back-button"
+                onclick="showHome()"
+            >
+
+                ← SHOWROOM
+
+            </button>
 
 
-      <button
-        class="category-tab"
-        onclick="setCategory('pump',this)"
-      >
-        PUMPS
-      </button>
-
-
-      <button
-        class="category-tab"
-        onclick="setCategory('filter',this)"
-      >
-        FILTRATION
-      </button>
-
-
-      <button
-        class="category-tab"
-        onclick="setCategory('valve',this)"
-      >
-        VALVES
-      </button>
-
-
-      <button
-        class="category-tab"
-        onclick="setCategory('monitor',this)"
-      >
-        MONITORING
-      </button>
-
-
-      <button
-        class="category-tab"
-        onclick="setCategory('control',this)"
-      >
-        CONTROL PANELS
-      </button>
+        </div>
 
 
     </div>
 
 
 
-    <!-- FILTERS -->
+    <!-- =====================================================
+         PRODUCT HERO
+    ====================================================== -->
 
-    <div class="filters">
-
-
-      <input
-        id="catalogSearch"
-        type="search"
-        placeholder="Search product, model, brand or keyword..."
-      >
+    <div class="catalog-hero">
 
 
-      <select id="brandFilter">
+        <div>
 
-        <option value="all">
-          All Brands
-        </option>
 
-        <option value="CST">
-          CST
-        </option>
+            <small>
 
-        <option value="PIUSI">
-          PIUSI
-        </option>
+                VEGA ENGINEERING SOLUTIONS
 
-        <option value="PARKER">
-          PARKER
-        </option>
+            </small>
 
-        <option value="OPW">
-          OPW
-        </option>
 
-        <option value="GALA">
-          GALA
-        </option>
+            <h1>
 
-        <option value="VEGA">
-          VEGA
-        </option>
+                PRODUCT
 
-      </select>
+                <span>
+
+                    LIST
+
+                </span>
+
+            </h1>
+
+
+        </div>
 
 
 
-      <select id="sortFilter">
+        <div class="product-count">
 
-        <option value="default">
-          Sort Products
-        </option>
+            PRODUCTS FOUND
 
-        <option value="name">
-          Product Name
-        </option>
+            <strong id="productCount">
 
-        <option value="low">
-          Price: Low to High
-        </option>
+                0
 
-        <option value="high">
-          Price: High to Low
-        </option>
+            </strong>
 
-      </select>
+        </div>
 
 
     </div>
 
 
-    <!-- PRODUCTS -->
 
-    <div
-      id="products"
-      class="products"
-    ></div>
+    <!-- =====================================================
+         CATALOG
+    ====================================================== -->
+
+    <div class="catalog-container">
 
 
-  </div>
+
+        <!-- =================================================
+             CATEGORY TABS
+        ================================================== -->
+
+        <div class="category-tabs">
+
+
+            <button
+                class="category-tab active"
+                onclick="setCategory('all',this)"
+            >
+
+                ALL PRODUCTS
+
+            </button>
+
+
+            <button
+                class="category-tab"
+                onclick="setCategory('tank',this)"
+            >
+
+                FUEL TANKS
+
+            </button>
+
+
+            <button
+                class="category-tab"
+                onclick="setCategory('pump',this)"
+            >
+
+                PUMPS
+
+            </button>
+
+
+            <button
+                class="category-tab"
+                onclick="setCategory('filter',this)"
+            >
+
+                FILTRATION
+
+            </button>
+
+
+            <button
+                class="category-tab"
+                onclick="setCategory('valve',this)"
+            >
+
+                VALVES
+
+            </button>
+
+
+            <button
+                class="category-tab"
+                onclick="setCategory('monitor',this)"
+            >
+
+                MONITORING
+
+            </button>
+
+
+            <button
+                class="category-tab"
+                onclick="setCategory('control',this)"
+            >
+
+                CONTROL PANELS
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             FILTER BAR
+        ================================================== -->
+
+        <div class="filters">
+
+
+            <input
+                id="catalogSearch"
+                type="search"
+                placeholder="Search product, model, brand or keyword..."
+            >
+
+
+            <select id="brandFilter">
+
+
+                <option value="all">
+
+                    All Brands
+
+                </option>
+
+
+                <option value="CST">
+
+                    CST
+
+                </option>
+
+
+                <option value="PIUSI">
+
+                    PIUSI
+
+                </option>
+
+
+                <option value="PARKER">
+
+                    PARKER
+
+                </option>
+
+
+                <option value="OPW">
+
+                    OPW
+
+                </option>
+
+
+                <option value="GALA">
+
+                    GALA
+
+                </option>
+
+
+                <option value="VEGA">
+
+                    VEGA
+
+                </option>
+
+
+            </select>
+
+
+
+            <select id="sortFilter">
+
+
+                <option value="default">
+
+                    Sort Products
+
+                </option>
+
+
+                <option value="name">
+
+                    Product Name
+
+                </option>
+
+
+                <option value="low">
+
+                    Price: Low to High
+
+                </option>
+
+
+                <option value="high">
+
+                    Price: High to Low
+
+                </option>
+
+
+            </select>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             PRODUCTS
+        ================================================== -->
+
+        <div
+            id="products"
+            class="products"
+        ></div>
+
+
+    </div>
 
 
 </section>
@@ -1894,119 +2523,148 @@ footer{
 
 
 <!-- =========================================================
-     PRODUCT DETAILS
+     PRODUCT MODAL
 ========================================================= -->
 
 <div
-  id="productModal"
-  class="hidden"
+    id="productModal"
+    class="hidden"
 >
 
 
-  <div class="modal-box">
+    <div class="modal-box">
 
 
-    <button
-      class="modal-close"
-      onclick="closeProduct()"
-    >
-      ×
-    </button>
-
-
-    <div
-      id="modalImage"
-      class="modal-image"
-    ></div>
-
-
-    <div class="modal-info">
-
-
-      <div
-        id="modalCategory"
-        class="modal-category"
-      ></div>
-
-
-      <h2 id="modalTitle"></h2>
-
-
-      <div
-        id="modalModel"
-        class="modal-model"
-      ></div>
-
-
-      <p
-        id="modalDescription"
-        class="modal-description"
-      ></p>
-
-
-      <div
-        id="detailsTable"
-        class="details-table"
-      ></div>
-
-
-      <div class="modal-price">
-
-        <small>
-          SELLING PRICE
-        </small>
-
-        <strong id="modalPrice"></strong>
-
-      </div>
-
-
-      <div class="modal-actions">
-
+        <!-- CLOSE -->
 
         <button
-          class="datasheet-button"
-          onclick="openDatasheet()"
+            class="modal-close"
+            onclick="closeProduct()"
         >
 
-          📄 VIEW DATASHEET
+            ×
 
         </button>
 
 
-        <button
-          class="quote-button"
-          onclick="requestQuotation()"
-        >
 
-          REQUEST QUOTATION
+        <!-- PRODUCT VISUAL -->
 
-        </button>
+        <div
+            id="modalImage"
+            class="modal-image"
+        ></div>
 
 
-      </div>
+
+        <!-- PRODUCT INFO -->
+
+        <div class="modal-info">
+
+
+            <div
+                id="modalCategory"
+                class="modal-category"
+            ></div>
+
+
+            <h2 id="modalTitle"></h2>
+
+
+            <div
+                id="modalModel"
+                class="modal-model"
+            ></div>
+
+
+            <p
+                id="modalDescription"
+                class="modal-description"
+            ></p>
+
+
+
+            <div
+                id="detailsTable"
+                class="details-table"
+            ></div>
+
+
+
+            <div class="modal-price">
+
+
+                <small>
+
+                    SELLING PRICE
+
+                </small>
+
+
+                <strong id="modalPrice"></strong>
+
+
+            </div>
+
+
+
+            <div class="modal-actions">
+
+
+                <button
+                    class="datasheet-button"
+                    onclick="openDatasheet()"
+                >
+
+                    📄 VIEW DATASHEET
+
+                </button>
+
+
+                <button
+                    class="quote-button"
+                    onclick="requestQuotation()"
+                >
+
+                    REQUEST QUOTATION
+
+                </button>
+
+
+            </div>
+
+
+        </div>
 
 
     </div>
-
-
-  </div>
 
 
 </div>
 
 
 
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
 <footer>
 
-  <span>
-    VEGA Engineering Solutions Co. Ltd.
-    · Fuel Systems Product Library
-  </span>
 
-  <span>
-    Internal Engineering Database
-  </span>
+    <span>
+
+        VEGA Engineering Solutions Co. Ltd.
+        · Fuel Systems Product Library
+
+    </span>
+
+
+    <span>
+
+        Internal Engineering Database
+
+    </span>
+
 
 </footer>
 
@@ -2021,422 +2679,596 @@ footer{
 const productData=[
 
 
+
+/* =========================
+   TANK
+========================= */
+
 {
-  id:1,
 
-  name:"Generator Day Tank",
+    id:1,
 
-  brand:"CST",
+    name:"Generator Day Tank",
 
-  model:"DT-1000",
+    brand:"CST",
 
-  category:"tank",
+    model:"DT-1000",
 
-  categoryName:"Fuel Tank",
+    category:"tank",
 
-  icon:"🛢️",
+    categoryName:"Fuel Tank",
 
-  description:
-    "Generator day tank designed for controlled diesel fuel supply and automatic filling.",
+    icon:"🛢️",
 
-  price:18500,
+    description:
 
-  specs:{
-    "Capacity":"1,000 Liters",
-    "Type":"Day Tank",
-    "Material":"Carbon Steel",
-    "Configuration":"Single Wall",
-    "Application":"Generator Fuel Supply"
-  },
+        "Generator day tank designed for controlled diesel fuel supply and automatic filling.",
 
-  datasheet:""
+    price:18500,
+
+    specs:{
+
+        "Capacity":"1,000 Liters",
+
+        "Type":"Day Tank",
+
+        "Material":"Carbon Steel",
+
+        "Configuration":"Single Wall",
+
+        "Application":"Generator Fuel Supply"
+
+    },
+
+    datasheet:""
+
 },
 
 
+
 {
-  id:2,
 
-  name:"Bulk Fuel Storage Tank",
+    id:2,
 
-  brand:"CST",
+    name:"Bulk Fuel Storage Tank",
 
-  model:"BT-5000",
+    brand:"CST",
 
-  category:"tank",
+    model:"BT-5000",
 
-  categoryName:"Fuel Tank",
+    category:"tank",
 
-  icon:"🛢️",
+    categoryName:"Fuel Tank",
 
-  description:
-    "Aboveground diesel fuel storage tank for generator fuel system applications.",
+    icon:"🛢️",
 
-  price:58000,
+    description:
 
-  specs:{
-    "Capacity":"5,000 Liters",
-    "Type":"Bulk Storage",
-    "Material":"Carbon Steel",
-    "Installation":"Aboveground",
-    "Application":"Diesel Storage"
-  },
+        "Aboveground diesel fuel storage tank for generator fuel system applications.",
 
-  datasheet:""
+    price:58000,
+
+    specs:{
+
+        "Capacity":"5,000 Liters",
+
+        "Type":"Bulk Storage",
+
+        "Material":"Carbon Steel",
+
+        "Installation":"Aboveground",
+
+        "Application":"Diesel Storage"
+
+    },
+
+    datasheet:""
+
 },
 
 
+
+/* =========================
+   PUMPS
+========================= */
+
 {
-  id:3,
 
-  name:"Electric Diesel Transfer Pump",
+    id:3,
 
-  brand:"PIUSI",
+    name:"Electric Diesel Transfer Pump",
 
-  model:"E120",
+    brand:"PIUSI",
 
-  category:"pump",
+    model:"E120",
 
-  categoryName:"Transfer Pump",
+    category:"pump",
 
-  icon:"⚙️",
+    categoryName:"Transfer Pump",
 
-  description:
-    "Self-priming electric diesel transfer pump for reliable fuel transfer applications.",
+    icon:"⚙️",
 
-  price:4250,
+    description:
 
-  specs:{
-    "Flow Rate":"120 L/min",
-    "Voltage":"230 V",
-    "Duty":"Continuous",
-    "Fluid":"Diesel",
-    "Application":"Fuel Transfer"
-  },
+        "Self-priming electric diesel transfer pump for reliable fuel transfer applications.",
 
-  datasheet:""
+    price:4250,
+
+    specs:{
+
+        "Flow Rate":"120 L/min",
+
+        "Voltage":"230 V",
+
+        "Duty":"Continuous",
+
+        "Fluid":"Diesel",
+
+        "Application":"Fuel Transfer"
+
+    },
+
+    datasheet:""
+
 },
 
 
+
 {
-  id:4,
 
-  name:"Electric Fuel Transfer Pump",
+    id:4,
 
-  brand:"PIUSI",
+    name:"Electric Fuel Transfer Pump",
 
-  model:"E80",
+    brand:"PIUSI",
 
-  category:"pump",
+    model:"E80",
 
-  categoryName:"Transfer Pump",
+    category:"pump",
 
-  icon:"⚙️",
+    categoryName:"Transfer Pump",
 
-  description:
-    "Compact electric diesel transfer pump suitable for filling and transfer duties.",
+    icon:"⚙️",
 
-  price:3450,
+    description:
 
-  specs:{
-    "Flow Rate":"70 L/min",
-    "Voltage":"230 V",
-    "Connection":"1 inch",
-    "Fluid":"Diesel",
-    "Installation":"Fixed"
-  },
+        "Compact electric diesel transfer pump suitable for filling and transfer duties.",
 
-  datasheet:""
+    price:3450,
+
+    specs:{
+
+        "Flow Rate":"70 L/min",
+
+        "Voltage":"230 V",
+
+        "Connection":"1 inch",
+
+        "Fluid":"Diesel",
+
+        "Installation":"Fixed"
+
+    },
+
+    datasheet:""
+
 },
 
 
+
+/* =========================
+   FILTER
+========================= */
+
 {
-  id:5,
 
-  name:"Fuel Filter Water Separator",
+    id:5,
 
-  brand:"PARKER",
+    name:"Fuel Filter Water Separator",
 
-  model:"RACOR 1000",
+    brand:"PARKER",
 
-  category:"filter",
+    model:"RACOR 1000",
 
-  categoryName:"Filtration",
+    category:"filter",
 
-  icon:"🔩",
+    categoryName:"Filtration",
 
-  description:
-    "Diesel fuel filtration and water separation unit for fuel systems and generator applications.",
+    icon:"🔩",
 
-  price:2850,
+    description:
 
-  specs:{
-    "Filtration":"10 Micron",
-    "Type":"Water Separator",
-    "Fluid":"Diesel",
-    "Installation":"Inline",
-    "Application":"Fuel Treatment"
-  },
+        "Diesel fuel filtration and water separation unit for fuel systems and generator applications.",
 
-  datasheet:""
+    price:2850,
+
+    specs:{
+
+        "Filtration":"10 Micron",
+
+        "Type":"Water Separator",
+
+        "Fluid":"Diesel",
+
+        "Installation":"Inline",
+
+        "Application":"Fuel Treatment"
+
+    },
+
+    datasheet:""
+
 },
 
 
+
+/* =========================
+   VALVES
+========================= */
+
 {
-  id:6,
 
-  name:"Fuel Ball Valve",
+    id:6,
 
-  brand:"GALA",
+    name:"Fuel Ball Valve",
 
-  model:"BV-2",
+    brand:"GALA",
 
-  category:"valve",
+    model:"BV-2",
 
-  categoryName:"Valve",
+    category:"valve",
 
-  icon:"🔧",
+    categoryName:"Valve",
 
-  description:
-    "Isolation ball valve for diesel fuel piping and fuel transfer systems.",
+    icon:"🔧",
 
-  price:210,
+    description:
 
-  specs:{
-    "Size":"2 inch",
-    "Type":"Ball Valve",
-    "Material":"Brass",
-    "Service":"Diesel Fuel",
-    "Connection":"Threaded"
-  },
+        "Isolation ball valve for diesel fuel piping and fuel transfer systems.",
 
-  datasheet:""
+    price:210,
+
+    specs:{
+
+        "Size":"2 inch",
+
+        "Type":"Ball Valve",
+
+        "Material":"Brass",
+
+        "Service":"Diesel Fuel",
+
+        "Connection":"Threaded"
+
+    },
+
+    datasheet:""
+
 },
 
 
+
 {
-  id:7,
 
-  name:"Overfill Prevention Valve",
+    id:7,
 
-  brand:"OPW",
+    name:"Overfill Prevention Valve",
 
-  model:"53VML",
+    brand:"OPW",
 
-  category:"valve",
+    model:"53VML",
 
-  categoryName:"Valve",
+    category:"valve",
 
-  icon:"🔧",
+    categoryName:"Valve",
 
-  description:
-    "Automatic overfill prevention valve for safe diesel fuel tank filling.",
+    icon:"🔧",
 
-  price:3950,
+    description:
 
-  specs:{
-    "Size":"2 inch",
-    "Function":"Overfill Prevention",
-    "Application":"Fuel Tank",
-    "Operation":"Automatic",
-    "Service":"Diesel"
-  },
+        "Automatic overfill prevention valve for safe diesel fuel tank filling.",
 
-  datasheet:""
+    price:3950,
+
+    specs:{
+
+        "Size":"2 inch",
+
+        "Function":"Overfill Prevention",
+
+        "Application":"Fuel Tank",
+
+        "Operation":"Automatic",
+
+        "Service":"Diesel"
+
+    },
+
+    datasheet:""
+
 },
 
 
+
+/* =========================
+   MONITORING
+========================= */
+
 {
-  id:8,
 
-  name:"Tank Level Indicator",
+    id:8,
 
-  brand:"PIUSI",
+    name:"Tank Level Indicator",
 
-  model:"OCIO",
+    brand:"PIUSI",
 
-  category:"monitor",
+    model:"OCIO",
 
-  categoryName:"Monitoring",
+    category:"monitor",
 
-  icon:"📟",
+    categoryName:"Monitoring",
 
-  description:
-    "Continuous digital tank level monitoring system for diesel fuel storage tanks.",
+    icon:"📟",
 
-  price:1786,
+    description:
 
-  specs:{
-    "Measurement":"Continuous Level",
-    "Application":"Fuel Tank",
-    "Display":"Digital",
-    "Monitoring":"Remote",
-    "Fluid":"Diesel"
-  },
+        "Continuous digital tank level monitoring system for diesel fuel storage tanks.",
 
-  datasheet:""
+    price:1786,
+
+    specs:{
+
+        "Measurement":"Continuous Level",
+
+        "Application":"Fuel Tank",
+
+        "Display":"Digital",
+
+        "Monitoring":"Remote",
+
+        "Fluid":"Diesel"
+
+    },
+
+    datasheet:""
+
 },
 
 
+
 {
-  id:9,
 
-  name:"Digital Fuel Flow Meter",
+    id:9,
 
-  brand:"PIUSI",
+    name:"Digital Fuel Flow Meter",
 
-  model:"K24",
+    brand:"PIUSI",
 
-  category:"monitor",
+    model:"K24",
 
-  categoryName:"Monitoring",
+    category:"monitor",
 
-  icon:"📟",
+    categoryName:"Monitoring",
 
-  description:
-    "Digital diesel fuel flow meter for measuring transferred fuel quantity.",
+    icon:"📟",
 
-  price:2450,
+    description:
 
-  specs:{
-    "Type":"Digital Flow Meter",
-    "Fluid":"Diesel",
-    "Display":"Digital",
-    "Installation":"Inline",
-    "Application":"Fuel Transfer"
-  },
+        "Digital diesel fuel flow meter for measuring transferred fuel quantity.",
 
-  datasheet:""
+    price:2450,
+
+    specs:{
+
+        "Type":"Digital Flow Meter",
+
+        "Fluid":"Diesel",
+
+        "Display":"Digital",
+
+        "Installation":"Inline",
+
+        "Application":"Fuel Transfer"
+
+    },
+
+    datasheet:""
+
 },
 
 
+
+/* =========================
+   CONTROL
+========================= */
+
 {
-  id:10,
 
-  name:"Fuel System Control Panel",
+    id:10,
 
-  brand:"VEGA",
+    name:"Fuel System Control Panel",
 
-  model:"FCP-01",
+    brand:"VEGA",
 
-  category:"control",
+    model:"FCP-01",
 
-  categoryName:"Control Panel",
+    category:"control",
 
-  icon:"🖥️",
+    categoryName:"Control Panel",
 
-  description:
-    "Automatic fuel transfer control panel with pump sequencing, alarms and BMS interface.",
+    icon:"🖥️",
 
-  price:12500,
+    description:
 
-  specs:{
-    "Control":"Automatic",
-    "Pump Logic":"Duty / Standby",
-    "Operation":"Manual / Auto",
-    "Interface":"BMS",
-    "Application":"Fuel Transfer System"
-  },
+        "Automatic fuel transfer control panel with pump sequencing, alarms and BMS interface.",
 
-  datasheet:""
+    price:12500,
+
+    specs:{
+
+        "Control":"Automatic",
+
+        "Pump Logic":"Duty / Standby",
+
+        "Operation":"Manual / Auto",
+
+        "Interface":"BMS",
+
+        "Application":"Fuel Transfer System"
+
+    },
+
+    datasheet:""
+
 }
-
 
 ];
 
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
 
 let currentCategory="all";
 
 let activeProduct=null;
 
 
+
 /* =========================================================
-   HOME
+   SHOW HOME
 ========================================================= */
 
 function showHome(){
 
-  document
-  .getElementById("productPage")
-  .classList
-  .add("hidden");
+
+    document
+    .getElementById(
+        "productPage"
+    )
+    .classList
+    .add(
+        "hidden"
+    );
 
 
-  document
-  .getElementById("homePage")
-  .classList
-  .remove("hidden");
+    document
+    .getElementById(
+        "homePage"
+    )
+    .classList
+    .remove(
+        "hidden"
+    );
 
 
-  window.scrollTo(0,0);
+    window.scrollTo(
+        0,
+        0
+    );
 
 }
 
 
+
 /* =========================================================
-   PRODUCT LIST
+   SHOW PRODUCTS
 ========================================================= */
 
 function showProducts(searchValue=""){
 
-  document
-  .getElementById("homePage")
-  .classList
-  .add("hidden");
-
-
-  document
-  .getElementById("productPage")
-  .classList
-  .remove("hidden");
-
-
-  if(searchValue){
 
     document
-    .getElementById("catalogSearch")
-    .value=searchValue;
+    .getElementById(
+        "homePage"
+    )
+    .classList
+    .add(
+        "hidden"
+    );
 
 
     document
-    .getElementById("headerProductSearch")
-    .value=searchValue;
+    .getElementById(
+        "productPage"
+    )
+    .classList
+    .remove(
+        "hidden"
+    );
 
-  }
+
+    if(searchValue){
 
 
-  renderProducts();
+        document
+        .getElementById(
+            "catalogSearch"
+        )
+        .value =
+            searchValue;
 
 
-  window.scrollTo(0,0);
+        document
+        .getElementById(
+            "headerProductSearch"
+        )
+        .value =
+            searchValue;
+
+    }
+
+
+    renderProducts();
+
+
+    window.scrollTo(
+        0,
+        0
+    );
 
 }
+
 
 
 /* =========================================================
    CATEGORY
 ========================================================= */
 
-function setCategory(category,button){
-
-  currentCategory=category;
-
-
-  document
-  .querySelectorAll(".category-tab")
-  .forEach(
-    item=>
-    item.classList.remove("active")
-  );
+function setCategory(
+    category,
+    button
+){
 
 
-  button
-  .classList
-  .add("active");
+    currentCategory=
+        category;
 
 
-  renderProducts();
+    document
+    .querySelectorAll(
+        ".category-tab"
+    )
+    .forEach(
+        item=>
+        item.classList.remove(
+            "active"
+        )
+    );
+
+
+    button
+    .classList
+    .add(
+        "active"
+    );
+
+
+    renderProducts();
 
 }
+
 
 
 /* =========================================================
@@ -2445,396 +3277,534 @@ function setCategory(category,button){
 
 function renderProducts(){
 
-  const search=
+
+    const search=
+
+        document
+        .getElementById(
+            "catalogSearch"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+
+
+    const brand=
+
+        document
+        .getElementById(
+            "brandFilter"
+        )
+        .value;
+
+
+
+    const sort=
+
+        document
+        .getElementById(
+            "sortFilter"
+        )
+        .value;
+
+
+
+    let filtered=
+
+        productData.filter(
+            product=>{
+
+
+                const text=
+
+                    (
+
+                        product.name
+
+                        +" "
+
+                        +product.brand
+
+                        +" "
+
+                        +product.model
+
+                        +" "
+
+                        +product.description
+
+                        +" "
+
+                        +product.categoryName
+
+                    )
+                    .toLowerCase();
+
+
+
+                const searchMatch=
+
+                    !search
+
+                    ||
+
+                    text.includes(
+                        search
+                    );
+
+
+
+                const categoryMatch=
+
+                    currentCategory
+                    ===
+                    "all"
+
+                    ||
+
+                    product.category
+                    ===
+                    currentCategory;
+
+
+
+                const brandMatch=
+
+                    brand
+                    ===
+                    "all"
+
+                    ||
+
+                    product.brand
+                    ===
+                    brand;
+
+
+
+                return
+
+                    searchMatch
+
+                    &&
+
+                    categoryMatch
+
+                    &&
+
+                    brandMatch;
+
+            }
+        );
+
+
+
+    if(
+        sort==="name"
+    ){
+
+        filtered.sort(
+            (a,b)=>
+
+            a.name.localeCompare(
+                b.name
+            )
+        );
+
+    }
+
+
+
+    if(
+        sort==="low"
+    ){
+
+        filtered.sort(
+            (a,b)=>
+
+            a.price
+            -
+            b.price
+        );
+
+    }
+
+
+
+    if(
+        sort==="high"
+    ){
+
+        filtered.sort(
+            (a,b)=>
+
+            b.price
+            -
+            a.price
+        );
+
+    }
+
+
+
     document
-    .getElementById("catalogSearch")
-    .value
-    .trim()
-    .toLowerCase();
+    .getElementById(
+        "productCount"
+    )
+    .textContent=
 
+        filtered.length;
 
-  const brand=
-    document
-    .getElementById("brandFilter")
-    .value;
 
 
-  const sort=
-    document
-    .getElementById("sortFilter")
-    .value;
+    const container=
 
+        document
+        .getElementById(
+            "products"
+        );
 
-  let filtered=
-    productData.filter(
-      product=>{
 
-        const text=
-          (
-            product.name
-            +" "
-            +product.brand
-            +" "
-            +product.model
-            +" "
-            +product.description
-            +" "
-            +product.categoryName
-          )
-          .toLowerCase();
 
+    if(
+        filtered.length===0
+    ){
 
-        const searchMatch=
-          !search
-          ||
-          text.includes(search);
 
+        container.innerHTML=`
 
-        const categoryMatch=
-          currentCategory==="all"
-          ||
-          product.category===currentCategory;
+            <div class="no-products">
 
-
-        const brandMatch=
-          brand==="all"
-          ||
-          product.brand===brand;
-
-
-        return
-          searchMatch
-          &&
-          categoryMatch
-          &&
-          brandMatch;
-
-      }
-    );
-
-
-  if(sort==="name"){
-
-    filtered.sort(
-      (a,b)=>
-      a.name.localeCompare(
-        b.name
-      )
-    );
-
-  }
-
-
-  if(sort==="low"){
-
-    filtered.sort(
-      (a,b)=>
-      a.price-b.price
-    );
-
-  }
-
-
-  if(sort==="high"){
-
-    filtered.sort(
-      (a,b)=>
-      b.price-a.price
-    );
-
-  }
-
-
-  document
-  .getElementById("productCount")
-  .textContent=
-    filtered.length;
-
-
-  const container=
-    document
-    .getElementById("products");
-
-
-  if(!filtered.length){
-
-    container.innerHTML=`
-
-      <div class="no-products">
-
-        No products found.
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  container.innerHTML=
-
-    filtered
-    .map(
-      product=>{
-
-        const specs=
-
-          Object.entries(
-            product.specs
-          )
-
-          .slice(
-            0,
-            3
-          )
-
-          .map(
-            ([key,value])=>`
-
-              <div class="mini-spec">
-
-                <span>
-                  ${key}
-                </span>
-
-                <strong>
-                  ${value}
-                </strong>
-
-              </div>
-
-            `
-          )
-
-          .join("");
-
-
-        return `
-
-          <article
-            class="card"
-            onclick="openProduct(${product.id})"
-          >
-
-
-            <div class="card-image">
-
-
-              <div class="card-category">
-
-                ${product.categoryName}
-
-              </div>
-
-
-              <div class="card-brand">
-
-                ${product.brand}
-
-              </div>
-
-
-              <div class="product-icon">
-
-                ${product.icon}
-
-              </div>
-
+                No products found.
 
             </div>
-
-
-
-            <div class="card-body">
-
-
-              <h3>
-
-                ${product.name}
-
-              </h3>
-
-
-              <div class="model">
-
-                Model:
-                ${product.model}
-
-              </div>
-
-
-              <div class="description">
-
-                ${product.description}
-
-              </div>
-
-
-              <div class="mini-specs">
-
-                ${specs}
-
-              </div>
-
-
-              <div class="card-footer">
-
-
-                <div class="price">
-
-                  <small>
-                    SELLING PRICE
-                  </small>
-
-                  <strong>
-
-                    ${product.price.toLocaleString()}
-                    SAR
-
-                  </strong>
-
-                </div>
-
-
-                <button
-                  class="details-button"
-                >
-
-                  DETAILS →
-
-                </button>
-
-
-              </div>
-
-
-            </div>
-
-
-          </article>
 
         `;
 
-      }
-    )
 
-    .join("");
+        return;
+
+    }
+
+
+
+    container.innerHTML=
+
+        filtered
+        .map(
+            product=>{
+
+
+                const specs=
+
+                    Object.entries(
+                        product.specs
+                    )
+
+                    .slice(
+                        0,
+                        3
+                    )
+
+                    .map(
+                        ([key,value])=>`
+
+                            <div class="mini-spec">
+
+                                <span>
+
+                                    ${key}
+
+                                </span>
+
+                                <strong>
+
+                                    ${value}
+
+                                </strong>
+
+                            </div>
+
+                        `
+                    )
+
+                    .join("");
+
+
+
+                return `
+
+
+                    <article
+                        class="card"
+                        onclick="openProduct(${product.id})"
+                    >
+
+
+                        <div class="card-image">
+
+
+                            <div class="card-category">
+
+                                ${product.categoryName}
+
+                            </div>
+
+
+                            <div class="card-brand">
+
+                                ${product.brand}
+
+                            </div>
+
+
+                            <div class="product-icon">
+
+                                ${product.icon}
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="card-body">
+
+
+                            <h3>
+
+                                ${product.name}
+
+                            </h3>
+
+
+                            <div class="model">
+
+                                Model:
+                                ${product.model}
+
+                            </div>
+
+
+                            <div class="description">
+
+                                ${product.description}
+
+                            </div>
+
+
+                            <div class="mini-specs">
+
+                                ${specs}
+
+                            </div>
+
+
+
+                            <div class="card-footer">
+
+
+                                <div class="price">
+
+
+                                    <small>
+
+                                        SELLING PRICE
+
+                                    </small>
+
+
+                                    <strong>
+
+                                        ${product.price.toLocaleString()}
+                                        SAR
+
+                                    </strong>
+
+
+                                </div>
+
+
+                                <button
+                                    class="details-button"
+                                >
+
+                                    DETAILS →
+
+                                </button>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </article>
+
+                `;
+
+            }
+        )
+
+        .join("");
 
 }
 
 
+
 /* =========================================================
-   PRODUCT DETAILS
+   OPEN PRODUCT
 ========================================================= */
 
 function openProduct(id){
 
-  activeProduct=
 
-    productData.find(
-      product=>
-      product.id===id
+    activeProduct=
+
+        productData.find(
+            product=>
+
+            product.id===id
+        );
+
+
+    if(
+        !activeProduct
+    ){
+
+        return;
+
+    }
+
+
+
+    document
+    .getElementById(
+        "modalImage"
+    )
+    .textContent=
+
+        activeProduct.icon;
+
+
+
+    document
+    .getElementById(
+        "modalCategory"
+    )
+    .textContent=
+
+        activeProduct.categoryName;
+
+
+
+    document
+    .getElementById(
+        "modalTitle"
+    )
+    .textContent=
+
+        activeProduct.name;
+
+
+
+    document
+    .getElementById(
+        "modalModel"
+    )
+    .textContent=
+
+        activeProduct.brand
+
+        +
+
+        " · "
+
+        +
+
+        activeProduct.model;
+
+
+
+    document
+    .getElementById(
+        "modalDescription"
+    )
+    .textContent=
+
+        activeProduct.description;
+
+
+
+    document
+    .getElementById(
+        "modalPrice"
+    )
+    .textContent=
+
+        activeProduct
+        .price
+        .toLocaleString()
+
+        +
+
+        " SAR";
+
+
+
+    document
+    .getElementById(
+        "detailsTable"
+    )
+    .innerHTML=
+
+        Object.entries(
+            activeProduct.specs
+        )
+
+        .map(
+            ([key,value])=>`
+
+                <div class="detail-row">
+
+
+                    <span>
+
+                        ${key}
+
+                    </span>
+
+
+                    <strong>
+
+                        ${value}
+
+                    </strong>
+
+
+                </div>
+
+            `
+        )
+
+        .join("");
+
+
+
+    document
+    .getElementById(
+        "productModal"
+    )
+    .classList
+    .remove(
+        "hidden"
     );
 
-
-  if(!activeProduct){
-    return;
-  }
-
-
-  document
-  .getElementById("modalImage")
-  .textContent=
-    activeProduct.icon;
-
-
-  document
-  .getElementById("modalCategory")
-  .textContent=
-    activeProduct.categoryName;
-
-
-  document
-  .getElementById("modalTitle")
-  .textContent=
-    activeProduct.name;
-
-
-  document
-  .getElementById("modalModel")
-  .textContent=
-
-    activeProduct.brand
-
-    +
-
-    " · "
-
-    +
-
-    activeProduct.model;
-
-
-  document
-  .getElementById("modalDescription")
-  .textContent=
-    activeProduct.description;
-
-
-  document
-  .getElementById("modalPrice")
-  .textContent=
-
-    activeProduct
-    .price
-    .toLocaleString()
-
-    +
-
-    " SAR";
-
-
-  document
-  .getElementById("detailsTable")
-  .innerHTML=
-
-    Object.entries(
-      activeProduct.specs
-    )
-
-    .map(
-      ([key,value])=>`
-
-        <div class="detail-row">
-
-          <span>
-
-            ${key}
-
-          </span>
-
-          <strong>
-
-            ${value}
-
-          </strong>
-
-        </div>
-
-      `
-    )
-
-    .join("");
-
-
-  document
-  .getElementById("productModal")
-  .classList
-  .remove("hidden");
-
 }
+
 
 
 /* =========================================================
@@ -2843,12 +3813,18 @@ function openProduct(id){
 
 function closeProduct(){
 
-  document
-  .getElementById("productModal")
-  .classList
-  .add("hidden");
+
+    document
+    .getElementById(
+        "productModal"
+    )
+    .classList
+    .add(
+        "hidden"
+    );
 
 }
+
 
 
 /* =========================================================
@@ -2857,28 +3833,42 @@ function closeProduct(){
 
 function openDatasheet(){
 
-  if(
-    activeProduct
-    &&
-    activeProduct.datasheet
-  ){
 
-    window.open(
-      activeProduct.datasheet,
-      "_blank"
-    );
+    if(
 
-  }
+        activeProduct
 
-  else{
+        &&
 
-    alert(
-      "Datasheet link will be added for this product."
-    );
+        activeProduct.datasheet
 
-  }
+    ){
+
+
+        window.open(
+
+            activeProduct.datasheet,
+
+            "_blank"
+
+        );
+
+    }
+
+
+    else{
+
+
+        alert(
+
+            "Datasheet link will be added for this product."
+
+        );
+
+    }
 
 }
+
 
 
 /* =========================================================
@@ -2887,117 +3877,190 @@ function openDatasheet(){
 
 function requestQuotation(){
 
-  alert(
-    "Quotation function can be connected later."
-  );
+
+    alert(
+
+        "Quotation function can be connected later."
+
+    );
 
 }
 
 
+
 /* =========================================================
-   SEARCH EVENTS
+   HOME SEARCH
 ========================================================= */
 
 document
-.getElementById("homeSearch")
+.getElementById(
+    "homeSearch"
+)
 .addEventListener(
-  "keydown",
-  function(event){
+    "keydown",
+    function(event){
 
-    if(event.key==="Enter"){
 
-      showProducts(
-        this.value.trim()
-      );
+        if(
+            event.key==="Enter"
+        ){
+
+
+            showProducts(
+
+                this.value.trim()
+
+            );
+
+        }
 
     }
-
-  }
 );
 
 
-document
-.getElementById("catalogSearch")
-.addEventListener(
-  "input",
-  function(){
 
-    document
-    .getElementById("headerProductSearch")
-    .value=
-      this.value;
-
-
-    renderProducts();
-
-  }
-);
-
+/* =========================================================
+   CATALOG SEARCH
+========================================================= */
 
 document
-.getElementById("headerProductSearch")
+.getElementById(
+    "catalogSearch"
+)
 .addEventListener(
-  "input",
-  function(){
-
-    document
-    .getElementById("catalogSearch")
-    .value=
-      this.value;
+    "input",
+    function(){
 
 
-    renderProducts();
+        document
+        .getElementById(
+            "headerProductSearch"
+        )
+        .value=
 
-  }
-);
-
-
-document
-.getElementById("brandFilter")
-.addEventListener(
-  "change",
-  renderProducts
-);
+            this.value;
 
 
-document
-.getElementById("sortFilter")
-.addEventListener(
-  "change",
-  renderProducts
-);
-
-
-document
-.getElementById("productModal")
-.addEventListener(
-  "click",
-  function(event){
-
-    if(event.target===this){
-
-      closeProduct();
+        renderProducts();
 
     }
-
-  }
 );
 
+
+
+/* =========================================================
+   HEADER SEARCH
+========================================================= */
+
+document
+.getElementById(
+    "headerProductSearch"
+)
+.addEventListener(
+    "input",
+    function(){
+
+
+        document
+        .getElementById(
+            "catalogSearch"
+        )
+        .value=
+
+            this.value;
+
+
+        renderProducts();
+
+    }
+);
+
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+document
+.getElementById(
+    "brandFilter"
+)
+.addEventListener(
+    "change",
+    renderProducts
+);
+
+
+
+/* =========================================================
+   SORT
+========================================================= */
+
+document
+.getElementById(
+    "sortFilter"
+)
+.addEventListener(
+    "change",
+    renderProducts
+);
+
+
+
+/* =========================================================
+   MODAL BACKGROUND
+========================================================= */
+
+document
+.getElementById(
+    "productModal"
+)
+.addEventListener(
+    "click",
+    function(event){
+
+
+        if(
+            event.target===this
+        ){
+
+
+            closeProduct();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
 
 document
 .addEventListener(
-  "keydown",
-  function(event){
+    "keydown",
+    function(event){
 
-    if(event.key==="Escape"){
 
-      closeProduct();
+        if(
+            event.key==="Escape"
+        ){
+
+
+            closeProduct();
+
+        }
 
     }
-
-  }
 );
 
+
+
+/* =========================================================
+   START
+========================================================= */
 
 renderProducts();
 
