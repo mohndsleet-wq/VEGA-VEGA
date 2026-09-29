@@ -16,7 +16,7 @@
 <style>
 
 /* =========================================================
-   GLOBAL
+   GENERAL
 ========================================================= */
 
 :root{
@@ -27,34 +27,27 @@
     --black:#07090b;
     --dark:#0d1014;
     --dark2:#12161b;
-    --dark3:#181d22;
 
     --line:#2b3239;
 
     --white:#ffffff;
-
     --light:#f4f5f6;
 
     --text:#15181b;
-
     --muted:#7d8791;
 
 }
 
 
 *{
-
     margin:0;
     padding:0;
     box-sizing:border-box;
-
 }
 
 
 html{
-
     scroll-behavior:smooth;
-
 }
 
 
@@ -77,30 +70,23 @@ body{
 button,
 input,
 select{
-
     font:inherit;
-
 }
 
 
 button{
-
     cursor:pointer;
-
 }
 
 
 .hidden{
-
     display:none !important;
-
 }
 
 
 
 /* =========================================================
-   PAGE 1
-   HOME / SHOWROOM
+   HOME PAGE
 ========================================================= */
 
 #homePage{
@@ -116,26 +102,25 @@ button{
 
 
 /* =========================================================
-   PROFESSIONAL TOP BAR
+   TOP BAR
 ========================================================= */
 
 .showroom-topbar{
 
     width:100%;
 
-    min-height:84px;
+    min-height:92px;
 
     background:
-
         linear-gradient(
             90deg,
-            #06080a 0%,
-            #101419 50%,
-            #06080a 100%
+            #07090b 0%,
+            #11151a 50%,
+            #07090b 100%
         );
 
     border-bottom:
-        1px solid #2d343b;
+        1px solid #30363d;
 
     display:grid;
 
@@ -150,7 +135,7 @@ button{
 
     padding:
         0
-        5%;
+        4%;
 
     position:sticky;
 
@@ -162,124 +147,64 @@ button{
         0 12px 35px
         rgba(0,0,0,.40);
 
-    backdrop-filter:
-        blur(12px);
-
 }
 
 
 
 /* =========================================================
-   TOPBAR BRAND
+   LOGO
 ========================================================= */
 
-.topbar-brand{
+.topbar-brand,
+.product-header-brand{
 
     display:flex;
 
     align-items:center;
-
-    gap:14px;
 
     cursor:pointer;
 
 }
 
 
-.topbar-vega-mark{
+.vega-logo-wrap{
 
-    position:relative;
+    display:flex;
 
-    width:46px;
+    align-items:center;
 
-    height:40px;
+    justify-content:center;
 
-    flex-shrink:0;
+    background:white;
 
-}
+    border-radius:8px;
 
+    padding:
+        7px
+        15px;
 
-.topbar-vega-mark::before,
-.topbar-vega-mark::after{
-
-    content:"";
-
-    position:absolute;
-
-    top:1px;
-
-    width:24px;
-
-    height:39px;
-
-    background:var(--red);
-
-    clip-path:
-
-        polygon(
-            0 0,
-            100% 0,
-            50% 100%
-        );
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,.25);
 
 }
 
 
-.topbar-vega-mark::before{
-
-    left:0;
-
-}
-
-
-.topbar-vega-mark::after{
-
-    right:0;
-
-}
-
-
-.topbar-brand-text{
-
-    border-right:
-        1px solid #363d45;
-
-    padding-right:28px;
-
-}
-
-
-.topbar-brand-text strong{
+.vega-logo{
 
     display:block;
 
-    font-size:23px;
+    width:205px;
 
-    letter-spacing:5px;
+    height:52px;
 
-    line-height:1;
-
-}
-
-
-.topbar-brand-text span{
-
-    display:block;
-
-    margin-top:6px;
-
-    color:#8c969f;
-
-    font-size:8px;
-
-    letter-spacing:3px;
+    object-fit:contain;
 
 }
-
 
 
 /* =========================================================
-   TOPBAR CENTER
+   CENTER TEXT
 ========================================================= */
 
 .topbar-center{
@@ -313,18 +238,18 @@ button{
 
     margin-top:6px;
 
-    color:#747f89;
+    color:#7f8993;
 
     font-size:10px;
 
-    letter-spacing:.45px;
+    letter-spacing:.5px;
 
 }
 
 
 
 /* =========================================================
-   TOPBAR ACTIONS
+   RIGHT ACTIONS
 ========================================================= */
 
 .topbar-actions{
@@ -345,7 +270,7 @@ button{
 
     width:310px;
 
-    height:43px;
+    height:44px;
 
     display:flex;
 
@@ -360,7 +285,7 @@ button{
     background:#11161b;
 
     border:
-        1px solid #323941;
+        1px solid #343b43;
 
     border-radius:7px;
 
@@ -419,13 +344,11 @@ button{
 
 
 
-/* =========================================================
-   PRODUCT LIST BUTTON
-========================================================= */
+/* PRODUCT BUTTON */
 
 .topbar-product-btn{
 
-    height:43px;
+    height:44px;
 
     min-width:175px;
 
@@ -455,12 +378,9 @@ button{
 
     letter-spacing:.7px;
 
-    cursor:pointer;
-
     transition:.22s;
 
     box-shadow:
-
         0 8px 25px
         rgba(237,28,36,.20);
 
@@ -480,11 +400,9 @@ button{
 
     background:var(--red2);
 
-    transform:
-        translateY(-1px);
+    transform:translateY(-2px);
 
     box-shadow:
-
         0 12px 30px
         rgba(237,28,36,.30);
 
@@ -493,15 +411,14 @@ button{
 
 .topbar-product-btn:hover span{
 
-    transform:
-        translateX(4px);
+    transform:translateX(4px);
 
 }
 
 
 
 /* =========================================================
-   SHOWROOM IMAGE
+   SHOWROOM
 ========================================================= */
 
 .showroom{
@@ -534,7 +451,7 @@ button{
 
 
 /* =========================================================
-   SMALL BOTTOM STRIP
+   INFO STRIP
 ========================================================= */
 
 .home-info{
@@ -600,8 +517,7 @@ button{
 
 
 /* =========================================================
-   PAGE 2
-   PRODUCT LIST
+   PRODUCT PAGE
 ========================================================= */
 
 #productPage{
@@ -616,13 +532,11 @@ button{
 
 
 
-/* =========================================================
-   PRODUCT PAGE HEADER
-========================================================= */
+/* PRODUCT HEADER */
 
 .product-header{
 
-    min-height:76px;
+    min-height:86px;
 
     background:#090b0e;
 
@@ -636,7 +550,7 @@ button{
 
     padding:
         0
-        5%;
+        4%;
 
     border-bottom:
         1px solid #292f35;
@@ -646,45 +560,6 @@ button{
     top:0;
 
     z-index:500;
-
-}
-
-
-.product-header-brand{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-    cursor:pointer;
-
-}
-
-
-.product-header-title strong{
-
-    display:block;
-
-    font-size:22px;
-
-    letter-spacing:4px;
-
-}
-
-
-.product-header-title span{
-
-    display:block;
-
-    margin-top:4px;
-
-    color:#8f98a1;
-
-    font-size:8px;
-
-    letter-spacing:3px;
 
 }
 
@@ -704,7 +579,7 @@ button{
 
     width:340px;
 
-    height:41px;
+    height:42px;
 
     border:
         1px solid #343b42;
@@ -719,14 +594,14 @@ button{
         0
         14px;
 
-    outline:0;
+    outline:none;
 
 }
 
 
 .back-button{
 
-    height:41px;
+    height:42px;
 
     padding:
         0
@@ -763,7 +638,6 @@ button{
 .catalog-hero{
 
     background:
-
         linear-gradient(
             110deg,
             #0c0f13,
@@ -852,7 +726,7 @@ button{
 
 
 /* =========================================================
-   CATALOG BODY
+   CATALOG
 ========================================================= */
 
 .catalog-container{
@@ -932,7 +806,7 @@ button{
 
 
 /* =========================================================
-   FILTER BAR
+   FILTERS
 ========================================================= */
 
 .filters{
@@ -958,7 +832,6 @@ button{
     margin-bottom:25px;
 
     box-shadow:
-
         0 5px 18px
         rgba(0,0,0,.04);
 
@@ -1000,7 +873,7 @@ button{
 
 
 /* =========================================================
-   PRODUCT GRID
+   PRODUCTS
 ========================================================= */
 
 .products{
@@ -1016,9 +889,7 @@ button{
 
 
 
-/* =========================================================
-   PRODUCT CARD
-========================================================= */
+/* CARD */
 
 .card{
 
@@ -1046,7 +917,6 @@ button{
     border-color:#bcc2c7;
 
     box-shadow:
-
         0 17px 38px
         rgba(0,0,0,.11);
 
@@ -1066,7 +936,6 @@ button{
     justify-content:center;
 
     background:
-
         radial-gradient(
             circle at 50% 40%,
             #ffffff 0%,
@@ -1129,9 +998,7 @@ button{
 
 
 
-/* =========================================================
-   CARD CONTENT
-========================================================= */
+/* CARD BODY */
 
 .card-body{
 
@@ -1176,9 +1043,7 @@ button{
 
 
 
-/* =========================================================
-   MINI SPECS
-========================================================= */
+/* SPECS */
 
 .mini-specs{
 
@@ -1224,9 +1089,7 @@ button{
 
 
 
-/* =========================================================
-   CARD FOOTER
-========================================================= */
+/* CARD FOOTER */
 
 .card-footer{
 
@@ -1295,7 +1158,7 @@ button{
 
 
 /* =========================================================
-   PRODUCT DETAILS MODAL
+   MODAL
 ========================================================= */
 
 #productModal{
@@ -1350,7 +1213,6 @@ button{
     border-radius:10px;
 
     box-shadow:
-
         0 40px 100px
         rgba(0,0,0,.5);
 
@@ -1395,7 +1257,6 @@ button{
     justify-content:center;
 
     background:
-
         radial-gradient(
             circle,
             white,
@@ -1465,9 +1326,7 @@ button{
 
 
 
-/* =========================================================
-   DETAILS TABLE
-========================================================= */
+/* DETAIL TABLE */
 
 .details-table{
 
@@ -1525,9 +1384,7 @@ button{
 
 
 
-/* =========================================================
-   MODAL PRICE
-========================================================= */
+/* MODAL PRICE */
 
 .modal-price{
 
@@ -1561,9 +1418,7 @@ button{
 
 
 
-/* =========================================================
-   MODAL ACTIONS
-========================================================= */
+/* MODAL BUTTONS */
 
 .modal-actions{
 
@@ -1611,11 +1466,6 @@ button{
 
 }
 
-
-
-/* =========================================================
-   NO PRODUCTS
-========================================================= */
 
 .no-products{
 
@@ -1688,13 +1538,7 @@ button{
 
 @media(max-width:900px){
 
-    .topbar-search{
-
-        display:none;
-
-    }
-
-
+    .topbar-search,
     .product-header-search{
 
         display:none;
@@ -1747,34 +1591,38 @@ button{
 
     .showroom-topbar{
 
-        min-height:70px;
+        min-height:76px;
 
         padding:
             0
-            15px;
+            12px;
 
     }
 
 
-    .topbar-brand-text{
+    .vega-logo-wrap{
 
-        border-right:0;
-
-        padding-right:0;
+        padding:
+            5px
+            10px;
 
     }
 
 
-    .topbar-brand-text span{
+    .vega-logo{
 
-        display:none;
+        width:135px;
+
+        height:38px;
 
     }
 
 
     .topbar-product-btn{
 
-        min-width:140px;
+        min-width:120px;
+
+        font-size:9px;
 
     }
 
@@ -1873,9 +1721,8 @@ button{
 }
 
 
-/* =========================================================
-   FOOTER
-========================================================= */
+
+/* FOOTER */
 
 footer{
 
@@ -1910,31 +1757,31 @@ footer{
 
 
 <!-- =========================================================
-     HOME PAGE
+     HOME
 ========================================================= -->
 
 <section id="homePage">
 
 
-    <!-- PROFESSIONAL TOP BAR -->
-
     <div class="showroom-topbar">
 
 
-        <!-- LEFT -->
+        <!-- LOGO -->
 
         <div
             class="topbar-brand"
             onclick="showHome()"
         >
 
+            <div class="vega-logo-wrap">
 
-            <img
-    src="vega-logo.png"
-    class="vega-logo"
-    alt="Vega Power"
->
+                <img
+                    src="vega-logo.png?v=1"
+                    class="vega-logo"
+                    alt="Vega Power"
+                >
 
+            </div>
 
         </div>
 
@@ -1997,9 +1844,7 @@ footer{
 
                 PRODUCT LIST
 
-                <span>
-                    →
-                </span>
+                <span>→</span>
 
             </button>
 
@@ -2015,18 +1860,16 @@ footer{
 
     <div class="showroom">
 
-
         <img
             src="showroom2.png?v=2"
             alt="VEGA Fuel Systems Showroom"
         >
 
-
     </div>
 
 
 
-    <!-- SMALL INFO STRIP -->
+    <!-- INFO -->
 
     <div class="home-info">
 
@@ -2100,8 +1943,6 @@ footer{
 >
 
 
-    <!-- HEADER -->
-
     <div class="product-header">
 
 
@@ -2110,13 +1951,15 @@ footer{
             onclick="showHome()"
         >
 
+            <div class="vega-logo-wrap">
 
-            <img
-    src="vega-logo.png"
-    class="vega-logo"
-    alt="Vega Power"
->
+                <img
+                    src="vega-logo.png?v=1"
+                    class="vega-logo"
+                    alt="Vega Power"
+                >
 
+            </div>
 
         </div>
 
@@ -2150,13 +1993,12 @@ footer{
 
 
 
-    <!-- HERO -->
+    <!-- CATALOG HERO -->
 
     <div class="catalog-hero">
 
 
         <div>
-
 
             <small>
                 VEGA ENGINEERING SOLUTIONS
@@ -2172,7 +2014,6 @@ footer{
                 </span>
 
             </h1>
-
 
         </div>
 
@@ -2193,19 +2034,18 @@ footer{
 
 
 
-    <!-- CONTENT -->
+    <!-- CATALOG -->
 
     <div class="catalog-container">
 
 
-        <!-- CATEGORY TABS -->
+        <!-- CATEGORIES -->
 
         <div class="category-tabs">
 
 
             <button
                 class="category-tab active"
-                data-category="all"
                 onclick="setCategory('all',this)"
             >
                 ALL PRODUCTS
@@ -2214,7 +2054,6 @@ footer{
 
             <button
                 class="category-tab"
-                data-category="tank"
                 onclick="setCategory('tank',this)"
             >
                 FUEL TANKS
@@ -2223,7 +2062,6 @@ footer{
 
             <button
                 class="category-tab"
-                data-category="pump"
                 onclick="setCategory('pump',this)"
             >
                 PUMPS
@@ -2232,7 +2070,6 @@ footer{
 
             <button
                 class="category-tab"
-                data-category="filter"
                 onclick="setCategory('filter',this)"
             >
                 FILTRATION
@@ -2241,7 +2078,6 @@ footer{
 
             <button
                 class="category-tab"
-                data-category="valve"
                 onclick="setCategory('valve',this)"
             >
                 VALVES
@@ -2250,7 +2086,6 @@ footer{
 
             <button
                 class="category-tab"
-                data-category="monitor"
                 onclick="setCategory('monitor',this)"
             >
                 MONITORING
@@ -2259,7 +2094,6 @@ footer{
 
             <button
                 class="category-tab"
-                data-category="control"
                 onclick="setCategory('control',this)"
             >
                 CONTROL PANELS
@@ -2315,7 +2149,6 @@ footer{
             </select>
 
 
-
             <select id="sortFilter">
 
                 <option value="default">
@@ -2341,8 +2174,6 @@ footer{
 
 
 
-        <!-- PRODUCTS -->
-
         <div
             id="products"
             class="products"
@@ -2357,7 +2188,7 @@ footer{
 
 
 <!-- =========================================================
-     PRODUCT DETAILS MODAL
+     PRODUCT MODAL
 ========================================================= -->
 
 <div
@@ -2377,12 +2208,10 @@ footer{
         </button>
 
 
-
         <div
             id="modalImage"
             class="modal-image"
         ></div>
-
 
 
         <div class="modal-info">
@@ -2409,27 +2238,21 @@ footer{
             ></p>
 
 
-
             <div
                 id="detailsTable"
                 class="details-table"
             ></div>
 
 
-
             <div class="modal-price">
-
 
                 <small>
                     SELLING PRICE
                 </small>
 
-
                 <strong id="modalPrice"></strong>
 
-
             </div>
-
 
 
             <div class="modal-actions">
@@ -2468,27 +2291,16 @@ footer{
 
 
 
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
 <footer>
 
-
     <span>
-
         VEGA Engineering Solutions Co. Ltd.
         · Fuel Systems Product Library
-
     </span>
-
 
     <span>
-
         Internal Engineering Database
-
     </span>
-
 
 </footer>
 
@@ -2497,13 +2309,11 @@ footer{
 <script>
 
 /* =========================================================
-   PRODUCT DATABASE
+   PRODUCTS
 ========================================================= */
 
 const productData = [
 
-
-/* ===================== TANKS ===================== */
 
 {
 
@@ -2585,9 +2395,6 @@ const productData = [
 },
 
 
-
-/* ===================== PUMPS ===================== */
-
 {
 
     id:3,
@@ -2668,9 +2475,6 @@ const productData = [
 },
 
 
-
-/* ===================== FILTERS ===================== */
-
 {
 
     id:5,
@@ -2710,9 +2514,6 @@ const productData = [
 
 },
 
-
-
-/* ===================== VALVES ===================== */
 
 {
 
@@ -2794,9 +2595,6 @@ const productData = [
 },
 
 
-
-/* ===================== MONITORING ===================== */
-
 {
 
     id:8,
@@ -2877,9 +2675,6 @@ const productData = [
 },
 
 
-
-/* ===================== CONTROL ===================== */
-
 {
 
     id:10,
@@ -2924,10 +2719,6 @@ const productData = [
 
 
 
-/* =========================================================
-   VARIABLES
-========================================================= */
-
 let currentCategory = "all";
 
 let activeProduct = null;
@@ -2935,95 +2726,67 @@ let activeProduct = null;
 
 
 /* =========================================================
-   SHOW HOME
+   HOME
 ========================================================= */
 
 function showHome(){
 
 
     document
-    .getElementById(
-        "productPage"
-    )
+    .getElementById("productPage")
     .classList
-    .add(
-        "hidden"
-    );
+    .add("hidden");
 
 
     document
-    .getElementById(
-        "homePage"
-    )
+    .getElementById("homePage")
     .classList
-    .remove(
-        "hidden"
-    );
+    .remove("hidden");
 
 
-    window.scrollTo(
-        0,
-        0
-    );
+    window.scrollTo(0,0);
 
 }
 
 
 
 /* =========================================================
-   SHOW PRODUCT LIST
+   PRODUCTS
 ========================================================= */
 
 function showProducts(searchValue=""){
 
 
     document
-    .getElementById(
-        "homePage"
-    )
+    .getElementById("homePage")
     .classList
-    .add(
-        "hidden"
-    );
+    .add("hidden");
 
 
     document
-    .getElementById(
-        "productPage"
-    )
+    .getElementById("productPage")
     .classList
-    .remove(
-        "hidden"
-    );
+    .remove("hidden");
 
 
     if(searchValue){
 
+
         document
-        .getElementById(
-            "catalogSearch"
-        )
-        .value =
-            searchValue;
+        .getElementById("catalogSearch")
+        .value = searchValue;
 
 
         document
-        .getElementById(
-            "headerProductSearch"
-        )
-        .value =
-            searchValue;
+        .getElementById("headerProductSearch")
+        .value = searchValue;
 
     }
 
 
     renderProducts();
 
-
-    window.scrollTo(
-        0,
-        0
-    );
+    window.scrollTo(0,0);
 
 }
 
@@ -3033,33 +2796,21 @@ function showProducts(searchValue=""){
    CATEGORY
 ========================================================= */
 
-function setCategory(
-    category,
-    button
-){
+function setCategory(category,button){
 
 
-    currentCategory =
-        category;
+    currentCategory = category;
 
 
     document
-    .querySelectorAll(
-        ".category-tab"
-    )
+    .querySelectorAll(".category-tab")
     .forEach(
         item =>
-        item.classList.remove(
-            "active"
-        )
+        item.classList.remove("active")
     );
 
 
-    button
-    .classList
-    .add(
-        "active"
-    );
+    button.classList.add("active");
 
 
     renderProducts();
@@ -3069,7 +2820,7 @@ function setCategory(
 
 
 /* =========================================================
-   RENDER PRODUCTS
+   RENDER
 ========================================================= */
 
 function renderProducts(){
@@ -3078,9 +2829,7 @@ function renderProducts(){
     const search =
 
         document
-        .getElementById(
-            "catalogSearch"
-        )
+        .getElementById("catalogSearch")
         .value
         .trim()
         .toLowerCase();
@@ -3089,18 +2838,14 @@ function renderProducts(){
     const brand =
 
         document
-        .getElementById(
-            "brandFilter"
-        )
+        .getElementById("brandFilter")
         .value;
 
 
     const sort =
 
         document
-        .getElementById(
-            "sortFilter"
-        )
+        .getElementById("sortFilter")
         .value;
 
 
@@ -3114,17 +2859,15 @@ function renderProducts(){
                 const text =
 
                     (
-
                         product.name
-                        + " "
-                        + product.brand
-                        + " "
-                        + product.model
-                        + " "
-                        + product.description
-                        + " "
-                        + product.categoryName
-
+                        +" "
+                        +product.brand
+                        +" "
+                        +product.model
+                        +" "
+                        +product.description
+                        +" "
+                        +product.categoryName
                     )
                     .toLowerCase();
 
@@ -3136,50 +2879,36 @@ function renderProducts(){
 
                     ||
 
-                    text.includes(
-                        search
-                    );
+                    text.includes(search);
 
 
 
                 const categoryMatch =
 
-                    currentCategory
-                    ===
-                    "all"
+                    currentCategory === "all"
 
                     ||
 
-                    product.category
-                    ===
-                    currentCategory;
+                    product.category === currentCategory;
 
 
 
                 const brandMatch =
 
-                    brand
-                    ===
-                    "all"
+                    brand === "all"
 
                     ||
 
-                    product.brand
-                    ===
-                    brand;
+                    product.brand === brand;
 
 
 
                 return
 
                     searchMatch
-
                     &&
-
                     categoryMatch
-
                     &&
-
                     brandMatch;
 
             }
@@ -3187,49 +2916,31 @@ function renderProducts(){
 
 
 
-    if(
-        sort === "name"
-    ){
+    if(sort === "name"){
 
         filtered.sort(
             (a,b)=>
-
-            a.name.localeCompare(
-                b.name
-            )
-
+            a.name.localeCompare(b.name)
         );
 
     }
 
 
-
-    if(
-        sort === "low"
-    ){
+    if(sort === "low"){
 
         filtered.sort(
             (a,b)=>
-
-            a.price
-            -
-            b.price
+            a.price-b.price
         );
 
     }
 
 
-
-    if(
-        sort === "high"
-    ){
+    if(sort === "high"){
 
         filtered.sort(
             (a,b)=>
-
-            b.price
-            -
-            a.price
+            b.price-a.price
         );
 
     }
@@ -3237,26 +2948,20 @@ function renderProducts(){
 
 
     document
-    .getElementById(
-        "productCount"
-    )
+    .getElementById("productCount")
     .textContent =
         filtered.length;
 
 
 
     const container =
-
         document
-        .getElementById(
-            "products"
-        );
+        .getElementById("products");
 
 
 
-    if(
-        filtered.length === 0
-    ){
+    if(filtered.length === 0){
+
 
         container.innerHTML = `
 
@@ -3267,6 +2972,7 @@ function renderProducts(){
             </div>
 
         `;
+
 
         return;
 
@@ -3286,14 +2992,10 @@ function renderProducts(){
                     Object.entries(
                         product.specs
                     )
-                    .slice(
-                        0,
-                        3
-                    );
+                    .slice(0,3);
 
 
                 return `
-
 
                 <article
                     class="card"
@@ -3358,33 +3060,29 @@ function renderProducts(){
                         <div class="mini-specs">
 
 
-                            ${
+                        ${
 
-                                specs
-                                .map(
-                                    ([key,value])=>`
+                            specs
+                            .map(
+                                ([key,value])=>`
 
-                                    <div class="mini-spec">
+                                <div class="mini-spec">
 
-                                        <span>
+                                    <span>
+                                        ${key}
+                                    </span>
 
-                                            ${key}
+                                    <strong>
+                                        ${value}
+                                    </strong>
 
-                                        </span>
+                                </div>
 
-                                        <strong>
+                                `
+                            )
+                            .join("")
 
-                                            ${value}
-
-                                        </strong>
-
-                                    </div>
-
-                                    `
-                                )
-                                .join("")
-
-                            }
+                        }
 
 
                         </div>
@@ -3398,9 +3096,7 @@ function renderProducts(){
 
 
                                 <small>
-
                                     SELLING PRICE
-
                                 </small>
 
 
@@ -3413,7 +3109,6 @@ function renderProducts(){
 
 
                             </div>
-
 
 
                             <button
@@ -3433,7 +3128,6 @@ function renderProducts(){
 
                 </article>
 
-
                 `;
 
             }
@@ -3445,7 +3139,7 @@ function renderProducts(){
 
 
 /* =========================================================
-   OPEN PRODUCT
+   PRODUCT DETAIL
 ========================================================= */
 
 function openProduct(id){
@@ -3455,53 +3149,35 @@ function openProduct(id){
 
         productData.find(
             product =>
-            product.id
-            ===
-            id
+            product.id === id
         );
 
 
-    if(
-        !activeProduct
-    ){
-
+    if(!activeProduct){
         return;
-
     }
 
 
-
     document
-    .getElementById(
-        "modalImage"
-    )
+    .getElementById("modalImage")
     .textContent =
         activeProduct.icon;
 
 
-
     document
-    .getElementById(
-        "modalCategory"
-    )
+    .getElementById("modalCategory")
     .textContent =
         activeProduct.categoryName;
 
 
-
     document
-    .getElementById(
-        "modalTitle"
-    )
+    .getElementById("modalTitle")
     .textContent =
         activeProduct.name;
 
 
-
     document
-    .getElementById(
-        "modalModel"
-    )
+    .getElementById("modalModel")
     .textContent =
 
         activeProduct.brand
@@ -3511,36 +3187,25 @@ function openProduct(id){
         activeProduct.model;
 
 
-
     document
-    .getElementById(
-        "modalDescription"
-    )
+    .getElementById("modalDescription")
     .textContent =
         activeProduct.description;
 
 
-
     document
-    .getElementById(
-        "modalPrice"
-    )
+    .getElementById("modalPrice")
     .textContent =
 
-        activeProduct
-        .price
-        .toLocaleString()
+        activeProduct.price.toLocaleString()
 
         +
 
         " SAR";
 
 
-
     document
-    .getElementById(
-        "detailsTable"
-    )
+    .getElementById("detailsTable")
     .innerHTML =
 
         Object.entries(
@@ -3552,15 +3217,11 @@ function openProduct(id){
             <div class="detail-row">
 
                 <span>
-
                     ${key}
-
                 </span>
 
                 <strong>
-
                     ${value}
-
                 </strong>
 
             </div>
@@ -3570,15 +3231,10 @@ function openProduct(id){
         .join("");
 
 
-
     document
-    .getElementById(
-        "productModal"
-    )
+    .getElementById("productModal")
     .classList
-    .remove(
-        "hidden"
-    );
+    .remove("hidden");
 
 }
 
@@ -3592,13 +3248,9 @@ function closeProduct(){
 
 
     document
-    .getElementById(
-        "productModal"
-    )
+    .getElementById("productModal")
     .classList
-    .add(
-        "hidden"
-    );
+    .add("hidden");
 
 }
 
@@ -3642,7 +3294,6 @@ function openDatasheet(){
 
 function requestQuotation(){
 
-
     alert(
         "Quotation function can be connected later."
     );
@@ -3652,28 +3303,19 @@ function requestQuotation(){
 
 
 /* =========================================================
-   HOME SEARCH
+   SEARCH EVENTS
 ========================================================= */
 
 document
-.getElementById(
-    "homeSearch"
-)
+.getElementById("homeSearch")
 .addEventListener(
     "keydown",
     function(event){
 
-
-        if(
-            event.key === "Enter"
-        ){
-
-            const value =
-                this.value.trim();
-
+        if(event.key === "Enter"){
 
             showProducts(
-                value
+                this.value.trim()
             );
 
         }
@@ -3683,26 +3325,16 @@ document
 
 
 
-/* =========================================================
-   CATALOG SEARCH
-========================================================= */
-
 document
-.getElementById(
-    "catalogSearch"
-)
+.getElementById("catalogSearch")
 .addEventListener(
     "input",
     function(){
 
-
         document
-        .getElementById(
-            "headerProductSearch"
-        )
+        .getElementById("headerProductSearch")
         .value =
             this.value;
-
 
         renderProducts();
 
@@ -3711,26 +3343,16 @@ document
 
 
 
-/* =========================================================
-   HEADER PRODUCT SEARCH
-========================================================= */
-
 document
-.getElementById(
-    "headerProductSearch"
-)
+.getElementById("headerProductSearch")
 .addEventListener(
     "input",
     function(){
 
-
         document
-        .getElementById(
-            "catalogSearch"
-        )
+        .getElementById("catalogSearch")
         .value =
             this.value;
-
 
         renderProducts();
 
@@ -3739,14 +3361,8 @@ document
 
 
 
-/* =========================================================
-   BRAND FILTER
-========================================================= */
-
 document
-.getElementById(
-    "brandFilter"
-)
+.getElementById("brandFilter")
 .addEventListener(
     "change",
     renderProducts
@@ -3754,14 +3370,8 @@ document
 
 
 
-/* =========================================================
-   SORT FILTER
-========================================================= */
-
 document
-.getElementById(
-    "sortFilter"
-)
+.getElementById("sortFilter")
 .addEventListener(
     "change",
     renderProducts
@@ -3769,24 +3379,13 @@ document
 
 
 
-/* =========================================================
-   CLOSE MODAL BY BACKGROUND
-========================================================= */
-
 document
-.getElementById(
-    "productModal"
-)
+.getElementById("productModal")
 .addEventListener(
     "click",
     function(event){
 
-
-        if(
-            event.target
-            ===
-            this
-        ){
+        if(event.target === this){
 
             closeProduct();
 
@@ -3796,22 +3395,13 @@ document
 );
 
 
-
-/* =========================================================
-   ESCAPE
-========================================================= */
 
 document
 .addEventListener(
     "keydown",
     function(event){
 
-
-        if(
-            event.key
-            ===
-            "Escape"
-        ){
+        if(event.key === "Escape"){
 
             closeProduct();
 
@@ -3822,12 +3412,7 @@ document
 
 
 
-/* =========================================================
-   INITIAL LOAD
-========================================================= */
-
 renderProducts();
-
 
 </script>
 
