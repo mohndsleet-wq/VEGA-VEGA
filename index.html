@@ -2061,7 +2061,7 @@ body {
     width: 100% !important;
     height: 100% !important;
 
-    max-width: 100% !important;
+    max-width: none !important;
     max-height: 100% !important;
 
     margin: 0 auto !important;
@@ -2069,10 +2069,12 @@ body {
     object-fit: contain !important;
     object-position: center center !important;
 
-    transform: scale(0.72) !important;
+    /* نفس الارتفاع تقريباً، لكن أعرض */
+    transform: scaleX(0.88) scaleY(0.72) !important;
     transform-origin: center center !important;
 
     border-radius: 0 !important;
+}
 }
 
 }
