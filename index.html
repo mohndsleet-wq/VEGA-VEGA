@@ -2005,14 +2005,96 @@ footer{
     margin: auto;
 }
 
-.home-info {
-    flex: 0 0 72px;
+/* =========================================
+   HOME PAGE - FIT EXACTLY IN ONE SCREEN
+========================================= */
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
 }
 
-.home-info-box {
-    padding: 13px 28px;
+#homePage {
+    width: 100%;
+    height: 100vh !important;
+    min-height: 0 !important;
+
+    display: grid !important;
+    grid-template-rows: 80px minmax(0, 1fr) 72px;
+
+    overflow: hidden !important;
 }
 
+/* TOP BAR */
+
+#homePage .showroom-topbar {
+    position: relative !important;
+    top: auto !important;
+
+    width: 100%;
+    height: 80px !important;
+    min-height: 0 !important;
+
+    padding: 6px 4% !important;
+}
+
+/* SHOWROOM AREA */
+
+#homePage .showroom {
+    width: 100%;
+    height: 100% !important;
+    min-height: 0 !important;
+
+    padding: 8px 2% !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    overflow: hidden !important;
+}
+
+/* SHOWROOM IMAGE */
+
+#homePage .showroom img {
+    display: block !important;
+
+    width: auto !important;
+    height: 100% !important;
+
+    max-width: 100% !important;
+    max-height: 100% !important;
+
+    object-fit: contain !important;
+
+    margin: 0 auto !important;
+}
+
+/* BOTTOM INFORMATION */
+
+#homePage .home-info {
+    height: 72px !important;
+    min-height: 0 !important;
+}
+
+#homePage .home-info-box {
+    padding: 10px 28px !important;
+}
+
+/* PRODUCT PAGE CAN SCROLL NORMALLY */
+
+#productPage {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+}
+
+body:has(#productPage:not(.hidden)) {
+    overflow-y: auto;
+}
 
 </style>
 
