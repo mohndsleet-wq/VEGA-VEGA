@@ -2054,10 +2054,12 @@ body {
     margin: 0 !important;
 
     overflow: hidden !important;
+
+    position: relative;
 }
 
 
-/* SHOWROOM IMAGE - FILL AVAILABLE SPACE */
+/* SHOWROOM IMAGE - LARGE & FULL SCREEN */
 
 #homePage .showroom img {
     display: block !important;
@@ -2073,10 +2075,11 @@ body {
     object-fit: cover !important;
     object-position: center center !important;
 
+    transform: scale(1.15);
+    transform-origin: center center;
+
     border-radius: 0 !important;
 }
-
-
 /* BOTTOM INFO */
 
 #homePage .home-info {
