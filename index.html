@@ -3,7 +3,7 @@
 
 <head>
 
-<meta charset="UTFب-8">
+<meta charset="UTF-8">
 
 <meta
     name="viewport"
@@ -2008,9 +2008,6 @@ footer{
 /* =========================================
    HOME PAGE - FIT EXACTLY IN ONE SCREEN
 ========================================= */
-/* =========================================
-   HOME PAGE - FULL SCREEN
-========================================= */
 
 html,
 body {
@@ -2020,30 +2017,22 @@ body {
 }
 
 #homePage {
+    width: 100% !important;
     height: 100vh !important;
     min-height: 0 !important;
-
     display: grid !important;
-    grid-template-rows: 82px 1fr 72px;
-
+    grid-template-rows: 82px minmax(0, 1fr) 72px !important;
     overflow: hidden !important;
+    background: #07090b !important;
 }
-
-
-/* HEADER */
 
 #homePage .showroom-topbar {
     position: relative !important;
     top: auto !important;
-
     height: 82px !important;
     min-height: 82px !important;
-
     padding: 6px 4% !important;
 }
-
-
-/* SHOWROOM */
 
 #homePage .showroom {
     width: 100% !important;
@@ -2053,37 +2042,33 @@ body {
     margin: 0 !important;
     overflow: hidden !important;
     position: relative !important;
+    background: #07090b !important;
 }
 
 #homePage .showroom img {
     display: block !important;
-
     width: 100% !important;
     height: 100% !important;
-
     max-width: none !important;
     max-height: none !important;
-
     margin: 0 !important;
-
-    object-fit: contain !important;
-    object-position: center center !important;
-
-    /* زوم أوت بالطول + تكبير بالعرض */
-    transform: scaleX(1.40) scaleY(0.72) !important;
-    transform-origin: center center !important;
-
+    padding: 0 !important;
+    object-fit: cover !important;
+    object-position: center 56% !important;
+    transform: none !important;
+    border: 0 !important;
     border-radius: 0 !important;
+    box-shadow: none !important;
 }
-}
-}
-
-}
-/* BOTTOM INFO */
 
 #homePage .home-info {
+    width: 100% !important;
     height: 72px !important;
     min-height: 72px !important;
+    margin: 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    overflow: hidden !important;
 }
 
 #homePage .home-info-box {
@@ -2091,14 +2076,13 @@ body {
 }
 
 #homePage .home-info-box strong {
-    font-size: 10px;
+    font-size: 10px !important;
 }
 
 #homePage .home-info-box span {
-    margin-top: 4px;
-    font-size: 10px;
+    margin-top: 4px !important;
+    font-size: 10px !important;
 }
-
 
 /* PRODUCT PAGE */
 
