@@ -1911,149 +1911,46 @@ function requestQuotation(){
 
 
 /* =========================================================
-   HOME SEARCH
+   SAFE UI EVENT LISTENERS
 ========================================================= */
 
-document
-.getElementById(
-    "homeSearch"
-)
-.addEventListener(
-    "keydown",
-    function(event){
+const homeSearchEl = document.getElementById("homeSearch");
+if (homeSearchEl) {
+    homeSearchEl.addEventListener("keydown", function(event){
+        if(event.key === "Enter") showProducts(this.value.trim());
+    });
+}
 
-
-        if(
-            event.key==="Enter"
-        ){
-
-
-            showProducts(
-
-                this.value.trim()
-
-            );
-
-        }
-
-    }
-);
-
-
-
-/* =========================================================
-   CATALOG SEARCH
-========================================================= */
-
-document
-.getElementById(
-    "catalogSearch"
-)
-.addEventListener(
-    "input",
-    function(){
-
-
-        document
-        .getElementById(
-            "headerProductSearch"
-        )
-        .value=
-
-            this.value;
-
-
+const catalogSearchEl = document.getElementById("catalogSearch");
+if (catalogSearchEl) {
+    catalogSearchEl.addEventListener("input", function(){
+        const headerSearchEl = document.getElementById("headerProductSearch");
+        if(headerSearchEl) headerSearchEl.value = this.value;
         renderProducts();
+    });
+}
 
-    }
-);
-
-
-
-/* =========================================================
-   HEADER SEARCH
-========================================================= */
-
-document
-.getElementById(
-    "headerProductSearch"
-)
-.addEventListener(
-    "input",
-    function(){
-
-
-        document
-        .getElementById(
-            "catalogSearch"
-        )
-        .value=
-
-            this.value;
-
-
+const headerSearchEl = document.getElementById("headerProductSearch");
+if (headerSearchEl) {
+    headerSearchEl.addEventListener("input", function(){
+        const catalogEl = document.getElementById("catalogSearch");
+        if(catalogEl) catalogEl.value = this.value;
         renderProducts();
+    });
+}
 
-    }
-);
+const brandFilterEl = document.getElementById("brandFilter");
+if (brandFilterEl) brandFilterEl.addEventListener("change", renderProducts);
 
+const sortFilterEl = document.getElementById("sortFilter");
+if (sortFilterEl) sortFilterEl.addEventListener("change", renderProducts);
 
-
-/* =========================================================
-   BRAND
-========================================================= */
-
-document
-.getElementById(
-    "brandFilter"
-)
-.addEventListener(
-    "change",
-    renderProducts
-);
-
-
-
-/* =========================================================
-   SORT
-========================================================= */
-
-document
-.getElementById(
-    "sortFilter"
-)
-.addEventListener(
-    "change",
-    renderProducts
-);
-
-
-
-/* =========================================================
-   MODAL BACKGROUND
-========================================================= */
-
-document
-.getElementById(
-    "productModal"
-)
-.addEventListener(
-    "click",
-    function(event){
-
-
-        if(
-            event.target===this
-        ){
-
-
-            closeProduct();
-
-        }
-
-    }
-);
-
+const productModalEl = document.getElementById("productModal");
+if (productModalEl) {
+    productModalEl.addEventListener("click", function(event){
+        if(event.target === this) closeProduct();
+    });
+}
 
 
 /* =========================================================
