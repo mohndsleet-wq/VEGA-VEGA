@@ -841,459 +841,63 @@ footer{padding:24px 5%;display:flex;justify-content:space-between;gap:20px;backg
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 
 /* =========================================================
    PRODUCT DATABASE
 ========================================================= */
 
-const productData=[
-
-
-
-/* =========================
-   TANK
-========================= */
-
-{
-
-    id:1,
-
-    name:"Generator Day Tank",
-
-    brand:"CST",
-
-    model:"DT-1000",
-
-    category:"tank",
-
-    categoryName:"Fuel Tank",
-
-    icon:"🛢️",
-
-    description:
-
-        "Generator day tank designed for controlled diesel fuel supply and automatic filling.",
-
-    price:18500,
-
-    specs:{
-
-        "Capacity":"1,000 Liters",
-
-        "Type":"Day Tank",
-
-        "Material":"Carbon Steel",
-
-        "Configuration":"Single Wall",
-
-        "Application":"Generator Fuel Supply"
-
-    },
-
-    datasheet:""
-
-},
-
-
-
-{
-
-    id:2,
-
-    name:"Bulk Fuel Storage Tank",
-
-    brand:"CST",
-
-    model:"BT-5000",
-
-    category:"tank",
-
-    categoryName:"Fuel Tank",
-
-    icon:"🛢️",
-
-    description:
-
-        "Aboveground diesel fuel storage tank for generator fuel system applications.",
-
-    price:58000,
-
-    specs:{
-
-        "Capacity":"5,000 Liters",
-
-        "Type":"Bulk Storage",
-
-        "Material":"Carbon Steel",
-
-        "Installation":"Aboveground",
-
-        "Application":"Diesel Storage"
-
-    },
-
-    datasheet:""
-
-},
-
-
-
-/* =========================
-   PUMPS
-========================= */
-
-{
-
-    id:3,
-
-    name:"Electric Diesel Transfer Pump",
-
-    brand:"PIUSI",
-
-    model:"E120",
-
-    category:"pump",
-
-    categoryName:"Transfer Pump",
-
-    icon:"⚙️",
-
-    description:
-
-        "Self-priming electric diesel transfer pump for reliable fuel transfer applications.",
-
-    price:4250,
-
-    specs:{
-
-        "Flow Rate":"120 L/min",
-
-        "Voltage":"230 V",
-
-        "Duty":"Continuous",
-
-        "Fluid":"Diesel",
-
-        "Application":"Fuel Transfer"
-
-    },
-
-    datasheet:""
-
-},
-
-
-
-{
-
-    id:4,
-
-    name:"Electric Fuel Transfer Pump",
-
-    brand:"PIUSI",
-
-    model:"E80",
-
-    category:"pump",
-
-    categoryName:"Transfer Pump",
-
-    icon:"⚙️",
-
-    description:
-
-        "Compact electric diesel transfer pump suitable for filling and transfer duties.",
-
-    price:3450,
-
-    specs:{
-
-        "Flow Rate":"70 L/min",
-
-        "Voltage":"230 V",
-
-        "Connection":"1 inch",
-
-        "Fluid":"Diesel",
-
-        "Installation":"Fixed"
-
-    },
-
-    datasheet:""
-
-},
-
-
-
-/* =========================
-   FILTER
-========================= */
-
-{
-
-    id:5,
-
-    name:"Fuel Filter Water Separator",
-
-    brand:"PARKER",
-
-    model:"RACOR 1000",
-
-    category:"filter",
-
-    categoryName:"Filtration",
-
-    icon:"🔩",
-
-    description:
-
-        "Diesel fuel filtration and water separation unit for fuel systems and generator applications.",
-
-    price:2850,
-
-    specs:{
-
-        "Filtration":"10 Micron",
-
-        "Type":"Water Separator",
-
-        "Fluid":"Diesel",
-
-        "Installation":"Inline",
-
-        "Application":"Fuel Treatment"
-
-    },
-
-    datasheet:""
-
-},
-
-
-
-/* =========================
-   VALVES
-========================= */
-
-{
-
-    id:6,
-
-    name:"Fuel Ball Valve",
-
-    brand:"GALA",
-
-    model:"BV-2",
-
-    category:"valve",
-
-    categoryName:"Valve",
-
-    icon:"🔧",
-
-    description:
-
-        "Isolation ball valve for diesel fuel piping and fuel transfer systems.",
-
-    price:210,
-
-    specs:{
-
-        "Size":"2 inch",
-
-        "Type":"Ball Valve",
-
-        "Material":"Brass",
-
-        "Service":"Diesel Fuel",
-
-        "Connection":"Threaded"
-
-    },
-
-    datasheet:""
-
-},
-
-
-
-{
-
-    id:7,
-
-    name:"Overfill Prevention Valve",
-
-    brand:"OPW",
-
-    model:"53VML",
-
-    category:"valve",
-
-    categoryName:"Valve",
-
-    icon:"🔧",
-
-    description:
-
-        "Automatic overfill prevention valve for safe diesel fuel tank filling.",
-
-    price:3950,
-
-    specs:{
-
-        "Size":"2 inch",
-
-        "Function":"Overfill Prevention",
-
-        "Application":"Fuel Tank",
-
-        "Operation":"Automatic",
-
-        "Service":"Diesel"
-
-    },
-
-    datasheet:""
-
-},
-
-
-
-/* =========================
-   MONITORING
-========================= */
-
-{
-
-    id:8,
-
-    name:"Tank Level Indicator",
-
-    brand:"PIUSI",
-
-    model:"OCIO",
-
-    category:"monitor",
-
-    categoryName:"Monitoring",
-
-    icon:"📟",
-
-    description:
-
-        "Continuous digital tank level monitoring system for diesel fuel storage tanks.",
-
-    price:1786,
-
-    specs:{
-
-        "Measurement":"Continuous Level",
-
-        "Application":"Fuel Tank",
-
-        "Display":"Digital",
-
-        "Monitoring":"Remote",
-
-        "Fluid":"Diesel"
-
-    },
-
-    datasheet:""
-
-},
-
-
-
-{
-
-    id:9,
-
-    name:"Digital Fuel Flow Meter",
-
-    brand:"PIUSI",
-
-    model:"K24",
-
-    category:"monitor",
-
-    categoryName:"Monitoring",
-
-    icon:"📟",
-
-    description:
-
-        "Digital diesel fuel flow meter for measuring transferred fuel quantity.",
-
-    price:2450,
-
-    specs:{
-
-        "Type":"Digital Flow Meter",
-
-        "Fluid":"Diesel",
-
-        "Display":"Digital",
-
-        "Installation":"Inline",
-
-        "Application":"Fuel Transfer"
-
-    },
-
-    datasheet:""
-
-},
-
-
-
-/* =========================
-   CONTROL
-========================= */
-
-{
-
-    id:10,
-
-    name:"Fuel System Control Panel",
-
-    brand:"VEGA",
-
-    model:"FCP-01",
-
-    category:"control",
-
-    categoryName:"Control Panel",
-
-    icon:"🖥️",
-
-    description:
-
-        "Automatic fuel transfer control panel with pump sequencing, alarms and BMS interface.",
-
-    price:12500,
-
-    specs:{
-
-        "Control":"Automatic",
-
-        "Pump Logic":"Duty / Standby",
-
-        "Operation":"Manual / Auto",
-
-        "Interface":"BMS",
-
-        "Application":"Fuel Transfer System"
-
-    },
-
-    datasheet:""
-
+const SUPABASE_URL = "https://qhqwademklkjlbdsvjtl.supabase.co";
+
+// Paste your Supabase Publishable key here (NOT the Secret key).
+const SUPABASE_KEY = "PUT_YOUR_PUBLISHABLE_KEY_HERE";
+
+const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let productData = [];
+
+async function loadProducts(){
+    const { data, error } = await db
+        .from("products")
+        .select("*")
+        .order("id", { ascending: true });
+
+    if(error){
+        console.error("Supabase error:", error);
+        productData = [];
+        renderProducts();
+        return;
+    }
+
+    productData = (data || []).map(product => {
+        let specs = product.specifications || {};
+        if(typeof specs === "string"){
+            try { specs = JSON.parse(specs); }
+            catch { specs = {}; }
+        }
+
+        return {
+            id: product.id,
+            name: product.name || "",
+            model: product.model || "",
+            brand: product.brand || "",
+            category: product.category || "",
+            categoryName: product.category || "",
+            description: product.description || "",
+            supplier: product.supplier || "",
+            price: Number(product.price) || 0,
+            image_url: product.image_url || "",
+            datasheet: product.datasheet_url || "",
+            specs,
+            icon: "⚙️"
+        };
+    });
+
+    renderProducts();
 }
 
-];
 
 
 
@@ -1746,11 +1350,10 @@ function renderProducts(){
                             </div>
 
 
-                            <div class="product-icon">
-
-                                ${product.icon}
-
-                            </div>
+                            ${product.image_url
+                                ? `<img src="${product.image_url}" alt="${product.name}" style="max-width:82%;max-height:82%;object-fit:contain">`
+                                : `<div class="product-icon">${product.icon}</div>`
+                            }
 
 
                         </div>
@@ -1872,9 +1475,9 @@ function openProduct(id){
     .getElementById(
         "modalImage"
     )
-    .textContent=
-
-        activeProduct.icon;
+    .innerHTML = activeProduct.image_url
+        ? `<img src="${activeProduct.image_url}" alt="${activeProduct.name}" style="max-width:90%;max-height:520px;object-fit:contain">`
+        : activeProduct.icon;
 
 
 
@@ -2249,7 +1852,7 @@ document
    START
 ========================================================= */
 
-renderProducts();
+loadProducts();
 
 </script>
 
