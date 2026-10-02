@@ -74,6 +74,7 @@ button{cursor:pointer}
 .star-mark{position:relative;min-height:430px;display:grid;place-items:center}.orbit{position:absolute;border:1px solid rgba(255,255,255,.11);border-radius:50%;transform:rotate(-18deg)}.orbit.o1{width:420px;height:420px}.orbit.o2{width:320px;height:320px;border-color:rgba(237,28,36,.28)}.orbit.o3{width:215px;height:215px;border-style:dashed;animation:spin 22s linear infinite}@keyframes spin{to{transform:rotate(342deg)}}
 .vega-star{position:relative;width:150px;height:150px;display:grid;place-items:center;filter:drop-shadow(0 0 28px rgba(237,28,36,.22))}.vega-star::before,.vega-star::after{content:"";position:absolute;background:linear-gradient(135deg,#fff 0 45%,var(--red) 46% 100%);clip-path:polygon(50% 0,61% 38%,100% 50%,61% 62%,50% 100%,39% 62%,0 50%,39% 38%)}.vega-star::before{inset:0}.vega-star::after{inset:34px;background:#07090c}.star-core{position:relative;z-index:2;width:13px;height:13px;border-radius:50%;background:#fff;box-shadow:0 0 24px #fff,0 0 55px var(--red)}
 .star-note{position:absolute;right:0;bottom:26px;width:250px;padding:16px;border-left:2px solid var(--red);background:rgba(255,255,255,.035);font-size:9px;line-height:1.65;color:#89939c}.star-note strong{display:block;margin-bottom:5px;color:#fff;letter-spacing:1.5px;font-size:9px}
+.star-image-wrap{min-height:480px}.star-uploaded-image{display:block;width:min(590px,100%);max-height:520px;object-fit:contain;filter:drop-shadow(0 18px 55px rgba(237,28,36,.16))}
 .home-rail{position:absolute;z-index:12;left:5vw;right:5vw;bottom:22px;min-height:70px;display:grid;grid-template-columns:1.15fr repeat(4,1fr);border:1px solid rgba(255,255,255,.09);background:rgba(6,8,10,.76);backdrop-filter:blur(14px)}
 .rail-lead,.rail-cell{padding:14px 17px;border-right:1px solid rgba(255,255,255,.08)}.rail-cell:last-child{border-right:0}.rail-kicker{font-size:7px;letter-spacing:1.8px;color:#65707a;font-weight:900}.rail-value{margin-top:6px;font-size:10px;font-weight:900;letter-spacing:.45px}.rail-lead .rail-value{color:var(--red)}.rail-cell{cursor:pointer;transition:.18s}.rail-cell:hover{background:rgba(237,28,36,.11)}.rail-index{font-size:7px;color:#56606a}.rail-cell strong{display:block;margin-top:5px;font-size:9px;letter-spacing:.7px}.rail-cell span{display:block;margin-top:3px;color:#77818a;font-size:8px}
 
@@ -257,10 +258,8 @@ footer{padding:24px 5%;display:flex;justify-content:space-between;gap:20px;backg
         <button class="launch-secondary" onclick="showProducts('PIUSI')">QUICK SEARCH</button>
       </div>
     </div>
-    <div class="star-mark" aria-hidden="true">
-      <div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit o3"></div>
-      <div class="vega-star"><div class="star-core"></div></div>
-      <div class="star-note"><strong>ENGINEERING / FUEL SYSTEMS</strong>Internal product intelligence for VEGA application engineering.</div>
+    <div class="star-mark star-image-wrap" aria-hidden="true">
+      <img src="Vega_ A Star Among Skies.png" class="star-uploaded-image" alt="VEGA A Star Among Skies">
     </div>
   </div>
 
