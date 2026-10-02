@@ -271,6 +271,25 @@ footer{padding:24px 5%;display:flex;justify-content:space-between;gap:20px;backg
   .modal-box{grid-template-columns:1fr}.modal-image{min-height:280px}
 }
 
+
+
+/* ===== PRODUCT ADMIN ===== */
+.add-product-button{height:42px;padding:0 16px;border:0;border-radius:4px;background:var(--red);color:#fff;font-size:10px;font-weight:900;letter-spacing:.7px}
+.admin-actions{display:flex;gap:8px;margin-top:12px}
+.admin-edit,.admin-delete{flex:1;height:36px;border:0;border-radius:4px;font-size:10px;font-weight:800}
+.admin-edit{background:#15191d;color:#fff}.admin-delete{background:#fff0f0;color:#c71920;border:1px solid #f0c5c7}
+#adminModal{position:fixed;inset:0;z-index:7000;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(0,0,0,.82);backdrop-filter:blur(8px)}
+.admin-box{width:min(820px,96vw);max-height:92vh;overflow:auto;background:#fff;color:#171a1d;border-radius:9px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.admin-head{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:20px 24px;background:#0b0e11;color:#fff;border-bottom:3px solid var(--red)}
+.admin-head h2{font-size:20px}.admin-close{width:36px;height:36px;border:0;border-radius:50%;background:#242a30;color:#fff;font-size:20px}
+.admin-form{padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.admin-field{display:flex;flex-direction:column;gap:6px}.admin-field.full{grid-column:1/-1}.admin-field label{font-size:9px;font-weight:900;letter-spacing:1px;color:#69727a}
+.admin-field input,.admin-field select,.admin-field textarea{width:100%;padding:11px;border:1px solid #d5d9dd;border-radius:4px;outline:0;background:#fff;color:#171a1d}
+.admin-field textarea{min-height:95px;resize:vertical}.admin-help{font-size:9px;color:#8a9299;line-height:1.5}
+.admin-save{grid-column:1/-1;height:50px;border:0;border-radius:4px;background:var(--red);color:#fff;font-size:11px;font-weight:900;letter-spacing:1px}
+.admin-save:disabled{opacity:.55;cursor:wait}.admin-status{grid-column:1/-1;min-height:18px;font-size:11px;font-weight:700}.admin-status.error{color:#c71920}.admin-status.ok{color:#16854b}
+@media(max-width:760px){.admin-form{grid-template-columns:1fr}.admin-field.full,.admin-save,.admin-status{grid-column:1}.add-product-button{padding:0 10px}}
+
 </style>
 
 </head>
@@ -401,6 +420,8 @@ footer{padding:24px 5%;display:flex;justify-content:space-between;gap:20px;backg
         <!-- ACTIONS -->
 
         <div class="product-header-actions">
+
+            <button class="add-product-button" onclick="openAdmin()">＋ ADD PRODUCT</button>
 
 
             <input
@@ -804,6 +825,11 @@ footer{padding:24px 5%;display:flex;justify-content:space-between;gap:20px;backg
 
             </div>
 
+            <div class="admin-actions">
+                <button class="admin-edit" type="button" onclick="editProduct(activeProduct.id)">EDIT PRODUCT</button>
+                <button class="admin-delete" type="button" onclick="deleteProduct(activeProduct.id)">DELETE PRODUCT</button>
+            </div>
+
 
         </div>
 
@@ -814,6 +840,33 @@ footer{padding:24px 5%;display:flex;justify-content:space-between;gap:20px;backg
 </div>
 
 
+
+<!-- =========================================================
+     ADD / EDIT PRODUCT MODAL
+========================================================= -->
+<div id="adminModal" class="hidden">
+  <div class="admin-box">
+    <div class="admin-head">
+      <h2 id="adminTitle">ADD PRODUCT</h2>
+      <button class="admin-close" type="button" onclick="closeAdmin()">×</button>
+    </div>
+    <form id="productForm" class="admin-form" onsubmit="saveProduct(event)">
+      <input id="adminId" type="hidden">
+      <div class="admin-field"><label>PRODUCT NAME *</label><input id="adminName" required placeholder="e.g. Fuel Pump (Simplex)"></div>
+      <div class="admin-field"><label>MODEL</label><input id="adminModel" placeholder="e.g. Panther 72"></div>
+      <div class="admin-field"><label>BRAND</label><input id="adminBrand" placeholder="e.g. PIUSI"></div>
+      <div class="admin-field"><label>CATEGORY *</label><select id="adminCategory" required><option value="pump">Pumps</option><option value="tank">Fuel Tanks</option><option value="filter">Filtration</option><option value="valve">Valves</option><option value="monitor">Monitoring</option><option value="control">Control Panels</option></select></div>
+      <div class="admin-field"><label>SUPPLIER</label><input id="adminSupplier" placeholder="Supplier name"></div>
+      <div class="admin-field"><label>SELLING PRICE (SAR)</label><input id="adminPrice" type="number" min="0" step="0.01" placeholder="0"></div>
+      <div class="admin-field full"><label>DESCRIPTION</label><textarea id="adminDescription" placeholder="Product description..."></textarea></div>
+      <div class="admin-field full"><label>SPECIFICATIONS</label><textarea id="adminSpecs" placeholder="Flow Rate: 120 L/min&#10;Voltage: 230 V&#10;Connection: 1 inch"></textarea><div class="admin-help">One specification per line: Name: Value</div></div>
+      <div class="admin-field"><label>PRODUCT IMAGE</label><input id="adminImage" type="file" accept="image/png,image/jpeg,image/webp"><div class="admin-help" id="currentImage"></div></div>
+      <div class="admin-field"><label>DATASHEET PDF</label><input id="adminDatasheet" type="file" accept="application/pdf"><div class="admin-help" id="currentDatasheet"></div></div>
+      <div id="adminStatus" class="admin-status"></div>
+      <button id="adminSave" class="admin-save" type="submit">SAVE PRODUCT</button>
+    </form>
+  </div>
+</div>
 
 <!-- =========================================================
      FOOTER
@@ -852,7 +905,7 @@ footer{padding:24px 5%;display:flex;justify-content:space-between;gap:20px;backg
 const SUPABASE_URL = "https://qhqwademklkjlbdsvjtl.supabase.co";
 
 // Paste your Supabase Publishable key here (NOT the Secret key).
-const SUPABASE_KEY = "PUT_YOUR_PUBLISHABLE_KEY_HERE";
+const SUPABASE_KEY = "sb_publishable_2ILrBAA2dxgjmpqzx0StHQ_lgWTykqM";
 
 const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
@@ -884,7 +937,7 @@ async function loadProducts(){
             model: product.model || "",
             brand: product.brand || "",
             category: product.category || "",
-            categoryName: product.category || "",
+            categoryName: categoryLabel(product.category),
             description: product.description || "",
             supplier: product.supplier || "",
             price: Number(product.price) || 0,
@@ -900,6 +953,122 @@ async function loadProducts(){
 
 
 
+
+
+/* =========================================================
+   PRODUCT ADMIN / SUPABASE STORAGE
+========================================================= */
+const STORAGE_BUCKET = "product-files";
+let editingProduct = null;
+
+function categoryLabel(category){
+    return ({tank:"Fuel Tank",pump:"Transfer Pump",filter:"Filtration",valve:"Valve",monitor:"Monitoring",control:"Control Panel"})[category] || category || "Product";
+}
+
+function parseSpecifications(text){
+    const obj={};
+    text.split("\n").forEach(line=>{
+        const i=line.indexOf(":");
+        if(i>0){
+            const key=line.slice(0,i).trim();
+            const value=line.slice(i+1).trim();
+            if(key && value) obj[key]=value;
+        }
+    });
+    return obj;
+}
+
+function specsToText(specs){
+    if(!specs || typeof specs!=="object") return "";
+    return Object.entries(specs).map(([k,v])=>`${k}: ${v}`).join("\n");
+}
+
+function openAdmin(product=null){
+    editingProduct=product;
+    document.getElementById("productForm").reset();
+    document.getElementById("adminStatus").textContent="";
+    document.getElementById("adminStatus").className="admin-status";
+    document.getElementById("adminTitle").textContent=product ? "EDIT PRODUCT" : "ADD PRODUCT";
+    document.getElementById("adminId").value=product?.id || "";
+    document.getElementById("adminName").value=product?.name || "";
+    document.getElementById("adminModel").value=product?.model || "";
+    document.getElementById("adminBrand").value=product?.brand || "";
+    document.getElementById("adminCategory").value=product?.category || "pump";
+    document.getElementById("adminSupplier").value=product?.supplier || "";
+    document.getElementById("adminPrice").value=product?.price || "";
+    document.getElementById("adminDescription").value=product?.description || "";
+    document.getElementById("adminSpecs").value=specsToText(product?.specs);
+    document.getElementById("currentImage").textContent=product?.image_url ? "Current image saved ✓" : "";
+    document.getElementById("currentDatasheet").textContent=product?.datasheet ? "Current PDF saved ✓" : "";
+    document.getElementById("adminModal").classList.remove("hidden");
+}
+
+function closeAdmin(){document.getElementById("adminModal").classList.add("hidden");editingProduct=null;}
+
+function safeFileName(name){return name.toLowerCase().replace(/[^a-z0-9._-]+/g,"-").replace(/-+/g,"-");}
+
+async function uploadProductFile(file, kind){
+    if(!file) return "";
+    const ext=(file.name.split(".").pop() || "bin").toLowerCase();
+    const base=safeFileName(file.name.replace(/\.[^.]+$/,"")) || kind;
+    const path=`products/${kind}/${Date.now()}-${base}.${ext}`;
+    const {error}=await db.storage.from(STORAGE_BUCKET).upload(path,file,{cacheControl:"3600",upsert:false});
+    if(error) throw error;
+    const {data}=db.storage.from(STORAGE_BUCKET).getPublicUrl(path);
+    return data.publicUrl;
+}
+
+async function saveProduct(event){
+    event.preventDefault();
+    const btn=document.getElementById("adminSave");
+    const status=document.getElementById("adminStatus");
+    btn.disabled=true; btn.textContent="SAVING...";
+    status.className="admin-status"; status.textContent="Uploading and saving product...";
+    try{
+        const imageFile=document.getElementById("adminImage").files[0];
+        const pdfFile=document.getElementById("adminDatasheet").files[0];
+        let imageUrl=editingProduct?.image_url || "";
+        let datasheetUrl=editingProduct?.datasheet || "";
+        if(imageFile) imageUrl=await uploadProductFile(imageFile,"images");
+        if(pdfFile) datasheetUrl=await uploadProductFile(pdfFile,"datasheets");
+        const payload={
+            name:document.getElementById("adminName").value.trim(),
+            model:document.getElementById("adminModel").value.trim(),
+            brand:document.getElementById("adminBrand").value.trim(),
+            category:document.getElementById("adminCategory").value,
+            description:document.getElementById("adminDescription").value.trim(),
+            supplier:document.getElementById("adminSupplier").value.trim(),
+            price:Number(document.getElementById("adminPrice").value)||0,
+            image_url:imageUrl,
+            datasheet_url:datasheetUrl,
+            specifications:parseSpecifications(document.getElementById("adminSpecs").value)
+        };
+        let result;
+        if(editingProduct?.id) result=await db.from("products").update(payload).eq("id",editingProduct.id);
+        else result=await db.from("products").insert(payload);
+        if(result.error) throw result.error;
+        status.className="admin-status ok"; status.textContent="Product saved successfully ✓";
+        await loadProducts();
+        setTimeout(closeAdmin,550);
+    }catch(err){
+        console.error(err);
+        status.className="admin-status error";
+        status.textContent="Could not save: "+(err.message || "Check Supabase policies.");
+    }finally{btn.disabled=false;btn.textContent="SAVE PRODUCT";}
+}
+
+function editProduct(id){
+    const p=productData.find(x=>String(x.id)===String(id));
+    if(p){closeProduct();openAdmin(p);}
+}
+
+async function deleteProduct(id){
+    const p=productData.find(x=>String(x.id)===String(id));
+    if(!p || !confirm(`Delete ${p.name}?`)) return;
+    const {error}=await db.from("products").delete().eq("id",id);
+    if(error){alert("Could not delete: "+error.message);return;}
+    closeProduct(); await loadProducts();
+}
 
 /* =========================================================
    VARIABLES
