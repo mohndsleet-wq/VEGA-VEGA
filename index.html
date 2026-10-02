@@ -290,6 +290,20 @@ footer{padding:24px 5%;display:flex;justify-content:space-between;gap:20px;backg
 .admin-save:disabled{opacity:.55;cursor:wait}.admin-status{grid-column:1/-1;min-height:18px;font-size:11px;font-weight:700}.admin-status.error{color:#c71920}.admin-status.ok{color:#16854b}
 @media(max-width:760px){.admin-form{grid-template-columns:1fr}.admin-field.full,.admin-save,.admin-status{grid-column:1}.add-product-button{padding:0 10px}}
 
+.admin-login-button{height:42px;padding:0 15px;border:1px solid #49525b;border-radius:4px;background:#15191d;color:#fff;font-size:10px;font-weight:900}
+.admin-user{display:flex;align-items:center;gap:8px}
+.admin-email{max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#aeb6bd;font-size:9px}
+#loginModal{position:fixed;inset:0;z-index:8000;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(0,0,0,.84);backdrop-filter:blur(8px)}
+.login-box{width:min(430px,94vw);background:#fff;color:#171a1d;border-radius:9px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.login-head{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;background:#0b0e11;color:#fff;border-bottom:3px solid var(--red)}
+.login-head h2{font-size:18px}.login-body{padding:24px;display:grid;gap:14px}
+.login-body label{display:grid;gap:6px;font-size:9px;font-weight:900;letter-spacing:1px;color:#69727a}
+.login-body input{height:44px;padding:0 12px;border:1px solid #d5d9dd;border-radius:4px;outline:0}
+.login-submit{height:48px;border:0;border-radius:4px;background:var(--red);color:#fff;font-weight:900}
+.login-note{font-size:10px;line-height:1.55;color:#7b848c}
+.login-status{min-height:18px;font-size:11px;font-weight:700;color:#c71920}
+
+
 </style>
 
 </head>
@@ -421,7 +435,14 @@ footer{padding:24px 5%;display:flex;justify-content:space-between;gap:20px;backg
 
         <div class="product-header-actions">
 
-            <button class="add-product-button" onclick="openAdmin()">＋ ADD PRODUCT</button>
+            <div id="guestAdminActions">
+                <button class="admin-login-button" type="button" onclick="openLogin()">ADMIN LOGIN</button>
+            </div>
+            <div id="signedAdminActions" class="admin-user hidden">
+                <span id="adminEmail" class="admin-email"></span>
+                <button class="add-product-button" type="button" onclick="openAdmin()">＋ ADD PRODUCT</button>
+                <button class="admin-login-button" type="button" onclick="logoutAdmin()">LOG OUT</button>
+            </div>
 
 
             <input
@@ -825,7 +846,7 @@ footer{padding:24px 5%;display:flex;justify-content:space-between;gap:20px;backg
 
             </div>
 
-            <div class="admin-actions">
+            <div id="productAdminActions" class="admin-actions hidden">
                 <button class="admin-edit" type="button" onclick="editProduct(activeProduct.id)">EDIT PRODUCT</button>
                 <button class="admin-delete" type="button" onclick="deleteProduct(activeProduct.id)">DELETE PRODUCT</button>
             </div>
@@ -864,6 +885,30 @@ footer{padding:24px 5%;display:flex;justify-content:space-between;gap:20px;backg
       <div class="admin-field"><label>DATASHEET PDF</label><input id="adminDatasheet" type="file" accept="application/pdf"><div class="admin-help" id="currentDatasheet"></div></div>
       <div id="adminStatus" class="admin-status"></div>
       <button id="adminSave" class="admin-save" type="submit">SAVE PRODUCT</button>
+    </form>
+  </div>
+</div>
+
+
+<!-- =========================================================
+     ADMIN LOGIN
+========================================================= -->
+<div id="loginModal" class="hidden">
+  <div class="login-box">
+    <div class="login-head">
+      <h2>VEGA ADMIN LOGIN</h2>
+      <button class="admin-close" type="button" onclick="closeLogin()">×</button>
+    </div>
+    <form class="login-body" onsubmit="loginAdmin(event)">
+      <div class="login-note">Sign in with the admin user created in Supabase Authentication. Product editing tools stay hidden until login.</div>
+      <label>EMAIL
+        <input id="loginEmail" type="email" autocomplete="username" required placeholder="admin@vega...">
+      </label>
+      <label>PASSWORD
+        <input id="loginPassword" type="password" autocomplete="current-password" required placeholder="••••••••">
+      </label>
+      <div id="loginStatus" class="login-status"></div>
+      <button id="loginSubmit" class="login-submit" type="submit">SIGN IN</button>
     </form>
   </div>
 </div>
@@ -909,6 +954,56 @@ const SUPABASE_KEY = "sb_publishable_2ILrBAA2dxgjmpqzx0StHQ_lgWTykqM";
 
 const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+let adminSession = null;
+
+async function refreshAdminUI(){
+    const { data } = await db.auth.getSession();
+    adminSession = data.session || null;
+    const signedIn = !!adminSession;
+    document.getElementById("guestAdminActions")?.classList.toggle("hidden", signedIn);
+    document.getElementById("signedAdminActions")?.classList.toggle("hidden", !signedIn);
+    document.getElementById("productAdminActions")?.classList.toggle("hidden", !signedIn);
+    const email = adminSession?.user?.email || "";
+    const emailEl = document.getElementById("adminEmail");
+    if(emailEl) emailEl.textContent = email;
+}
+
+function openLogin(){
+    document.getElementById("loginStatus").textContent = "";
+    document.getElementById("loginModal").classList.remove("hidden");
+}
+function closeLogin(){
+    document.getElementById("loginModal").classList.add("hidden");
+}
+async function loginAdmin(event){
+    event.preventDefault();
+    const btn = document.getElementById("loginSubmit");
+    const status = document.getElementById("loginStatus");
+    btn.disabled = true;
+    btn.textContent = "SIGNING IN...";
+    status.textContent = "";
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value;
+    const { error } = await db.auth.signInWithPassword({ email, password });
+    btn.disabled = false;
+    btn.textContent = "SIGN IN";
+    if(error){
+        status.textContent = error.message;
+        return;
+    }
+    closeLogin();
+    await refreshAdminUI();
+}
+async function logoutAdmin(){
+    await db.auth.signOut();
+    adminSession = null;
+    await refreshAdminUI();
+}
+db.auth.onAuthStateChange(() => {
+    setTimeout(refreshAdminUI, 0);
+});
+
+
 let productData = [];
 
 async function loadProducts(){
@@ -921,6 +1016,8 @@ async function loadProducts(){
         console.error("Supabase error:", error);
         productData = [];
         renderProducts();
+        const container = document.getElementById("products");
+        if(container) container.innerHTML = `<div class="no-products">Could not load products from Supabase.<br><small>${error.message}</small></div>`;
         return;
     }
 
@@ -984,6 +1081,7 @@ function specsToText(specs){
 }
 
 function openAdmin(product=null){
+    if(!adminSession){ openLogin(); return; }
     editingProduct=product;
     document.getElementById("productForm").reset();
     document.getElementById("adminStatus").textContent="";
@@ -1020,6 +1118,7 @@ async function uploadProductFile(file, kind){
 
 async function saveProduct(event){
     event.preventDefault();
+    if(!adminSession){ openLogin(); return; }
     const btn=document.getElementById("adminSave");
     const status=document.getElementById("adminStatus");
     btn.disabled=true; btn.textContent="SAVING...";
@@ -1063,6 +1162,7 @@ function editProduct(id){
 }
 
 async function deleteProduct(id){
+    if(!adminSession){ openLogin(); return; }
     const p=productData.find(x=>String(x.id)===String(id));
     if(!p || !confirm(`Delete ${p.name}?`)) return;
     const {error}=await db.from("products").delete().eq("id",id);
@@ -2021,6 +2121,7 @@ document
    START
 ========================================================= */
 
+refreshAdminUI();
 loadProducts();
 
 </script>
