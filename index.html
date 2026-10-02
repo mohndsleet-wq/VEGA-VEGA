@@ -1006,51 +1006,100 @@ db.auth.onAuthStateChange(() => {
 
 let productData = [];
 
-async function loadProducts(){
-    const { data, error } = await db
-        .from("products")
-        .select("*")
-        .order("id", { ascending: true });
-
-    if(error){
-        console.error("Supabase error:", error);
-        productData = [];
-        renderProducts();
-        const container = document.getElementById("products");
-        if(container) container.innerHTML = `<div class="no-products">Could not load products from Supabase.<br><small>${error.message}</small></div>`;
-        return;
+async function normalizeProduct(product){
+    let specs = product.specifications || {};
+    if(typeof specs === "string"){
+        try { specs = JSON.parse(specs); }
+        catch { specs = {}; }
     }
 
-    productData = (data || []).map(product => {
-        let specs = product.specifications || {};
-        if(typeof specs === "string"){
-            try { specs = JSON.parse(specs); }
-            catch { specs = {}; }
-        }
-
-        return {
-            id: product.id,
-            name: product.name || "",
-            model: product.model || "",
-            brand: product.brand || "",
-            category: product.category || "",
-            categoryName: categoryLabel(product.category),
-            description: product.description || "",
-            supplier: product.supplier || "",
-            price: Number(product.price) || 0,
-            image_url: product.image_url || "",
-            datasheet: product.datasheet_url || "",
-            specs,
-            icon: "⚙️"
-        };
-    });
-
-    renderProducts();
+    return {
+        id: product.id,
+        name: product.name || "",
+        model: product.model || "",
+        brand: product.brand || "",
+        category: product.category || "",
+        categoryName: categoryLabel(product.category),
+        description: product.description || "",
+        supplier: product.supplier || "",
+        price: Number(product.price) || 0,
+        image_url: product.image_url || "",
+        datasheet: product.datasheet_url || "",
+        specs,
+        icon: "⚙️"
+    };
 }
 
+function refreshBrandFilter(){
+    const select = document.getElementById("brandFilter");
+    if(!select) return;
 
+    const oldValue = select.value || "all";
+    const brands = [...new Set(
+        productData.map(p => (p.brand || "").trim()).filter(Boolean)
+    )].sort((a,b) => a.localeCompare(b));
 
+    select.innerHTML =
+        `<option value="all">All Brands</option>` +
+        brands.map(brand =>
+            `<option value="${brand.replace(/"/g, "&quot;")}">${brand}</option>`
+        ).join("");
 
+    select.value = brands.includes(oldValue) ? oldValue : "all";
+}
+
+async function loadProducts(){
+    const container = document.getElementById("products");
+
+    try{
+        const { data, error } = await db
+            .from("products")
+            .select("*")
+            .order("id", { ascending: true });
+
+        if(error) throw error;
+
+        productData = (data || []).map(product => {
+            let specs = product.specifications || {};
+            if(typeof specs === "string"){
+                try { specs = JSON.parse(specs); }
+                catch { specs = {}; }
+            }
+
+            return {
+                id: product.id,
+                name: product.name || "",
+                model: product.model || "",
+                brand: product.brand || "",
+                category: product.category || "",
+                categoryName: categoryLabel(product.category),
+                description: product.description || "",
+                supplier: product.supplier || "",
+                price: Number(product.price) || 0,
+                image_url: product.image_url || "",
+                datasheet: product.datasheet_url || "",
+                specs,
+                icon: "⚙️"
+            };
+        });
+
+        refreshBrandFilter();
+        renderProducts();
+        console.log("VEGA products loaded:", productData.length, data);
+    }catch(error){
+        console.error("Supabase load error:", error);
+        productData = [];
+        renderProducts();
+
+        if(container){
+            container.innerHTML =
+                `<div class="no-products">
+                    Could not load products from Supabase.<br>
+                    <small>${error?.message || error}</small>
+                </div>`;
+        }
+    }
+}
 
 /* =========================================================
    PRODUCT ADMIN / SUPABASE STORAGE
@@ -1143,12 +1192,48 @@ async function saveProduct(event){
             specifications:parseSpecifications(document.getElementById("adminSpecs").value)
         };
         let result;
-        if(editingProduct?.id) result=await db.from("products").update(payload).eq("id",editingProduct.id);
-        else result=await db.from("products").insert(payload);
+
+        if(editingProduct?.id){
+            result = await db
+                .from("products")
+                .update(payload)
+                .eq("id", editingProduct.id)
+                .select()
+                .single();
+        }else{
+            result = await db
+                .from("products")
+                .insert(payload)
+                .select()
+                .single();
+        }
+
         if(result.error) throw result.error;
-        status.className="admin-status ok"; status.textContent="Product saved successfully ✓";
+
+        // Put the saved product on screen immediately.
+        if(result.data){
+            const saved = await normalizeProduct(result.data);
+            const existingIndex = productData.findIndex(
+                p => String(p.id) === String(saved.id)
+            );
+
+            if(existingIndex >= 0) productData[existingIndex] = saved;
+            else productData.push(saved);
+
+            refreshBrandFilter();
+            renderProducts();
+        }
+
+        status.className="admin-status ok";
+        status.textContent="Product saved successfully ✓";
+
+        // Re-sync once more from Supabase.
         await loadProducts();
-        setTimeout(closeAdmin,550);
+
+        setTimeout(() => {
+            closeAdmin();
+            showProducts();
+        }, 550);
     }catch(err){
         console.error(err);
         status.className="admin-status error";
@@ -1726,7 +1811,7 @@ function openProduct(id){
         productData.find(
             product=>
 
-            product.id===id
+            String(product.id)===String(id)
         );
 
 
@@ -2121,8 +2206,10 @@ document
    START
 ========================================================= */
 
-refreshAdminUI();
-loadProducts();
+window.addEventListener("DOMContentLoaded", async () => {
+    await refreshAdminUI();
+    await loadProducts();
+});
 
 </script>
 
