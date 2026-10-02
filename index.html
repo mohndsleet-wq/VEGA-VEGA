@@ -282,6 +282,31 @@ footer{background:#050607;border-color:#191e22;color:#59636c}
 @media(max-width:1050px){.products{grid-template-columns:repeat(3,1fr)}.product-header{grid-template-columns:1fr}.product-header-actions{justify-self:stretch;flex-wrap:wrap}.product-header-search{width:100%;order:4}.library-name{display:none}}
 @media(max-width:760px){.products{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr}.catalog-hero{min-height:145px}.product-count{display:none}}
 @media(max-width:500px){.products{grid-template-columns:1fr}.catalog-container{padding-left:14px;padding-right:14px}.catalog-hero{padding-left:18px;padding-right:18px}.catalog-hero h1{font-size:34px}}
+/* ===== MOBILE HOME FIX ===== */
+@media (max-width: 760px) {
+
+    #homePage {
+        height: 100svh !important;
+        min-height: 100svh !important;
+        background-image: url("Vega_ A Star Among Skies.png") !important;
+        background-size: contain !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        background-color: #020305 !important;
+        overflow: hidden !important;
+    }
+
+    .simple-home-library {
+        top: 62% !important;
+        height: 52px;
+        padding: 0 24px;
+        font-size: 10px;
+    }
+
+    body:has(#homePage:not(.hidden)) footer {
+        display: none !important;
+    }
+}
 </style>
 
 </head>
