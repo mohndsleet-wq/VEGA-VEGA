@@ -1,0 +1,2094 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>VEGA Fuel Systems | Product Library</title>
+
+<style>
+
+:root{
+  --red:#ed1c24;
+  --ink:#07090c;
+  --panel:#0d1116;
+  --line:rgba(255,255,255,.12);
+  --paper:#f3f4f5;
+  --text:#161a1e;
+  --muted:#7e8892;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--ink);color:#fff;overflow-x:hidden}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+
+/* ===== HOME / VEGA STAR INTERFACE ===== */
+#homePage{
+  height:100svh;min-height:700px;position:relative;overflow:hidden;
+  background:#050608;color:#fff;isolation:isolate
+}
+#homePage::before{
+  content:"";position:absolute;inset:0;z-index:-3;pointer-events:none;
+  background:
+    radial-gradient(circle at 72% 44%,rgba(237,28,36,.12),transparent 20%),
+    radial-gradient(circle at 22% 76%,rgba(255,255,255,.055),transparent 19%),
+    linear-gradient(135deg,#050608 0%,#0a0d11 48%,#050608 100%);
+}
+#homePage::after{
+  content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;opacity:.32;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.85) 0 1px,transparent 1.2px),
+    radial-gradient(circle,rgba(255,255,255,.45) 0 1px,transparent 1.2px);
+  background-size:95px 95px,155px 155px;background-position:18px 27px,73px 61px;
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.9),transparent 82%);
+}
+.home-grid{
+  position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.17;
+  background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);
+  background-size:70px 70px;transform:perspective(700px) rotateX(67deg) scale(1.5);transform-origin:center bottom;top:50%
+}
+.command-bar{
+  height:86px;padding:0 4vw;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:30px;
+  position:absolute;inset:0 0 auto 0;z-index:30;border-bottom:1px solid rgba(255,255,255,.08);
+  background:rgba(5,7,9,.72);backdrop-filter:blur(18px)
+}
+.command-brand{display:flex;align-items:center;gap:18px;cursor:pointer}.command-brand .vega-logo{width:210px;height:54px;object-fit:contain;object-position:left center}
+.system-state{display:flex;align-items:center;gap:8px;font-size:9px;font-weight:800;letter-spacing:1.7px;color:#aab2ba;white-space:nowrap}
+.system-state i{width:7px;height:7px;border-radius:50%;background:#45d483;box-shadow:0 0 14px rgba(69,212,131,.75)}
+.command-center{justify-self:center;font-size:9px;font-weight:800;letter-spacing:2.4px;color:#6f7881}.command-actions{display:flex;align-items:center;gap:10px}
+.command-search{width:min(25vw,340px);height:42px;display:flex;align-items:center;gap:10px;padding:0 14px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.025)}
+.command-search input{width:100%;border:0;outline:0;background:transparent;color:#fff;font-size:11px}.command-search input::placeholder{color:#69737c}
+.library-button{height:42px;padding:0 18px;border:1px solid #fff;background:#fff;color:#080a0d;font-size:10px;font-weight:900;letter-spacing:.8px;transition:.2s}.library-button:hover{background:var(--red);color:#fff;border-color:var(--red)}
+.star-layout{position:absolute;inset:86px 0 0;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(360px,.75fr);align-items:center;padding:3.5vw 5vw 8.5vw;gap:6vw}
+.star-copy{max-width:790px}.star-kicker{display:flex;align-items:center;gap:12px;margin-bottom:20px;color:#aeb6bd;font-size:9px;font-weight:900;letter-spacing:3.2px}.star-kicker::before{content:"";width:42px;height:2px;background:var(--red)}
+.star-copy h1{font-size:clamp(58px,7.5vw,122px);line-height:.78;letter-spacing:-6px;text-transform:uppercase;font-weight:900}.star-copy h1 .vega-word{display:block}.star-copy h1 .star-line{display:block;margin-top:16px;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.55);font-size:.55em;letter-spacing:-2px}
+.star-copy p{width:min(610px,100%);margin-top:27px;color:#969fa8;font-size:12px;line-height:1.75}.launch-row{display:flex;align-items:center;gap:10px;margin-top:28px}.launch-primary{height:50px;padding:0 23px;border:0;background:var(--red);color:#fff;font-size:10px;font-weight:900;letter-spacing:1px}.launch-secondary{height:50px;padding:0 20px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;font-size:10px;font-weight:800;letter-spacing:.8px}
+.star-mark{position:relative;min-height:430px;display:grid;place-items:center}.orbit{position:absolute;border:1px solid rgba(255,255,255,.11);border-radius:50%;transform:rotate(-18deg)}.orbit.o1{width:420px;height:420px}.orbit.o2{width:320px;height:320px;border-color:rgba(237,28,36,.28)}.orbit.o3{width:215px;height:215px;border-style:dashed;animation:spin 22s linear infinite}@keyframes spin{to{transform:rotate(342deg)}}
+.vega-star{position:relative;width:150px;height:150px;display:grid;place-items:center;filter:drop-shadow(0 0 28px rgba(237,28,36,.22))}.vega-star::before,.vega-star::after{content:"";position:absolute;background:linear-gradient(135deg,#fff 0 45%,var(--red) 46% 100%);clip-path:polygon(50% 0,61% 38%,100% 50%,61% 62%,50% 100%,39% 62%,0 50%,39% 38%)}.vega-star::before{inset:0}.vega-star::after{inset:34px;background:#07090c}.star-core{position:relative;z-index:2;width:13px;height:13px;border-radius:50%;background:#fff;box-shadow:0 0 24px #fff,0 0 55px var(--red)}
+.star-note{position:absolute;right:0;bottom:26px;width:250px;padding:16px;border-left:2px solid var(--red);background:rgba(255,255,255,.035);font-size:9px;line-height:1.65;color:#89939c}.star-note strong{display:block;margin-bottom:5px;color:#fff;letter-spacing:1.5px;font-size:9px}
+.star-image-wrap{min-height:480px}.star-uploaded-image{display:block;width:min(590px,100%);max-height:520px;object-fit:contain;filter:drop-shadow(0 18px 55px rgba(237,28,36,.16))}
+.home-rail{position:absolute;z-index:12;left:5vw;right:5vw;bottom:22px;min-height:70px;display:grid;grid-template-columns:1.15fr repeat(4,1fr);border:1px solid rgba(255,255,255,.09);background:rgba(6,8,10,.76);backdrop-filter:blur(14px)}
+.rail-lead,.rail-cell{padding:14px 17px;border-right:1px solid rgba(255,255,255,.08)}.rail-cell:last-child{border-right:0}.rail-kicker{font-size:7px;letter-spacing:1.8px;color:#65707a;font-weight:900}.rail-value{margin-top:6px;font-size:10px;font-weight:900;letter-spacing:.45px}.rail-lead .rail-value{color:var(--red)}.rail-cell{cursor:pointer;transition:.18s}.rail-cell:hover{background:rgba(237,28,36,.11)}.rail-index{font-size:7px;color:#56606a}.rail-cell strong{display:block;margin-top:5px;font-size:9px;letter-spacing:.7px}.rail-cell span{display:block;margin-top:3px;color:#77818a;font-size:8px}
+
+/* ===== PRODUCT LIBRARY ===== */
+#productPage{min-height:100vh;background:var(--paper);color:var(--text)}
+.product-header{
+  min-height:82px;padding:10px 4%;display:grid;grid-template-columns:auto 1fr auto;
+  align-items:center;gap:25px;position:sticky;top:0;z-index:1000;
+  background:#080a0d;border-bottom:1px solid #292f35
+}
+.product-header-brand{display:flex;align-items:center;cursor:pointer}
+.product-header .vega-logo{width:230px;height:57px;object-fit:contain}
+.product-header-actions{display:flex;align-items:center;gap:12px;justify-self:end}
+.product-header-search{
+  width:340px;height:42px;padding:0 14px;outline:0;border:1px solid #343b42;
+  border-radius:4px;background:#12161a;color:#fff
+}
+.back-button{
+  height:42px;padding:0 18px;border:1px solid #49525b;border-radius:4px;
+  background:transparent;color:#fff;font-size:10px;font-weight:bold
+}
+.catalog-hero{
+  padding:38px 5%;display:flex;align-items:flex-end;justify-content:space-between;gap:30px;
+  background:linear-gradient(110deg,#0c0f13,#14191e 70%,#251015);color:#fff
+}
+.catalog-hero small{display:block;color:#89939d;font-size:9px;letter-spacing:4px}
+.catalog-hero h1{margin-top:8px;font-size:clamp(32px,4vw,48px);line-height:1;text-transform:uppercase}
+.catalog-hero h1 span{color:var(--red)}
+.product-count{text-align:right;color:#9ba4ad;font-size:9px;letter-spacing:1px}
+.product-count strong{display:block;margin-top:4px;color:#fff;font-size:30px}
+.catalog-container{width:100%;max-width:1550px;margin:auto;padding:32px 4% 80px}
+.category-tabs{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:16px}
+.category-tab{
+  min-height:58px;padding:8px;border:1px solid #d8dce0;border-radius:5px;
+  background:#fff;color:#25292d;font-size:10px;font-weight:bold;transition:.2s
+}
+.category-tab:hover{border-color:var(--red);color:var(--red)}
+.category-tab.active{border-color:var(--red);background:var(--red);color:#fff}
+.filters{
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;margin-bottom:25px;padding:15px;
+  background:#fff;border:1px solid #dadee2;border-radius:6px
+}
+.filters input,.filters select{
+  width:100%;height:44px;padding:0 12px;outline:0;border:1px solid #d4d8dc;
+  border-radius:4px;background:#fff;color:#25282b
+}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{overflow:hidden;background:#fff;border:1px solid #dce0e3;border-radius:7px;cursor:pointer;transition:.25s}
+.card:hover{transform:translateY(-5px);box-shadow:0 17px 38px rgba(0,0,0,.11)}
+.card-image{
+  position:relative;height:235px;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 50% 40%,#fff 0%,#eee 53%,#dadcde 100%)
+}
+.card-category{position:absolute;top:12px;left:12px;padding:6px 8px;background:#111519;color:#fff;font-size:8px;text-transform:uppercase}
+.card-brand{position:absolute;top:13px;right:13px;color:var(--red);font-size:11px;font-weight:bold}
+.product-icon{font-size:72px}
+.card-body{padding:18px}.card-body h3{font-size:18px}.model{margin-top:5px;color:#7e878f;font-size:11px}
+.description{min-height:58px;margin-top:12px;color:#626a72;font-size:12px;line-height:1.55}
+.mini-specs{margin-top:13px;padding-top:12px;border-top:1px solid #eceeef}
+.mini-spec{display:flex;justify-content:space-between;gap:10px;padding:4px 0;font-size:10px}
+.mini-spec span{color:#879098}.mini-spec strong{text-align:right}
+.card-footer{margin-top:15px;padding-top:14px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;border-top:1px solid #eceeef}
+.price small{display:block;color:#979ea4;font-size:8px}.price strong{display:block;margin-top:3px;color:var(--red);font-size:19px}
+.details-button{padding:9px 12px;border:0;border-radius:3px;background:#15191d;color:#fff;font-size:10px;font-weight:bold}
+.no-products{grid-column:1/-1;padding:60px;text-align:center;background:#fff;border:1px solid #dddfe2;color:#777f87}
+
+/* Modal */
+#productModal{position:fixed;inset:0;z-index:5000;display:flex;align-items:center;justify-content:center;padding:25px;background:rgba(0,0,0,.78);backdrop-filter:blur(7px)}
+.modal-box{position:relative;width:min(1050px,96vw);max-height:92vh;display:grid;grid-template-columns:.9fr 1.1fr;overflow:auto;background:#fff;color:#171a1d;border-radius:8px}
+.modal-close{position:absolute;top:15px;right:15px;z-index:10;width:38px;height:38px;border:0;border-radius:50%;background:#111519;color:#fff;font-size:20px}
+.modal-image{min-height:570px;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,#fff,#e2e4e5);font-size:145px}
+.modal-info{padding:50px 42px}.modal-category{color:var(--red);font-size:10px;font-weight:bold;letter-spacing:2px;text-transform:uppercase}
+.modal-info h2{margin-top:7px;font-size:34px}.modal-model{margin-top:5px;color:#7b848c;font-size:13px}
+.modal-description{margin-top:20px;color:#606970;font-size:13px;line-height:1.7}
+.details-table{margin-top:24px;overflow:hidden;border:1px solid #e0e3e5;border-radius:5px}
+.detail-row{display:grid;grid-template-columns:.85fr 1.15fr;border-bottom:1px solid #e5e7e9;font-size:11px}
+.detail-row:last-child{border-bottom:0}.detail-row span{padding:11px;background:#f5f6f7;color:#767f87}.detail-row strong{padding:11px}
+.modal-price{margin-top:24px}.modal-price small{display:block;color:#8b939a;font-size:9px}.modal-price strong{display:block;margin-top:3px;color:var(--red);font-size:29px}
+.modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+.datasheet-button,.quote-button{height:47px;border:0;border-radius:4px;font-weight:bold}
+.datasheet-button{background:var(--red);color:#fff}.quote-button{background:#15191d;color:#fff}
+footer{padding:24px 5%;display:flex;justify-content:space-between;gap:20px;background:#060708;border-top:1px solid #252b31;color:#67717b;font-size:10px}
+
+@media(max-width:1050px){
+  .command-center,.system-state{display:none}
+  .command-bar{grid-template-columns:auto 1fr}
+  .command-actions{justify-self:end}
+  .engineering-card{width:55vw}
+  .tech-readout{display:none}
+  .products{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:760px){
+  #homePage{min-height:620px}
+  .command-bar{height:70px;padding:0 16px}
+  .command-brand .vega-logo{width:165px;height:44px}
+  .command-search{display:none}
+  .library-button{padding:0 12px}
+  .engineering-card{left:18px;width:82vw;top:47%}
+  .engineering-card h1{font-size:44px;letter-spacing:-2px}
+  .engineering-card p{font-size:11px}
+  .home-rail{left:18px;right:18px;bottom:14px;grid-template-columns:1fr 1fr}
+  .rail-lead{display:none}.rail-cell:nth-last-child(-n+2){display:none}
+  .products{grid-template-columns:1fr}
+  .category-tabs{grid-template-columns:1fr 1fr}
+  .filters{grid-template-columns:1fr}
+  .product-header-search{display:none}
+  .modal-box{grid-template-columns:1fr}.modal-image{min-height:280px}
+}
+
+
+
+/* ===== PRODUCT ADMIN ===== */
+.add-product-button{height:42px;padding:0 16px;border:0;border-radius:4px;background:var(--red);color:#fff;font-size:10px;font-weight:900;letter-spacing:.7px}
+.admin-actions{display:flex;gap:8px;margin-top:12px}
+.admin-edit,.admin-delete{flex:1;height:36px;border:0;border-radius:4px;font-size:10px;font-weight:800}
+.admin-edit{background:#15191d;color:#fff}.admin-delete{background:#fff0f0;color:#c71920;border:1px solid #f0c5c7}
+#adminModal{position:fixed;inset:0;z-index:7000;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(0,0,0,.82);backdrop-filter:blur(8px)}
+.admin-box{width:min(820px,96vw);max-height:92vh;overflow:auto;background:#fff;color:#171a1d;border-radius:9px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.admin-head{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:20px 24px;background:#0b0e11;color:#fff;border-bottom:3px solid var(--red)}
+.admin-head h2{font-size:20px}.admin-close{width:36px;height:36px;border:0;border-radius:50%;background:#242a30;color:#fff;font-size:20px}
+.admin-form{padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.admin-field{display:flex;flex-direction:column;gap:6px}.admin-field.full{grid-column:1/-1}.admin-field label{font-size:9px;font-weight:900;letter-spacing:1px;color:#69727a}
+.admin-field input,.admin-field select,.admin-field textarea{width:100%;padding:11px;border:1px solid #d5d9dd;border-radius:4px;outline:0;background:#fff;color:#171a1d}
+.admin-field textarea{min-height:95px;resize:vertical}.admin-help{font-size:9px;color:#8a9299;line-height:1.5}
+.admin-save{grid-column:1/-1;height:50px;border:0;border-radius:4px;background:var(--red);color:#fff;font-size:11px;font-weight:900;letter-spacing:1px}
+.admin-save:disabled{opacity:.55;cursor:wait}.admin-status{grid-column:1/-1;min-height:18px;font-size:11px;font-weight:700}.admin-status.error{color:#c71920}.admin-status.ok{color:#16854b}
+@media(max-width:760px){.admin-form{grid-template-columns:1fr}.admin-field.full,.admin-save,.admin-status{grid-column:1}.add-product-button{padding:0 10px}}
+
+.admin-login-button{height:42px;padding:0 15px;border:1px solid #49525b;border-radius:4px;background:#15191d;color:#fff;font-size:10px;font-weight:900}
+.admin-user{display:flex;align-items:center;gap:8px}
+.admin-email{max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#aeb6bd;font-size:9px}
+#loginModal{position:fixed;inset:0;z-index:8000;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(0,0,0,.84);backdrop-filter:blur(8px)}
+.login-box{width:min(430px,94vw);background:#fff;color:#171a1d;border-radius:9px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.login-head{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;background:#0b0e11;color:#fff;border-bottom:3px solid var(--red)}
+.login-head h2{font-size:18px}.login-body{padding:24px;display:grid;gap:14px}
+.login-body label{display:grid;gap:6px;font-size:9px;font-weight:900;letter-spacing:1px;color:#69727a}
+.login-body input{height:44px;padding:0 12px;border:1px solid #d5d9dd;border-radius:4px;outline:0}
+.login-submit{height:48px;border:0;border-radius:4px;background:var(--red);color:#fff;font-weight:900}
+.login-note{font-size:10px;line-height:1.55;color:#7b848c}
+.login-status{min-height:18px;font-size:11px;font-weight:700;color:#c71920}
+
+
+
+@media(max-width:1050px){.star-layout{grid-template-columns:1fr;padding-bottom:120px}.star-mark{position:absolute;right:2vw;opacity:.34}.star-copy{position:relative;z-index:2}.command-center,.system-state{display:none}}
+@media(max-width:760px){#homePage{min-height:700px}.command-bar{height:70px;padding:0 16px}.command-brand .vega-logo{width:160px;height:44px}.command-search{display:none}.star-layout{inset:70px 0 0;padding:42px 20px 150px;display:block}.star-copy h1{font-size:64px;letter-spacing:-4px}.star-copy h1 .star-line{font-size:.47em;margin-top:13px}.star-copy p{font-size:11px}.star-mark{right:-125px;top:140px;transform:scale(.72);opacity:.24}.home-rail{left:18px;right:18px;bottom:14px;grid-template-columns:1fr 1fr}.rail-lead{display:none}.rail-cell:nth-last-child(-n+2){display:none}}
+
+
+/* ===== FINAL SIMPLE FULL-SCREEN HOME ===== */
+#homePage{height:100svh;min-height:100svh;background:#020305 url("Vega_ A Star Among Skies.png") center center/cover no-repeat;position:relative;overflow:hidden}
+#homePage::before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.12));pointer-events:none}
+#homePage::after,.home-grid,.command-bar,.star-layout,.home-rail{display:none!important}
+.simple-home-library{position:absolute;z-index:5;left:50%;top:62%;transform:translate(-50%,-50%);height:58px;padding:0 34px;border:1px solid rgba(255,255,255,.28);background:#ed1c24;color:#fff;font-size:12px;font-weight:900;letter-spacing:1.2px;box-shadow:0 12px 38px rgba(237,28,36,.28);transition:.2s}
+.simple-home-library:hover{transform:translate(-50%,-50%) translateY(-2px);background:#ff2029;box-shadow:0 16px 46px rgba(237,28,36,.38)}
+@media(max-width:760px){#homePage{min-height:100svh;background-position:center center}.simple-home-library{top:63%;height:52px;padding:0 24px;font-size:10px}}
+
+
+
+/* ===== VEGA PRODUCT LIBRARY — PREMIUM DARK REFRESH ===== */
+#productPage{min-height:100vh;background:#080a0d;color:#f4f5f6}
+.product-header{min-height:72px;padding:10px 4.5%;grid-template-columns:1fr auto;background:rgba(7,9,11,.96);border-bottom:1px solid #20252a;backdrop-filter:blur(14px)}
+.product-header-brand{display:none!important}
+.product-header>div:nth-child(2){display:none}
+.product-header-actions{gap:10px;width:100%;justify-content:flex-end}
+.product-header-search{width:min(420px,34vw);height:44px;border:1px solid #2b3238;border-radius:2px;background:#0e1215;color:#fff}
+.product-header-search:focus{border-color:#ed1c24;box-shadow:0 0 0 2px rgba(237,28,36,.08)}
+.back-button,.admin-login-button{height:44px;border:1px solid #343b42;border-radius:2px;background:#0d1013;color:#fff;letter-spacing:.7px}
+.back-button:hover,.admin-login-button:hover{border-color:#ed1c24;color:#ed1c24}
+.add-product-button{height:44px;border-radius:2px!important;background:#ed1c24!important;color:#fff!important}
+.catalog-hero{min-height:190px;padding:42px 5%;align-items:center;background:radial-gradient(circle at 88% 20%,rgba(237,28,36,.16),transparent 25%),linear-gradient(120deg,#0a0d10,#101419 70%,#13090c);border-bottom:1px solid #20252a}
+.catalog-hero small{color:#8f9aa4;letter-spacing:5px;font-weight:700}
+.catalog-hero h1{font-size:clamp(38px,5vw,66px);letter-spacing:-2px}
+.product-count{padding:16px 20px;border-left:2px solid #ed1c24;color:#7f8992}.product-count strong{font-size:38px}
+.catalog-container{max-width:1600px;padding:28px 4.5% 90px}
+.category-tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:3px;margin-bottom:14px;scrollbar-width:none}.category-tabs::-webkit-scrollbar{display:none}
+.category-tab{flex:1 0 135px;min-height:48px;padding:0 16px;border:1px solid #252b30;border-radius:2px;background:#0d1114;color:#aeb6bd;letter-spacing:.5px}
+.category-tab:hover{background:#12171b;border-color:#ed1c24;color:#fff}.category-tab.active{background:#ed1c24;border-color:#ed1c24;color:#fff;box-shadow:0 8px 26px rgba(237,28,36,.18)}
+.filters{grid-template-columns:2fr 1fr 1fr;gap:8px;margin-bottom:24px;padding:10px;border:1px solid #22282d;border-radius:2px;background:#0b0f12}
+.filters input,.filters select{height:46px;border:1px solid #282f35;border-radius:2px;background:#11161a;color:#e8ebed}.filters input::placeholder{color:#68727b}.filters input:focus,.filters select:focus{border-color:#ed1c24}
+.products{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.card{border:1px solid #23292e;border-radius:2px;background:#0e1215;color:#fff;box-shadow:none}.card:hover{transform:translateY(-4px);border-color:#3b4248;box-shadow:0 18px 44px rgba(0,0,0,.35)}
+.card-image{height:245px;background:radial-gradient(circle at 50% 42%,#272d31 0,#171b1f 45%,#0c0f12 100%)}
+.card-image img{max-width:88%;max-height:88%;object-fit:contain}
+.card-category{top:12px;left:12px;background:rgba(4,6,8,.82);border-left:2px solid #ed1c24;color:#dce1e4;letter-spacing:.8px}
+.card-brand{color:#ed1c24}.card-body{padding:19px}.card-body h3{font-size:18px;color:#fff}.model{color:#89939b}.description{color:#9099a1}.mini-specs,.card-footer{border-color:#252b30}.mini-spec span{color:#747e87}.mini-spec strong{color:#dfe3e6}.price small{color:#717b83}.details-button{border:1px solid #30373d;border-radius:2px;background:#171c20}.details-button:hover{border-color:#ed1c24;background:#ed1c24}
+.no-products{padding:75px 20px;border:1px dashed #30363b;border-radius:2px;background:#0c1013;color:#77818a}
+footer{background:#06080a;border-color:#1c2125;color:#59636c}
+@media(max-width:1100px){.products{grid-template-columns:repeat(3,1fr)}.product-header-search{width:300px}}
+@media(max-width:800px){.product-header{grid-template-columns:1fr}.product-header-actions{flex-wrap:wrap}.product-header-search{order:3;width:100%}.catalog-hero{min-height:160px;padding:32px 5%}.products{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr}.product-count{display:none}}
+@media(max-width:520px){.products{grid-template-columns:1fr}.catalog-hero h1{font-size:38px}.catalog-container{padding-left:16px;padding-right:16px}.category-tab{flex-basis:120px}}
+
+/* ===== VEGA PRODUCT LIBRARY — CLEAN DARK UI ===== */
+#productPage{min-height:100vh;background:#07090b;color:#f4f6f7}
+.product-header{min-height:68px;padding:0 4%;grid-template-columns:1fr auto;gap:22px;background:rgba(6,8,10,.97);border-bottom:1px solid #20252a;backdrop-filter:blur(14px)}
+.product-header-brand{gap:10px;color:#fff;white-space:nowrap}.library-mark{font-size:19px;font-weight:900;letter-spacing:2px}.library-slash{color:#ed1c24;font-size:20px}.library-name{font-size:10px;font-weight:800;letter-spacing:2.4px;color:#7f8992}
+.product-header>div:nth-child(2){display:none}.product-header-actions{gap:9px}.product-header-search{width:min(32vw,390px);height:40px;border:1px solid #252c32;border-radius:2px;background:#0d1114;color:#fff}.product-header-search:focus{border-color:#ed1c24}.back-button,.admin-login-button,.add-product-button{height:40px;border-radius:2px}
+.catalog-hero{min-height:175px;padding:38px 4%;align-items:center;background:radial-gradient(circle at 82% 30%,rgba(237,28,36,.16),transparent 28%),linear-gradient(135deg,#0b0e11,#07090b 72%);border-bottom:1px solid #1b2024}
+.catalog-hero small{font-size:8px;letter-spacing:3.2px;color:#737e87}.catalog-hero h1{margin-top:12px;font-size:clamp(34px,4vw,58px);letter-spacing:-1.5px}.catalog-hero h1 span{color:#ed1c24}.product-count{padding-left:28px;border-left:1px solid #272d32;color:#69747d}.product-count strong{font-size:34px}
+.catalog-container{max-width:1600px;padding:24px 4% 70px}.category-tabs{display:flex;gap:7px;margin:0 0 12px;overflow-x:auto;padding-bottom:2px}.category-tab{flex:1 0 125px;min-height:45px;padding:0 15px;border:1px solid #252b30;border-radius:2px;background:#0d1114;color:#8d969e;font-size:9px;letter-spacing:.5px}.category-tab:hover{background:#12171b;border-color:#4a2024;color:#fff}.category-tab.active{background:#ed1c24;border-color:#ed1c24;color:#fff}
+.filters{grid-template-columns:2fr 1fr 1fr;gap:8px;margin-bottom:22px;padding:0;background:transparent;border:0}.filters input,.filters select{height:44px;border:1px solid #252b30;border-radius:2px;background:#0d1114;color:#dce1e4}.filters input:focus,.filters select:focus{border-color:#ed1c24}
+.products{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.card{border:1px solid #20262b;border-radius:2px;background:#0c1013;color:#fff;box-shadow:none}.card:hover{transform:translateY(-3px);border-color:#414950;box-shadow:0 18px 45px rgba(0,0,0,.38)}.card-image{height:225px;background:radial-gradient(circle at 50% 40%,#262c30 0,#14191d 48%,#090c0f 100%)}.card-image img{max-width:86%;max-height:86%;object-fit:contain}.card-category{background:#090c0ee8;border-left:2px solid #ed1c24;color:#c7ced3}.card-brand{color:#ed1c24}.card-body{padding:17px}.card-body h3{font-size:17px}.description{min-height:52px;color:#818b93}.mini-specs,.card-footer{border-color:#22282d}.details-button{border:1px solid #2b3238;background:#12171b}.details-button:hover{background:#ed1c24;border-color:#ed1c24}.no-products{padding:80px 20px;border:1px dashed #2b3238;border-radius:2px;background:#0b0e11;color:#65717a}
+footer{background:#050607;border-color:#191e22;color:#59636c}
+@media(max-width:1050px){.products{grid-template-columns:repeat(3,1fr)}.product-header{grid-template-columns:1fr}.product-header-actions{justify-self:stretch;flex-wrap:wrap}.product-header-search{width:100%;order:4}.library-name{display:none}}
+@media(max-width:760px){.products{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr}.catalog-hero{min-height:145px}.product-count{display:none}}
+@media(max-width:500px){.products{grid-template-columns:1fr}.catalog-container{padding-left:14px;padding-right:14px}.catalog-hero{padding-left:18px;padding-right:18px}.catalog-hero h1{font-size:34px}}
+</style>
+
+</head>
+
+<body>
+
+
+
+<!-- =========================================================
+     HOME PAGE
+========================================================= -->
+
+
+<section id="homePage">
+  <button class="simple-home-library" onclick="showProducts()">OPEN LIBRARY →</button>
+</section>
+
+
+<!-- =========================================================
+     PRODUCT PAGE
+========================================================= -->
+
+<section
+    id="productPage"
+    class="hidden"
+>
+
+
+    <!-- HEADER -->
+
+    <div class="product-header">
+
+
+        <!-- LOGO -->
+
+        <div class="product-header-brand" onclick="showHome()">
+  <span class="library-mark">VEGA</span><span class="library-slash">/</span><span class="library-name">FUEL SYSTEM LIBRARY</span>
+</div>
+
+
+
+        <div></div>
+
+
+
+        <!-- ACTIONS -->
+
+        <div class="product-header-actions">
+
+            <div id="guestAdminActions">
+                <button class="admin-login-button" type="button" onclick="openLogin()">ADMIN LOGIN</button>
+            </div>
+            <div id="signedAdminActions" class="admin-user hidden">
+                <span id="adminEmail" class="admin-email"></span>
+                <button class="add-product-button" type="button" onclick="openAdmin()">＋ ADD PRODUCT</button>
+                <button class="admin-login-button" type="button" onclick="logoutAdmin()">LOG OUT</button>
+            </div>
+
+
+            <input
+                id="headerProductSearch"
+                class="product-header-search"
+                type="search"
+                placeholder="Search products, brands or models..."
+            >
+
+
+            <button
+                class="back-button"
+                onclick="showHome()"
+            >
+
+                ← SHOWROOM
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         PRODUCT HERO
+    ====================================================== -->
+
+    <div class="catalog-hero">
+
+
+        <div>
+
+
+            <small>VEGA ENGINEERING SOLUTIONS · INTERNAL DATABASE</small>
+
+
+            <h1>
+
+                FUEL SYSTEM <span>PRODUCTS</span>
+
+            </h1>
+
+
+        </div>
+
+
+
+        <div class="product-count">
+
+            PRODUCTS FOUND
+
+            <strong id="productCount">
+
+                0
+
+            </strong>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         CATALOG
+    ====================================================== -->
+
+    <div class="catalog-container">
+
+
+
+        <!-- =================================================
+             CATEGORY TABS
+        ================================================== -->
+
+        <div class="category-tabs">
+
+
+            <button
+                class="category-tab active"
+                onclick="setCategory('all',this)"
+            >
+
+                ALL PRODUCTS
+
+            </button>
+
+
+            <button
+                class="category-tab"
+                onclick="setCategory('tank',this)"
+            >
+
+                FUEL TANKS
+
+            </button>
+
+
+            <button
+                class="category-tab"
+                onclick="setCategory('pump',this)"
+            >
+
+                PUMPS
+
+            </button>
+
+
+            <button
+                class="category-tab"
+                onclick="setCategory('filter',this)"
+            >
+
+                FILTRATION
+
+            </button>
+
+
+            <button
+                class="category-tab"
+                onclick="setCategory('valve',this)"
+            >
+
+                VALVES
+
+            </button>
+
+
+            <button
+                class="category-tab"
+                onclick="setCategory('monitor',this)"
+            >
+
+                MONITORING
+
+            </button>
+
+
+            <button
+                class="category-tab"
+                onclick="setCategory('control',this)"
+            >
+
+                CONTROL PANELS
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             FILTER BAR
+        ================================================== -->
+
+        <div class="filters">
+
+
+            <input
+                id="catalogSearch"
+                type="search"
+                placeholder="Search product, model, brand or keyword..."
+            >
+
+
+            <select id="brandFilter">
+
+
+                <option value="all">
+
+                    All Brands
+
+                </option>
+
+
+                <option value="CST">
+
+                    CST
+
+                </option>
+
+
+                <option value="PIUSI">
+
+                    PIUSI
+
+                </option>
+
+
+                <option value="PARKER">
+
+                    PARKER
+
+                </option>
+
+
+                <option value="OPW">
+
+                    OPW
+
+                </option>
+
+
+                <option value="GALA">
+
+                    GALA
+
+                </option>
+
+
+                <option value="VEGA">
+
+                    VEGA
+
+                </option>
+
+
+            </select>
+
+
+
+            <select id="sortFilter">
+
+
+                <option value="default">
+
+                    Sort Products
+
+                </option>
+
+
+                <option value="name">
+
+                    Product Name
+
+                </option>
+
+
+                <option value="low">
+
+                    Price: Low to High
+
+                </option>
+
+
+                <option value="high">
+
+                    Price: High to Low
+
+                </option>
+
+
+            </select>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             PRODUCTS
+        ================================================== -->
+
+        <div
+            id="products"
+            class="products"
+        ></div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+     PRODUCT MODAL
+========================================================= -->
+
+<div
+    id="productModal"
+    class="hidden"
+>
+
+
+    <div class="modal-box">
+
+
+        <!-- CLOSE -->
+
+        <button
+            class="modal-close"
+            onclick="closeProduct()"
+        >
+
+            ×
+
+        </button>
+
+
+
+        <!-- PRODUCT VISUAL -->
+
+        <div
+            id="modalImage"
+            class="modal-image"
+        ></div>
+
+
+
+        <!-- PRODUCT INFO -->
+
+        <div class="modal-info">
+
+
+            <div
+                id="modalCategory"
+                class="modal-category"
+            ></div>
+
+
+            <h2 id="modalTitle"></h2>
+
+
+            <div
+                id="modalModel"
+                class="modal-model"
+            ></div>
+
+
+            <p
+                id="modalDescription"
+                class="modal-description"
+            ></p>
+
+
+
+            <div
+                id="detailsTable"
+                class="details-table"
+            ></div>
+
+
+
+            <div class="modal-price">
+
+
+                <small>
+
+                    SELLING PRICE
+
+                </small>
+
+
+                <strong id="modalPrice"></strong>
+
+
+            </div>
+
+
+
+            <div class="modal-actions">
+
+
+                <button
+                    class="datasheet-button"
+                    onclick="openDatasheet()"
+                >
+
+                    📄 VIEW DATASHEET
+
+                </button>
+
+
+                <button
+                    class="quote-button"
+                    onclick="requestQuotation()"
+                >
+
+                    REQUEST QUOTATION
+
+                </button>
+
+
+            </div>
+
+            <div id="productAdminActions" class="admin-actions hidden">
+                <button class="admin-edit" type="button" onclick="editProduct(activeProduct.id)">EDIT PRODUCT</button>
+                <button class="admin-delete" type="button" onclick="deleteProduct(activeProduct.id)">DELETE PRODUCT</button>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     ADD / EDIT PRODUCT MODAL
+========================================================= -->
+<div id="adminModal" class="hidden">
+  <div class="admin-box">
+    <div class="admin-head">
+      <h2 id="adminTitle">ADD PRODUCT</h2>
+      <button class="admin-close" type="button" onclick="closeAdmin()">×</button>
+    </div>
+    <form id="productForm" class="admin-form" onsubmit="saveProduct(event)">
+      <input id="adminId" type="hidden">
+      <div class="admin-field"><label>PRODUCT NAME *</label><input id="adminName" required placeholder="e.g. Fuel Pump (Simplex)"></div>
+      <div class="admin-field"><label>MODEL</label><input id="adminModel" placeholder="e.g. Panther 72"></div>
+      <div class="admin-field"><label>BRAND</label><input id="adminBrand" placeholder="e.g. PIUSI"></div>
+      <div class="admin-field"><label>CATEGORY *</label><select id="adminCategory" required><option value="pump">Pumps</option><option value="tank">Fuel Tanks</option><option value="filter">Filtration</option><option value="valve">Valves</option><option value="monitor">Monitoring</option><option value="control">Control Panels</option></select></div>
+      <div class="admin-field"><label>SUPPLIER</label><input id="adminSupplier" placeholder="Supplier name"></div>
+      <div class="admin-field"><label>SELLING PRICE (SAR)</label><input id="adminPrice" type="number" min="0" step="0.01" placeholder="0"></div>
+      <div class="admin-field full"><label>DESCRIPTION</label><textarea id="adminDescription" placeholder="Product description..."></textarea></div>
+      <div class="admin-field full"><label>SPECIFICATIONS</label><textarea id="adminSpecs" placeholder="Flow Rate: 120 L/min&#10;Voltage: 230 V&#10;Connection: 1 inch"></textarea><div class="admin-help">One specification per line: Name: Value</div></div>
+      <div class="admin-field"><label>PRODUCT IMAGE</label><input id="adminImage" type="file" accept="image/png,image/jpeg,image/webp"><div class="admin-help" id="currentImage"></div></div>
+      <div class="admin-field"><label>DATASHEET PDF</label><input id="adminDatasheet" type="file" accept="application/pdf"><div class="admin-help" id="currentDatasheet"></div></div>
+      <div id="adminStatus" class="admin-status"></div>
+      <button id="adminSave" class="admin-save" type="submit">SAVE PRODUCT</button>
+    </form>
+  </div>
+</div>
+
+
+<!-- =========================================================
+     ADMIN LOGIN
+========================================================= -->
+<div id="loginModal" class="hidden">
+  <div class="login-box">
+    <div class="login-head">
+      <h2>VEGA ADMIN LOGIN</h2>
+      <button class="admin-close" type="button" onclick="closeLogin()">×</button>
+    </div>
+    <form class="login-body" onsubmit="loginAdmin(event)">
+      <div class="login-note">Sign in with the admin user created in Supabase Authentication. Product editing tools stay hidden until login.</div>
+      <label>EMAIL
+        <input id="loginEmail" type="email" autocomplete="username" required placeholder="admin@vega...">
+      </label>
+      <label>PASSWORD
+        <input id="loginPassword" type="password" autocomplete="current-password" required placeholder="••••••••">
+      </label>
+      <div id="loginStatus" class="login-status"></div>
+      <button id="loginSubmit" class="login-submit" type="submit">SIGN IN</button>
+    </form>
+  </div>
+</div>
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+
+    <span>
+
+        VEGA Engineering Solutions Co. Ltd.
+        · Fuel Systems Product Library
+
+    </span>
+
+
+    <span>
+
+        Internal Engineering Database
+
+    </span>
+
+
+</footer>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+/* =========================================================
+   PRODUCT DATABASE
+========================================================= */
+
+const SUPABASE_URL = "https://qhqwademklkjlbdsvjtl.supabase.co";
+
+// Paste your Supabase Publishable key here (NOT the Secret key).
+const SUPABASE_KEY = "sb_publishable_2ILrBAA2dxgjmpqzx0StHQ_lgWTykqM";
+
+const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let adminSession = null;
+
+async function refreshAdminUI(){
+    const { data } = await db.auth.getSession();
+    adminSession = data.session || null;
+    const signedIn = !!adminSession;
+    document.getElementById("guestAdminActions")?.classList.toggle("hidden", signedIn);
+    document.getElementById("signedAdminActions")?.classList.toggle("hidden", !signedIn);
+    document.getElementById("productAdminActions")?.classList.toggle("hidden", !signedIn);
+    const email = adminSession?.user?.email || "";
+    const emailEl = document.getElementById("adminEmail");
+    if(emailEl) emailEl.textContent = email;
+}
+
+function openLogin(){
+    document.getElementById("loginStatus").textContent = "";
+    document.getElementById("loginModal").classList.remove("hidden");
+}
+function closeLogin(){
+    document.getElementById("loginModal").classList.add("hidden");
+}
+async function loginAdmin(event){
+    event.preventDefault();
+    const btn = document.getElementById("loginSubmit");
+    const status = document.getElementById("loginStatus");
+    btn.disabled = true;
+    btn.textContent = "SIGNING IN...";
+    status.textContent = "";
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value;
+    const { error } = await db.auth.signInWithPassword({ email, password });
+    btn.disabled = false;
+    btn.textContent = "SIGN IN";
+    if(error){
+        status.textContent = error.message;
+        return;
+    }
+    closeLogin();
+    await refreshAdminUI();
+}
+async function logoutAdmin(){
+    await db.auth.signOut();
+    adminSession = null;
+    await refreshAdminUI();
+}
+db.auth.onAuthStateChange(() => {
+    setTimeout(refreshAdminUI, 0);
+});
+
+
+let productData = [];
+
+async function normalizeProduct(product){
+    let specs = product.specifications || {};
+    if(typeof specs === "string"){
+        try { specs = JSON.parse(specs); }
+        catch { specs = {}; }
+    }
+
+    return {
+        id: product.id,
+        name: product.name || "",
+        model: product.model || "",
+        brand: product.brand || "",
+        category: product.category || "",
+        categoryName: categoryLabel(product.category),
+        description: product.description || "",
+        supplier: product.supplier || "",
+        price: Number(product.price) || 0,
+        image_url: product.image_url || "",
+        datasheet: product.datasheet_url || "",
+        specs,
+        icon: "⚙️"
+    };
+}
+
+function refreshBrandFilter(){
+    const select = document.getElementById("brandFilter");
+    if(!select) return;
+
+    const oldValue = select.value || "all";
+    const brands = [...new Set(
+        productData.map(p => (p.brand || "").trim()).filter(Boolean)
+    )].sort((a,b) => a.localeCompare(b));
+
+    select.innerHTML =
+        `<option value="all">All Brands</option>` +
+        brands.map(brand =>
+            `<option value="${brand.replace(/"/g, "&quot;")}">${brand}</option>`
+        ).join("");
+
+    select.value = brands.includes(oldValue) ? oldValue : "all";
+}
+
+async function loadProducts(){
+    const container = document.getElementById("products");
+
+    try{
+        const { data, error } = await db
+            .from("products")
+            .select("*")
+            .order("id", { ascending: true });
+
+        if(error) throw error;
+
+        productData = (data || []).map(product => {
+            let specs = product.specifications || {};
+            if(typeof specs === "string"){
+                try { specs = JSON.parse(specs); }
+                catch { specs = {}; }
+            }
+
+            return {
+                id: product.id,
+                name: product.name || "",
+                model: product.model || "",
+                brand: product.brand || "",
+                category: product.category || "",
+                categoryName: categoryLabel(product.category),
+                description: product.description || "",
+                supplier: product.supplier || "",
+                price: Number(product.price) || 0,
+                image_url: product.image_url || "",
+                datasheet: product.datasheet_url || "",
+                specs,
+                icon: "⚙️"
+            };
+        });
+
+        refreshBrandFilter();
+        renderProducts();
+        console.log("VEGA products loaded:", productData.length, data);
+    }catch(error){
+        console.error("Supabase load error:", error);
+        productData = [];
+        renderProducts();
+
+        if(container){
+            container.innerHTML =
+                `<div class="no-products">
+                    Could not load products from Supabase.<br>
+                    <small>${error?.message || error}</small>
+                </div>`;
+        }
+    }
+}
+
+/* =========================================================
+   PRODUCT ADMIN / SUPABASE STORAGE
+========================================================= */
+const STORAGE_BUCKET = "product-files";
+let editingProduct = null;
+
+function categoryLabel(category){
+    return ({tank:"Fuel Tank",pump:"Transfer Pump",filter:"Filtration",valve:"Valve",monitor:"Monitoring",control:"Control Panel"})[category] || category || "Product";
+}
+
+function parseSpecifications(text){
+    const obj={};
+    text.split("\n").forEach(line=>{
+        const i=line.indexOf(":");
+        if(i>0){
+            const key=line.slice(0,i).trim();
+            const value=line.slice(i+1).trim();
+            if(key && value) obj[key]=value;
+        }
+    });
+    return obj;
+}
+
+function specsToText(specs){
+    if(!specs || typeof specs!=="object") return "";
+    return Object.entries(specs).map(([k,v])=>`${k}: ${v}`).join("\n");
+}
+
+function openAdmin(product=null){
+    if(!adminSession){ openLogin(); return; }
+    editingProduct=product;
+    document.getElementById("productForm").reset();
+    document.getElementById("adminStatus").textContent="";
+    document.getElementById("adminStatus").className="admin-status";
+    document.getElementById("adminTitle").textContent=product ? "EDIT PRODUCT" : "ADD PRODUCT";
+    document.getElementById("adminId").value=product?.id || "";
+    document.getElementById("adminName").value=product?.name || "";
+    document.getElementById("adminModel").value=product?.model || "";
+    document.getElementById("adminBrand").value=product?.brand || "";
+    document.getElementById("adminCategory").value=product?.category || "pump";
+    document.getElementById("adminSupplier").value=product?.supplier || "";
+    document.getElementById("adminPrice").value=product?.price || "";
+    document.getElementById("adminDescription").value=product?.description || "";
+    document.getElementById("adminSpecs").value=specsToText(product?.specs);
+    document.getElementById("currentImage").textContent=product?.image_url ? "Current image saved ✓" : "";
+    document.getElementById("currentDatasheet").textContent=product?.datasheet ? "Current PDF saved ✓" : "";
+    document.getElementById("adminModal").classList.remove("hidden");
+}
+
+function closeAdmin(){document.getElementById("adminModal").classList.add("hidden");editingProduct=null;}
+
+function safeFileName(name){return name.toLowerCase().replace(/[^a-z0-9._-]+/g,"-").replace(/-+/g,"-");}
+
+async function uploadProductFile(file, kind){
+    if(!file) return "";
+    const ext=(file.name.split(".").pop() || "bin").toLowerCase();
+    const base=safeFileName(file.name.replace(/\.[^.]+$/,"")) || kind;
+    const path=`products/${kind}/${Date.now()}-${base}.${ext}`;
+    const {error}=await db.storage.from(STORAGE_BUCKET).upload(path,file,{cacheControl:"3600",upsert:false});
+    if(error) throw error;
+    const {data}=db.storage.from(STORAGE_BUCKET).getPublicUrl(path);
+    return data.publicUrl;
+}
+
+async function saveProduct(event){
+    event.preventDefault();
+    if(!adminSession){ openLogin(); return; }
+    const btn=document.getElementById("adminSave");
+    const status=document.getElementById("adminStatus");
+    btn.disabled=true; btn.textContent="SAVING...";
+    status.className="admin-status"; status.textContent="Uploading and saving product...";
+    try{
+        const imageFile=document.getElementById("adminImage").files[0];
+        const pdfFile=document.getElementById("adminDatasheet").files[0];
+        let imageUrl=editingProduct?.image_url || "";
+        let datasheetUrl=editingProduct?.datasheet || "";
+        if(imageFile) imageUrl=await uploadProductFile(imageFile,"images");
+        if(pdfFile) datasheetUrl=await uploadProductFile(pdfFile,"datasheets");
+        const payload={
+            name:document.getElementById("adminName").value.trim(),
+            model:document.getElementById("adminModel").value.trim(),
+            brand:document.getElementById("adminBrand").value.trim(),
+            category:document.getElementById("adminCategory").value,
+            description:document.getElementById("adminDescription").value.trim(),
+            supplier:document.getElementById("adminSupplier").value.trim(),
+            price:Number(document.getElementById("adminPrice").value)||0,
+            image_url:imageUrl,
+            datasheet_url:datasheetUrl,
+            specifications:parseSpecifications(document.getElementById("adminSpecs").value)
+        };
+        let result;
+
+        if(editingProduct?.id){
+            result = await db
+                .from("products")
+                .update(payload)
+                .eq("id", editingProduct.id)
+                .select()
+                .single();
+        }else{
+            result = await db
+                .from("products")
+                .insert(payload)
+                .select()
+                .single();
+        }
+
+        if(result.error) throw result.error;
+
+        // Put the saved product on screen immediately.
+        if(result.data){
+            const saved = await normalizeProduct(result.data);
+            const existingIndex = productData.findIndex(
+                p => String(p.id) === String(saved.id)
+            );
+
+            if(existingIndex >= 0) productData[existingIndex] = saved;
+            else productData.push(saved);
+
+            refreshBrandFilter();
+            renderProducts();
+        }
+
+        status.className="admin-status ok";
+        status.textContent="Product saved successfully ✓";
+
+        // Re-sync once more from Supabase.
+        await loadProducts();
+
+        setTimeout(() => {
+            closeAdmin();
+            showProducts();
+        }, 550);
+    }catch(err){
+        console.error(err);
+        status.className="admin-status error";
+        status.textContent="Could not save: "+(err.message || "Check Supabase policies.");
+    }finally{btn.disabled=false;btn.textContent="SAVE PRODUCT";}
+}
+
+function editProduct(id){
+    const p=productData.find(x=>String(x.id)===String(id));
+    if(p){closeProduct();openAdmin(p);}
+}
+
+async function deleteProduct(id){
+    if(!adminSession){ openLogin(); return; }
+    const p=productData.find(x=>String(x.id)===String(id));
+    if(!p || !confirm(`Delete ${p.name}?`)) return;
+    const {error}=await db.from("products").delete().eq("id",id);
+    if(error){alert("Could not delete: "+error.message);return;}
+    closeProduct(); await loadProducts();
+}
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+let currentCategory="all";
+
+let activeProduct=null;
+
+
+
+/* =========================================================
+   SHOW HOME
+========================================================= */
+
+function showHome(){
+
+
+    document
+    .getElementById(
+        "productPage"
+    )
+    .classList
+    .add(
+        "hidden"
+    );
+
+
+    document
+    .getElementById(
+        "homePage"
+    )
+    .classList
+    .remove(
+        "hidden"
+    );
+
+
+    window.scrollTo(
+        0,
+        0
+    );
+
+}
+
+
+
+/* =========================================================
+   SHOW PRODUCTS
+========================================================= */
+
+function showProducts(searchValue=""){
+
+
+    document
+    .getElementById(
+        "homePage"
+    )
+    .classList
+    .add(
+        "hidden"
+    );
+
+
+    document
+    .getElementById(
+        "productPage"
+    )
+    .classList
+    .remove(
+        "hidden"
+    );
+
+
+    if(searchValue){
+
+
+        document
+        .getElementById(
+            "catalogSearch"
+        )
+        .value =
+            searchValue;
+
+
+        document
+        .getElementById(
+            "headerProductSearch"
+        )
+        .value =
+            searchValue;
+
+    }
+
+
+    renderProducts();
+
+
+    window.scrollTo(
+        0,
+        0
+    );
+
+}
+
+
+
+
+function openCategoryFromHome(category){
+    showProducts();
+    currentCategory = category;
+
+    document.querySelectorAll(".category-tab").forEach(item=>{
+        item.classList.remove("active");
+        if(item.getAttribute("onclick") && item.getAttribute("onclick").includes("'" + category + "'")){
+            item.classList.add("active");
+        }
+    });
+
+    renderProducts();
+}
+
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+function setCategory(
+    category,
+    button
+){
+
+
+    currentCategory=
+        category;
+
+
+    document
+    .querySelectorAll(
+        ".category-tab"
+    )
+    .forEach(
+        item=>
+        item.classList.remove(
+            "active"
+        )
+    );
+
+
+    button
+    .classList
+    .add(
+        "active"
+    );
+
+
+    renderProducts();
+
+}
+
+
+
+/* =========================================================
+   RENDER PRODUCTS
+========================================================= */
+
+function renderProducts(){
+
+
+    const search=
+
+        document
+        .getElementById(
+            "catalogSearch"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+
+
+    const brand=
+
+        document
+        .getElementById(
+            "brandFilter"
+        )
+        .value;
+
+
+
+    const sort=
+
+        document
+        .getElementById(
+            "sortFilter"
+        )
+        .value;
+
+
+
+    let filtered=
+
+        productData.filter(
+            product=>{
+
+
+                const text=
+
+                    (
+
+                        product.name
+
+                        +" "
+
+                        +product.brand
+
+                        +" "
+
+                        +product.model
+
+                        +" "
+
+                        +product.description
+
+                        +" "
+
+                        +product.categoryName
+
+                    )
+                    .toLowerCase();
+
+
+
+                const searchMatch=
+
+                    !search
+
+                    ||
+
+                    text.includes(
+                        search
+                    );
+
+
+
+                const categoryMatch=
+
+                    currentCategory
+                    ===
+                    "all"
+
+                    ||
+
+                    product.category
+                    ===
+                    currentCategory;
+
+
+
+                const brandMatch=
+
+                    brand
+                    ===
+                    "all"
+
+                    ||
+
+                    product.brand
+                    ===
+                    brand;
+
+
+
+                return searchMatch
+                    && categoryMatch
+                    && brandMatch;
+
+            }
+        );
+
+
+
+    if(
+        sort==="name"
+    ){
+
+        filtered.sort(
+            (a,b)=>
+
+            a.name.localeCompare(
+                b.name
+            )
+        );
+
+    }
+
+
+
+    if(
+        sort==="low"
+    ){
+
+        filtered.sort(
+            (a,b)=>
+
+            a.price
+            -
+            b.price
+        );
+
+    }
+
+
+
+    if(
+        sort==="high"
+    ){
+
+        filtered.sort(
+            (a,b)=>
+
+            b.price
+            -
+            a.price
+        );
+
+    }
+
+
+
+    document
+    .getElementById(
+        "productCount"
+    )
+    .textContent=
+
+        filtered.length;
+
+
+
+    const container=
+
+        document
+        .getElementById(
+            "products"
+        );
+
+
+
+    if(
+        filtered.length===0
+    ){
+
+
+        container.innerHTML=`
+
+            <div class="no-products">
+
+                No products found.
+
+            </div>
+
+        `;
+
+
+        return;
+
+    }
+
+
+
+    container.innerHTML=
+
+        filtered
+        .map(
+            product=>{
+
+
+                const specs=
+
+                    Object.entries(
+                        product.specs
+                    )
+
+                    .slice(
+                        0,
+                        3
+                    )
+
+                    .map(
+                        ([key,value])=>`
+
+                            <div class="mini-spec">
+
+                                <span>
+
+                                    ${key}
+
+                                </span>
+
+                                <strong>
+
+                                    ${value}
+
+                                </strong>
+
+                            </div>
+
+                        `
+                    )
+
+                    .join("");
+
+
+
+                return `
+
+
+                    <article
+                        class="card"
+                        onclick="openProduct(${product.id})"
+                    >
+
+
+                        <div class="card-image">
+
+
+                            <div class="card-category">
+
+                                ${product.categoryName}
+
+                            </div>
+
+
+                            <div class="card-brand">
+
+                                ${product.brand}
+
+                            </div>
+
+
+                            ${product.image_url
+                                ? `<img src="${product.image_url}" alt="${product.name}" style="max-width:82%;max-height:82%;object-fit:contain">`
+                                : `<div class="product-icon">${product.icon}</div>`
+                            }
+
+
+                        </div>
+
+
+
+                        <div class="card-body">
+
+
+                            <h3>
+
+                                ${product.name}
+
+                            </h3>
+
+
+                            <div class="model">
+
+                                Model:
+                                ${product.model}
+
+                            </div>
+
+
+                            <div class="description">
+
+                                ${product.description}
+
+                            </div>
+
+
+                            <div class="mini-specs">
+
+                                ${specs}
+
+                            </div>
+
+
+
+                            <div class="card-footer">
+
+
+                                <div class="price">
+
+
+                                    <small>
+
+                                        SELLING PRICE
+
+                                    </small>
+
+
+                                    <strong>
+
+                                        ${product.price.toLocaleString()}
+                                        SAR
+
+                                    </strong>
+
+
+                                </div>
+
+
+                                <button
+                                    class="details-button"
+                                >
+
+                                    DETAILS →
+
+                                </button>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </article>
+
+                `;
+
+            }
+        )
+
+        .join("");
+
+}
+
+
+
+/* =========================================================
+   OPEN PRODUCT
+========================================================= */
+
+function openProduct(id){
+
+
+    activeProduct=
+
+        productData.find(
+            product=>
+
+            String(product.id)===String(id)
+        );
+
+
+    if(
+        !activeProduct
+    ){
+
+        return;
+
+    }
+
+
+
+    document
+    .getElementById(
+        "modalImage"
+    )
+    .innerHTML = activeProduct.image_url
+        ? `<img src="${activeProduct.image_url}" alt="${activeProduct.name}" style="max-width:90%;max-height:520px;object-fit:contain">`
+        : activeProduct.icon;
+
+
+
+    document
+    .getElementById(
+        "modalCategory"
+    )
+    .textContent=
+
+        activeProduct.categoryName;
+
+
+
+    document
+    .getElementById(
+        "modalTitle"
+    )
+    .textContent=
+
+        activeProduct.name;
+
+
+
+    document
+    .getElementById(
+        "modalModel"
+    )
+    .textContent=
+
+        activeProduct.brand
+
+        +
+
+        " · "
+
+        +
+
+        activeProduct.model;
+
+
+
+    document
+    .getElementById(
+        "modalDescription"
+    )
+    .textContent=
+
+        activeProduct.description;
+
+
+
+    document
+    .getElementById(
+        "modalPrice"
+    )
+    .textContent=
+
+        activeProduct
+        .price
+        .toLocaleString()
+
+        +
+
+        " SAR";
+
+
+
+    document
+    .getElementById(
+        "detailsTable"
+    )
+    .innerHTML=
+
+        Object.entries(
+            activeProduct.specs
+        )
+
+        .map(
+            ([key,value])=>`
+
+                <div class="detail-row">
+
+
+                    <span>
+
+                        ${key}
+
+                    </span>
+
+
+                    <strong>
+
+                        ${value}
+
+                    </strong>
+
+
+                </div>
+
+            `
+        )
+
+        .join("");
+
+
+
+    document
+    .getElementById(
+        "productModal"
+    )
+    .classList
+    .remove(
+        "hidden"
+    );
+
+}
+
+
+
+/* =========================================================
+   CLOSE PRODUCT
+========================================================= */
+
+function closeProduct(){
+
+
+    document
+    .getElementById(
+        "productModal"
+    )
+    .classList
+    .add(
+        "hidden"
+    );
+
+}
+
+
+
+/* =========================================================
+   DATASHEET
+========================================================= */
+
+function openDatasheet(){
+
+
+    if(
+
+        activeProduct
+
+        &&
+
+        activeProduct.datasheet
+
+    ){
+
+
+        window.open(
+
+            activeProduct.datasheet,
+
+            "_blank"
+
+        );
+
+    }
+
+
+    else{
+
+
+        alert(
+
+            "Datasheet link will be added for this product."
+
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   QUOTATION
+========================================================= */
+
+function requestQuotation(){
+
+
+    alert(
+
+        "Quotation function can be connected later."
+
+    );
+
+}
+
+
+
+/* =========================================================
+   HOME SEARCH
+========================================================= */
+
+document
+.getElementById(
+    "homeSearch"
+)
+.addEventListener(
+    "keydown",
+    function(event){
+
+
+        if(
+            event.key==="Enter"
+        ){
+
+
+            showProducts(
+
+                this.value.trim()
+
+            );
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   CATALOG SEARCH
+========================================================= */
+
+document
+.getElementById(
+    "catalogSearch"
+)
+.addEventListener(
+    "input",
+    function(){
+
+
+        document
+        .getElementById(
+            "headerProductSearch"
+        )
+        .value=
+
+            this.value;
+
+
+        renderProducts();
+
+    }
+);
+
+
+
+/* =========================================================
+   HEADER SEARCH
+========================================================= */
+
+document
+.getElementById(
+    "headerProductSearch"
+)
+.addEventListener(
+    "input",
+    function(){
+
+
+        document
+        .getElementById(
+            "catalogSearch"
+        )
+        .value=
+
+            this.value;
+
+
+        renderProducts();
+
+    }
+);
+
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+document
+.getElementById(
+    "brandFilter"
+)
+.addEventListener(
+    "change",
+    renderProducts
+);
+
+
+
+/* =========================================================
+   SORT
+========================================================= */
+
+document
+.getElementById(
+    "sortFilter"
+)
+.addEventListener(
+    "change",
+    renderProducts
+);
+
+
+
+/* =========================================================
+   MODAL BACKGROUND
+========================================================= */
+
+document
+.getElementById(
+    "productModal"
+)
+.addEventListener(
+    "click",
+    function(event){
+
+
+        if(
+            event.target===this
+        ){
+
+
+            closeProduct();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document
+.addEventListener(
+    "keydown",
+    function(event){
+
+
+        if(
+            event.key==="Escape"
+        ){
+
+
+            closeProduct();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   START
+========================================================= */
+
+window.addEventListener("DOMContentLoaded", async () => {
+    await refreshAdminUI();
+    await loadProducts();
+});
+
+</script>
+
+
+</body>
+
+</html>
