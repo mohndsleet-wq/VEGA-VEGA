@@ -546,6 +546,24 @@ footer{background:#050607;border-color:#191e22;color:#59636c}
 
             </button>
 
+            <button
+                class="category-tab"
+                onclick="setCategory('pipe',this)"
+            >
+
+                PIPES &amp; FITTINGS
+
+            </button>
+
+            <button
+                class="category-tab"
+                onclick="setCategory('electrical',this)"
+            >
+
+                ELECTRICAL
+
+            </button>
+
 
         </div>
 
@@ -817,7 +835,7 @@ footer{background:#050607;border-color:#191e22;color:#59636c}
       <div class="admin-field"><label>PRODUCT NAME *</label><input id="adminName" required placeholder="e.g. Fuel Pump (Simplex)"></div>
       <div class="admin-field"><label>MODEL</label><input id="adminModel" placeholder="e.g. Panther 72"></div>
       <div class="admin-field"><label>BRAND</label><input id="adminBrand" placeholder="e.g. PIUSI"></div>
-      <div class="admin-field"><label>CATEGORY *</label><select id="adminCategory" required><option value="pump">Pumps</option><option value="tank">Fuel Tanks</option><option value="filter">Filtration</option><option value="valve">Valves</option><option value="monitor">Monitoring</option><option value="control">Control Panels</option></select></div>
+      <div class="admin-field"><label>CATEGORY *</label><select id="adminCategory" required><option value="pump">Pumps</option><option value="tank">Fuel Tanks</option><option value="filter">Filtration</option><option value="valve">Valves</option><option value="monitor">Monitoring</option><option value="control">Control Panels</option><option value="pipe">Pipes &amp; Fittings</option><option value="electrical">Electrical</option></select></div>
       <div class="admin-field"><label>SUPPLIER</label><input id="adminSupplier" placeholder="Supplier name"></div>
       <div class="admin-field"><label>SELLING PRICE (SAR)</label><input id="adminPrice" type="number" min="0" step="0.01" placeholder="0"></div>
       <div class="admin-field full"><label>DESCRIPTION</label><textarea id="adminDescription" placeholder="Product description..."></textarea></div>
@@ -1049,7 +1067,7 @@ const STORAGE_BUCKET = "product-files";
 let editingProduct = null;
 
 function categoryLabel(category){
-    return ({tank:"Fuel Tank",pump:"Transfer Pump",filter:"Filtration",valve:"Valve",monitor:"Monitoring",control:"Control Panel"})[category] || category || "Product";
+    return ({tank:"Fuel Tank",pump:"Transfer Pump",filter:"Filtration",valve:"Valve",monitor:"Monitoring",control:"Control Panel",pipe:"Pipes & Fittings",electrical:"Electrical"})[category] || category || "Product";
 }
 
 function parseSpecifications(text){
