@@ -282,16 +282,30 @@ footer{background:#050607;border-color:#191e22;color:#59636c}
 @media(max-width:1050px){.products{grid-template-columns:repeat(3,1fr)}.product-header{grid-template-columns:1fr}.product-header-actions{justify-self:stretch;flex-wrap:wrap}.product-header-search{width:100%;order:4}.library-name{display:none}}
 @media(max-width:760px){.products{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr}.catalog-hero{min-height:145px}.product-count{display:none}}
 @media(max-width:500px){.products{grid-template-columns:1fr}.catalog-container{padding-left:14px;padding-right:14px}.catalog-hero{padding-left:18px;padding-right:18px}.catalog-hero h1{font-size:34px}}
-/* ===== MOBILE HOME FIX ===== */
+/* ===== FINAL MOBILE HOME ===== */
 @media (max-width: 760px) {
 
+    html,
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        min-height: 100% !important;
+        background: #020305 !important;
+    }
+
     #homePage {
+        position: relative !important;
+
+        width: 100% !important;
         height: 100svh !important;
-        min-height: 100svh !important;
+        min-height: 0 !important;
 
         background-image: url("Vega_ A Star Among Skies.png") !important;
-        background-size: auto 100% !important;
-        background-position: center top !important;
+
+        /* نخلي الصورة أعرض من الشاشة شوي بدل التكبير المجنون */
+        background-size: auto 68% !important;
+        background-position: center 30% !important;
         background-repeat: no-repeat !important;
         background-color: #020305 !important;
 
@@ -299,14 +313,29 @@ footer{background:#050607;border-color:#191e22;color:#59636c}
     }
 
     .simple-home-library {
-        top: 62% !important;
+        position: absolute !important;
+
         left: 50% !important;
+        top: 66% !important;
+
         transform: translate(-50%, -50%) !important;
 
+        width: auto !important;
+        min-width: 210px !important;
         height: 54px !important;
-        padding: 0 25px !important;
-        font-size: 10px !important;
-        white-space: nowrap;
+
+        padding: 0 24px !important;
+
+        border: 1px solid rgba(255,255,255,.25) !important;
+        background: #ed1c24 !important;
+        color: #fff !important;
+
+        font-size: 11px !important;
+        font-weight: 900 !important;
+        letter-spacing: 1px !important;
+        white-space: nowrap !important;
+
+        box-shadow: 0 10px 30px rgba(237,28,36,.25) !important;
     }
 
     body:has(#homePage:not(.hidden)) footer {
